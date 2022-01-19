@@ -1,0 +1,38 @@
+.wrapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	height: 90px;
+}
+
+.logo {
+	width: 172px;
+}
+
+.navigation {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+ul {
+	margin: 0;
+	margin-right: 95px;
+	padding: 0;
+}
+
+li {
+	list-style-type: none;
+}
+
+.link {
+	color: #2e2e2e;
+	text-decoration: none;
+	transition: ease 0.2s all;
+
+	&:hover {
+		color: rgb(23, 139, 105);
+	}
+}

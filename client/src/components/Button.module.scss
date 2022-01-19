@@ -1,0 +1,17 @@
+.btn {
+	width: 140px;
+	height: 35px;
+	background-color: #22c09f;
+	color: white;
+	border: none;
+	font-size: 14px;
+	transition: ease 0.2s all;
+	cursor: pointer;
+
+	&:hover {
+		background-color: #1ba789;
+	}
+	&:active {
+		background-color: #198c74;
+	}
+}

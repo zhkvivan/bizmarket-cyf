@@ -1,17 +1,13 @@
-import { Route, Switch } from "react-router-dom";
+import { Routes } from "react-router-dom";
+import Header from "./components/Header";
 
-import About from "./pages/About";
-import Home from "./pages/Home";
-
-const App = () => (
-	<Switch>
-		<Route path="/" exact>
-			<Home />
-		</Route>
-		<Route path="/about/this/site">
-			<About />
-		</Route>
-	</Switch>
-);
+function App() {
+	return (
+		<>
+			<Routes>{/* <Route path="/" element={} /> */}</Routes>
+			<Header />
+		</>
+	);
+}
 
 export default App;
