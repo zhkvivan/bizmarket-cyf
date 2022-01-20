@@ -3,12 +3,14 @@ import { Link } from "react-router-dom";
 import Button from "./Button";
 import styles from "./Header.module.scss";
 
+import logo from "../images/logo.png";
+
 const HeaderMenu = () => {
 	return (
 		<div className="container">
 			<div className={styles.wrapper}>
 				<Link to="/">
-					<img src="./images/logo.png" alt="" className={styles.logo} />
+					<img src={logo} alt="" className={styles.logo} />
 				</Link>
 				<div className={styles.navigation}>
 					<ul>
