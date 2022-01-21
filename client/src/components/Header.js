@@ -5,15 +5,15 @@ import styles from "./Header.module.scss";
 
 import logo from "../images/logo.png";
 
-const HeaderMenu = () => {
+const Header = () => {
 	return (
-		<div className="container">
-			<div className={styles.wrapper}>
+		<header>
+			<div className={`${styles.wrapper} ${styles.container}`}>
 				<Link to="/">
-					<img src={logo} alt="" className={styles.logo} />
+					<img src={logo} alt="logo" className={styles.logo} />
 				</Link>
 				<div className={styles.navigation}>
-					<ul>
+					<ul className={styles.menu}>
 						<li>
 							<Link to="/about" className={styles.link}>
 								About
@@ -23,8 +23,8 @@ const HeaderMenu = () => {
 					<Button label="Login" />
 				</div>
 			</div>
-		</div>
+		</header>
 	);
 };
 
-export default HeaderMenu;
+export default Header;
