@@ -5,10 +5,10 @@ import dropdownArrow from "../images/dropdownArrow.png";
 const AddAnAdPage = () => {
 	const [category, setCategory] = useState("Select category");
 
-	const [adName, setAdName] = useState("");
+	const [adTitle, setAdTitle] = useState("");
 	const [nameCounter, setNameCounter] = useState("0");
-	const nameHandler = (e) => {
-		setAdName(e.target.value);
+	const titleHandler = (e) => {
+		setAdTitle(e.target.value);
 		setNameCounter(e.target.value.length);
 	};
 
@@ -19,11 +19,17 @@ const AddAnAdPage = () => {
 		setDescriptionCounter(e.target.value.length);
 	};
 
+	const [price, setPrice] = useState(0);
+	const priceHandler = (e) => {
+		setPrice(e.target.value);
+	};
+
 	return (
 		<div className={styles["page-wrap"]}>
 			<div className={styles.container}>
 				<h1>Post new Ad</h1>
 				<form>
+					{/* Category */}
 					<div className={styles["field-base"]}>
 						<label htmlFor="categories">Categories:</label>
 						<div className={styles["select-wrapper"]}>
@@ -53,19 +59,21 @@ const AddAnAdPage = () => {
 							</select>
 						</div>
 					</div>
+					{/* Title */}
 					<div className={styles["field-base"]}>
-						<label htmlFor="name">Name of the Ad:</label>
+						<label htmlFor="title">Ad title:</label>
 						<input
 							type="text"
 							placeholder="Type here.."
-							value={adName}
-							onChange={nameHandler}
+							value={adTitle}
+							onChange={titleHandler}
 							maxLength={100}
 						/>
 						<span className={styles.remaining}>
 							{100 - nameCounter} characters remaining
 						</span>
 					</div>
+					{/* Description */}
 					<div className={styles["field-base"]}>
 						<label htmlFor="description">Description:</label>
 						<textarea
@@ -77,6 +85,17 @@ const AddAnAdPage = () => {
 						<span className={styles.remaining}>
 							{1000 - descriptionCounter} characters remaining
 						</span>
+					</div>
+					<div className={styles["field-base"]}>
+						<label htmlFor="price">Price:</label>
+						<div className={styles["price-wrap"]}>
+							<input
+								type="number"
+								placeholder="0"
+								value={price}
+								onChange={priceHandler}
+							/>
+						</div>
 					</div>
 				</form>
 			</div>

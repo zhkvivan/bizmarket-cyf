@@ -14,6 +14,13 @@
 		border-radius: 10px;
 		outline: none;
 		padding-left: 10px;
+
+		&[type="number"] {
+			width: 80px;
+			padding-left: 20px;
+			padding-right: 10px;
+			text-align: right;
+		}
 	}
 	textarea {
 		max-width: 530px;
@@ -24,6 +31,17 @@
 		border-radius: 10px;
 		outline: none;
 		padding: 10px;
+	}
+}
+
+.price-wrap {
+	position: relative;
+	&:before {
+		content: "£";
+		position: absolute;
+		left: 10px;
+		top: 53%;
+		transform: translateY(-50%);
 	}
 }
 
