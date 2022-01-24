@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import Button from "./Button";
 import styles from "./Header.module.scss";
 
 import logo from "../images/logo.png";
+import { Context } from "./Context/Context.js";
+import PopUp from "./PopUp";
 
 const Header = () => {
-	const handleSubmit = () => {
-		console.log("Button was clicked");
-	};
+	const popUp = useContext(Context);
 
 	return (
 		<header>
@@ -31,13 +31,14 @@ const Header = () => {
 						<li className={styles.link}>
 							<button
 								style={{ backgroundColor: "transparent", border: "none" }}
-								onClick={handleSubmit}
+								onClick={popUp.togglePopUp}
 							>
 								Login / Register
 							</button>
 						</li>
 					</ul>
 					<Button label="Post an Ad" />
+					{popUp.isOpen && <PopUp />}
 				</div>
 			</div>
 		</header>
