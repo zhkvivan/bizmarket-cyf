@@ -6,6 +6,10 @@ import styles from "./Header.module.scss";
 import logo from "../images/logo.png";
 
 const Header = () => {
+	const handleSubmit = () => {
+		console.log("Button was clicked");
+	};
+
 	return (
 		<header>
 			<div className={`${styles.wrapper} ${styles.container}`}>
@@ -24,7 +28,14 @@ const Header = () => {
 								About
 							</NavLink>
 						</li>
-						<li className={styles.link}>Login / Register</li>
+						<li className={styles.link}>
+							<button
+								style={{ backgroundColor: "transparent", border: "none" }}
+								onClick={handleSubmit}
+							>
+								Login / Register
+							</button>
+						</li>
 					</ul>
 					<Button label="Post an Ad" />
 				</div>
