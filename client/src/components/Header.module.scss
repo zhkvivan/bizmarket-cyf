@@ -23,13 +23,17 @@ header {
 }
 
 .menu {
-	margin-right: 95px;
+	margin-right: 40px;
+	display: flex;
+	flex-direction: row;
 }
 
 .link {
 	color: $text-color;
 	text-decoration: none;
 	transition: ease 0.2s all;
+	margin: 0 30px;
+	cursor: pointer;
 
 	&:hover {
 		color: $primary-color-hover;

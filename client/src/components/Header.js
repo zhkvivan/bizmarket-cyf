@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Button from "./Button";
 import styles from "./Header.module.scss";
 
@@ -9,18 +9,24 @@ const Header = () => {
 	return (
 		<header>
 			<div className={`${styles.wrapper} ${styles.container}`}>
-				<Link to="/">
+				<NavLink to="/">
 					<img src={logo} alt="logo" className={styles.logo} />
-				</Link>
+				</NavLink>
 				<div className={styles.navigation}>
 					<ul className={styles.menu}>
 						<li>
-							<Link to="/about" className={styles.link}>
-								About
-							</Link>
+							<NavLink to="/" className={styles.link}>
+								Home
+							</NavLink>
 						</li>
+						<li>
+							<NavLink to="/about" className={styles.link}>
+								About
+							</NavLink>
+						</li>
+						<li className={styles.link}>Login / Register</li>
 					</ul>
-					<Button label="Login" />
+					<Button label="Post an Ad" />
 				</div>
 			</div>
 		</header>
