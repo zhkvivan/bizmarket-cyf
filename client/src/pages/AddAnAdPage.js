@@ -12,6 +12,13 @@ const AddAnAdPage = () => {
 		setNameCounter(e.target.value.length);
 	};
 
+	const [description, setDescription] = useState("");
+	const [descriptionCounter, setDescriptionCounter] = useState("0");
+	const descriptionHandler = (e) => {
+		setDescription(e.target.value);
+		setDescriptionCounter(e.target.value.length);
+	};
+
 	return (
 		<div className={styles["page-wrap"]}>
 			<div className={styles.container}>
@@ -51,12 +58,24 @@ const AddAnAdPage = () => {
 						<input
 							type="text"
 							placeholder="Type here.."
-							value={adName.name}
+							value={adName}
 							onChange={nameHandler}
 							maxLength={100}
 						/>
 						<span className={styles.remaining}>
 							{100 - nameCounter} characters remaining
+						</span>
+					</div>
+					<div className={styles["field-base"]}>
+						<label htmlFor="description">Description:</label>
+						<textarea
+							placeholder="Type here.."
+							value={description}
+							onChange={descriptionHandler}
+							maxLength={1000}
+						/>
+						<span className={styles.remaining}>
+							{1000 - descriptionCounter} characters remaining
 						</span>
 					</div>
 				</form>
