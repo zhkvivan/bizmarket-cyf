@@ -1,3 +1,8 @@
+@import "./scssCommon.scss";
+
+header {
+	flex-shrink: 0;
+}
 .wrapper {
 	display: flex;
 	flex-direction: row;
@@ -17,22 +22,20 @@
 	align-items: center;
 }
 
-ul {
-	margin: 0;
-	margin-right: 95px;
-	padding: 0;
-}
-
-li {
-	list-style-type: none;
+.menu {
+	margin-right: 40px;
+	display: flex;
+	flex-direction: row;
 }
 
 .link {
-	color: #2e2e2e;
+	color: $text-color;
 	text-decoration: none;
 	transition: ease 0.2s all;
+	margin: 0 30px;
+	cursor: pointer;
 
 	&:hover {
-		color: rgb(23, 139, 105);
+		color: $primary-color-hover;
 	}
 }
