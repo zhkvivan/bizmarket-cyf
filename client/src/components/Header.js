@@ -1,11 +1,14 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Button from "./Button";
 import styles from "./Header.module.scss";
 
 import logo from "../images/logo.png";
 
 const Header = () => {
+	const navigate = useNavigate();
+	const toAddAnAdPage = () => navigate("/add-an-ad");
+
 	return (
 		<header>
 			<div className={`${styles.wrapper} ${styles.container}`}>
@@ -26,7 +29,9 @@ const Header = () => {
 						</li>
 						<li className={styles.link}>Login / Register</li>
 					</ul>
-					<Button label="Post an Ad" />
+					<div>
+						<Button label="Post an Ad" onClick={toAddAnAdPage} />
+					</div>
 				</div>
 			</div>
 		</header>
