@@ -6,7 +6,11 @@ const AddAnAdPage = () => {
 	const [category, setCategory] = useState("Select category");
 
 	const [adName, setAdName] = useState("");
-	const [nameRemaining, setNameRemainig] = useState(100);
+	const [nameCounter, setNameCounter] = useState("0");
+	const nameHandler = (e) => {
+		setAdName(e.target.value);
+		setNameCounter(e.target.value.length);
+	};
 
 	return (
 		<div className={styles["page-wrap"]}>
@@ -48,17 +52,11 @@ const AddAnAdPage = () => {
 							type="text"
 							placeholder="Type here.."
 							value={adName.name}
-							onChange={(e) => {
-								setAdName(e.target.value);
-								setNameRemainig((prev) => {
-									let next = prev;
-									next = 100 - adName.length;
-									return next;
-								});
-							}}
+							onChange={nameHandler}
+							maxLength={100}
 						/>
 						<span className={styles.remaining}>
-							{nameRemaining} characters remaining
+							{100 - nameCounter} characters remaining
 						</span>
 					</div>
 				</form>
