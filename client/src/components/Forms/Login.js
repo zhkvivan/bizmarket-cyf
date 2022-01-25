@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { Context } from "../Context/Context";
-import "./Login.css";
+import "./Form.css";
 import { Form, Button } from "react-bootstrap";
 
 const Login = () => {
