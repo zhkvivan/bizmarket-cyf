@@ -56,7 +56,9 @@ const Login = () => {
 							Submit
 						</Button>
 					</Form>
-					<p>Not a Member? Sign Up</p>
+					<p>
+						Not a Member? <button>Sign Up</button>
+					</p>
 				</div>
 			</div>
 		</>
