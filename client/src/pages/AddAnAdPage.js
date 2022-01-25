@@ -1,47 +1,46 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import styles from "./AddAnAdPage.module.scss";
 import dropdownArrow from "../images/dropdownArrow.png";
 
 const AddAnAdPage = () => {
-	const [category, setCategory] = useState("Select category");
+	const {
+		register,
+		handleSubmit,
+		watch,
+		formState: { errors },
+	} = useForm({
+		defaultValues: {
+			title: "",
+			description: "",
+			price: "",
+		},
+	});
 
-	const [adTitle, setAdTitle] = useState("");
-	const [nameCounter, setNameCounter] = useState("0");
-	const titleHandler = (e) => {
-		setAdTitle(e.target.value);
-		setNameCounter(e.target.value.length);
+	const [title, description] = watch(["title", "description"]);
+
+	const onSubmit = (data) => {
+		console.log(data);
 	};
-
-	const [description, setDescription] = useState("");
-	const [descriptionCounter, setDescriptionCounter] = useState("0");
-	const descriptionHandler = (e) => {
-		setDescription(e.target.value);
-		setDescriptionCounter(e.target.value.length);
-	};
-
-	const [price, setPrice] = useState(0);
-	const priceHandler = (e) => {
-		setPrice(e.target.value);
-	};
-
 	return (
 		<div className={styles["page-wrap"]}>
 			<div className={styles.container}>
 				<h1>Post new Ad</h1>
-				<form>
+				<form onSubmit={handleSubmit(onSubmit)}>
 					{/* Category */}
 					<div className={styles["field-base"]}>
 						<label htmlFor="categories">Categories:</label>
 						<div className={styles["select-wrapper"]}>
 							<select
+								{...register("category", {
+									required: "This field is required",
+								})}
 								id="categories"
-								value={category}
-								onChange={(e) => {
-									setCategory(e.target.value);
-								}}
-								className={styles.select}
+								className={`${styles.select} ${
+									errors.category && styles["error-field"]
+								}`}
 							>
-								<option disabled>Select category</option>
+								<option value="">Select category</option>
 								<option value="Automotive">Automotive</option>
 								<option value="Electronics">Electronics</option>
 								<option value="Fashion, Clothing">Fashion, Clothing</option>
@@ -57,46 +56,109 @@ const AddAnAdPage = () => {
 								<option value="Toys, Games">Toys, Games</option>
 								<option value="Others">Others</option>
 							</select>
+							{/* Error handling message: */}
+							<div>
+								{errors.category && (
+									<span className={styles["error-text"]}>
+										{errors.category.message}
+									</span>
+								)}
+							</div>
 						</div>
 					</div>
 					{/* Title */}
 					<div className={styles["field-base"]}>
 						<label htmlFor="title">Ad title:</label>
-						<input
-							type="text"
-							placeholder="Type here.."
-							value={adTitle}
-							onChange={titleHandler}
-							maxLength={100}
-						/>
+						<div className={styles["input-wrapper"]}>
+							<input
+								{...register("title", {
+									required: "This field is required",
+									minLength: {
+										value: 2,
+										message: "Title is too short",
+									},
+								})}
+								className={`${styles.input} ${
+									errors.title && styles["error-field"]
+								}`}
+								type="text"
+								placeholder="Type here.."
+								maxLength={100}
+							/>
+							{/* Error handling message: */}
+							<div>
+								{errors.title && (
+									<span className={styles["error-text"]}>
+										{errors.title.message}
+									</span>
+								)}
+							</div>
+						</div>
 						<span className={styles.remaining}>
-							{100 - nameCounter} characters remaining
+							{100 - title.length} characters remaining
 						</span>
 					</div>
 					{/* Description */}
 					<div className={styles["field-base"]}>
 						<label htmlFor="description">Description:</label>
-						<textarea
-							placeholder="Type here.."
-							value={description}
-							onChange={descriptionHandler}
-							maxLength={1000}
-						/>
+						<div className={styles["input-wrapper"]}>
+							<textarea
+								{...register("description", {
+									required: "This field is required",
+									minLength: {
+										value: 2,
+										message: "Title is too short",
+									},
+								})}
+								className={`${styles.textarea} ${
+									errors.description && styles["error-field"]
+								}`}
+								placeholder="Type here.."
+								maxLength={1000}
+							/>
+							<div>
+								{errors.description && (
+									<span className={styles["error-text"]}>
+										{errors.description.message}
+									</span>
+								)}
+							</div>
+						</div>
 						<span className={styles.remaining}>
-							{1000 - descriptionCounter} characters remaining
+							{1000 - description.length} characters remaining
 						</span>
 					</div>
+					{/* Price */}
 					<div className={styles["field-base"]}>
 						<label htmlFor="price">Price:</label>
-						<div className={styles["price-wrap"]}>
-							<input
-								type="number"
-								placeholder="0"
-								value={price}
-								onChange={priceHandler}
-							/>
+						<div>
+							<div className={styles["price-wrap"]}>
+								<input
+									type="number"
+									placeholder="0"
+									{...register("price", {
+										required: "This field is required",
+									})}
+									className={`${styles.input} ${
+										errors.price && styles["error-field"]
+									}`}
+								/>
+							</div>
+							<div>
+								{errors.price && (
+									<span className={styles["error-text"]}>
+										{errors.price.message}
+									</span>
+								)}
+							</div>
 						</div>
 					</div>
+					{/* Image */}
+					<div className={styles["field-base"]}>
+						<label htmlFor="image">Image:</label>
+						<div></div>
+					</div>
+					<input type="submit" />
 				</form>
 			</div>
 		</div>
