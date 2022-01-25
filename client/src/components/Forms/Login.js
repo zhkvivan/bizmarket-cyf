@@ -11,11 +11,9 @@ const Login = () => {
 		password: "",
 	});
 
-	console.log("text", text);
-
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log("Posting", text);
+		// Posting to backend goes here
 	};
 
 	return (
