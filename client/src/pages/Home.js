@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import "./Home.css";
 import logo from "./logo.svg";
 
+
+
 export function Home() {
 	const [message, setMessage] = useState("Loading...");
 
