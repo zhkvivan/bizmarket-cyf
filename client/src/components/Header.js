@@ -5,7 +5,6 @@ import styles from "./Header.module.scss";
 
 import logo from "../images/logo.png";
 import { Context } from "./Context/Context.js";
-import Login from "./Forms/Login";
 
 const Header = () => {
 	const popUp = useContext(Context);
