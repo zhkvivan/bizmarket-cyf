@@ -55,7 +55,7 @@ const Register = () => {
 							}
 						/>
 					</Form.Group>
-					<Form.Group className="mb-3" controlId="formBasicPassword">
+					<Form.Group className="mb-3" controlId="formBasicPassword2">
 						<Form.Label>Confirm you password</Form.Label>
 						<Form.Control
 							type="password"
