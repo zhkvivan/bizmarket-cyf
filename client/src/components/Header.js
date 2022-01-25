@@ -1,28 +1,47 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { NavLink } from "react-router-dom";
 import Button from "./Button";
 import styles from "./Header.module.scss";
 
-const HeaderMenu = () => {
+import logo from "../images/logo.png";
+import { Context } from "./Context/Context.js";
+
+const Header = () => {
+	const popUp = useContext(Context);
+
 	return (
-		<div className="container">
-			<div className={styles.wrapper}>
-				<Link to="/">
-					<img src="./images/logo.png" alt="" className={styles.logo} />
-				</Link>
+		<header>
+			<div className={`${styles.wrapper} ${styles.container}`}>
+				<NavLink to="/">
+					<img src={logo} alt="logo" className={styles.logo} />
+				</NavLink>
 				<div className={styles.navigation}>
-					<ul>
+					<ul className={styles.menu}>
 						<li>
-							<Link to="/about" className={styles.link}>
+							<NavLink to="/" className={styles.link}>
+								Home
+							</NavLink>
+						</li>
+						<li>
+							<NavLink to="/about" className={styles.link}>
 								About
-							</Link>
+							</NavLink>
+						</li>
+						<li className={styles.link}>
+							<button
+								style={{ backgroundColor: "transparent", border: "none" }}
+								onClick={popUp.togglePopUp}
+							>
+								Login / Register
+							</button>
 						</li>
 					</ul>
-					<Button label="Login" />
+					<Button label="Post an Ad" />
+					{popUp.isOpen && popUp.form}
 				</div>
 			</div>
-		</div>
+		</header>
 	);
 };
 
-export default HeaderMenu;
+export default Header;

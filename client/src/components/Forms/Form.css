@@ -1,0 +1,47 @@
+.popup-box {
+	position: fixed;
+	background: rgba(0, 0, 0, 0.71);
+	width: 100%;
+	height: 100vh;
+	top: 0;
+	left: 0;
+}
+
+.box {
+	position: relative;
+	width: 50%;
+	margin: 0 auto;
+	height: auto;
+	max-height: 70vh;
+	margin-top: calc(100vh - 85vh - 20px);
+	background: #fff;
+	border-radius: 50px;
+	padding: 20px;
+	border: 1px solid #999;
+	overflow: auto;
+}
+
+.close-icon {
+	content: "x";
+	cursor: pointer;
+	position: fixed;
+	right: calc(25% - 50px);
+	top: calc(100vh - 85vh - 50px);
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	line-height: 20px;
+	text-align: center;
+	font-size: 30px;
+	font-weight: 800;
+}
+
+.button {
+	background-color: transparent;
+	border: none;
+	color: blue;
+}
+
+.header {
+	text-align: center;
+}

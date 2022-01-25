@@ -1,0 +1,63 @@
+@import "./scssCommon.scss";
+
+footer {
+	height: 270px;
+	background-color: $primary-color;
+	color: white;
+	flex-shrink: 0;
+}
+
+.logo-wrap {
+	width: 210px;
+	img {
+		width: 100%;
+	}
+}
+
+.content {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	min-width: 500px;
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+}
+
+h5 {
+	margin: 0;
+	margin-bottom: 15px;
+	font-size: 19px;
+}
+
+.line {
+	width: 60px;
+	border-bottom: 2px solid white;
+}
+
+.menu {
+	margin-top: 25px;
+
+	li {
+		margin-bottom: 10px;
+	}
+}
+
+.link {
+	font-size: 16px;
+	color: white;
+	text-decoration: none;
+	transition: ease 0.2s all;
+	&:hover {
+		color: $text-color;
+	}
+}
+
+.container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding-top: 70px;
+}

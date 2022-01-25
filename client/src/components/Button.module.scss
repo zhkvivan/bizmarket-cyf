@@ -1,15 +1,18 @@
+@import "./scssCommon.scss";
+
 .btn {
 	width: 140px;
 	height: 35px;
-	background-color: #22c09f;
+	background-color: $primary-color;
 	color: white;
 	border: none;
+	border-radius: 20px;
 	font-size: 14px;
 	transition: ease 0.2s all;
 	cursor: pointer;
 
 	&:hover {
-		background-color: #1ba789;
+		background-color: $primary-color-hover;
 	}
 	&:active {
 		background-color: #198c74;
