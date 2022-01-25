@@ -4,6 +4,7 @@ import "./Hero.css";
 import HeroImage from "../images/heroimg.jpg";
 
 
+
 const Hero = () => {
   return (
 		<div

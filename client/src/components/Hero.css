@@ -1,6 +1,5 @@
 .hero {
         background-color: rgba(0, 0, 0, 0.5);
-        background-image: url(./Assets/heroimg.jpg);
         background-size: cover;
         color: #fff;
         height: 80vh;
