@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Context } from "../Context/Context";
 import "./Form.css";
 import { Form, Button } from "react-bootstrap";
+import Register from "./Register";
 
 const Login = () => {
 	const popUp = useContext(Context);
@@ -24,13 +25,13 @@ const Login = () => {
 					<span className="close-icon" onClick={popUp.togglePopUp}>
 						X
 					</span>
-					<b>Login into BizMarket</b>
+					<h1 className="header">Login into BizMarket</h1>
 					<Form onSubmit={handleSubmit}>
 						<Form.Group className="mb-3" controlId="formBasicEmail">
 							<Form.Label>Email address</Form.Label>
 							<Form.Control
 								type="email"
-								placeholder="Enter email"
+								placeholder="Email here"
 								onChange={(e) =>
 									setText({
 										...text,
@@ -57,7 +58,13 @@ const Login = () => {
 						</Button>
 					</Form>
 					<p>
-						Not a Member? <button>Sign Up</button>
+						Not a Member?{" "}
+						<button
+							className="button"
+							onClick={() => popUp.setForm(<Register />)}
+						>
+							Sign Up
+						</button>
 					</p>
 				</div>
 			</div>

@@ -35,3 +35,13 @@
 	font-size: 30px;
 	font-weight: 800;
 }
+
+.button {
+	background-color: transparent;
+	border: none;
+	color: blue;
+}
+
+.header {
+	text-align: center;
+}
