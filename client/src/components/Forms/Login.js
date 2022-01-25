@@ -3,7 +3,7 @@ import { Context } from "../Context/Context";
 import "./Login.css";
 import { Form, Button } from "react-bootstrap";
 
-const PopUp = () => {
+const Login = () => {
 	const popUp = useContext(Context);
 	const [text, setText] = useState({
 		email: "",
@@ -11,6 +11,11 @@ const PopUp = () => {
 	});
 
 	console.log("text", text);
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		console.log("Posting", text);
+	};
 
 	return (
 		<>
@@ -20,7 +25,7 @@ const PopUp = () => {
 						X
 					</span>
 					<b>Login into BizMarket</b>
-					<Form>
+					<Form onSubmit={handleSubmit}>
 						<Form.Group className="mb-3" controlId="formBasicEmail">
 							<Form.Label>Email address</Form.Label>
 							<Form.Control
@@ -51,10 +56,11 @@ const PopUp = () => {
 							Submit
 						</Button>
 					</Form>
+					<p>Not a Member? Sign Up</p>
 				</div>
 			</div>
 		</>
 	);
 };
 
-export default PopUp;
+export default Login;

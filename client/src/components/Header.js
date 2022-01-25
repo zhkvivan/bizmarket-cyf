@@ -38,7 +38,7 @@ const Header = () => {
 						</li>
 					</ul>
 					<Button label="Post an Ad" />
-					{popUp.isOpen && <Login />}
+					{popUp.isOpen && popUp.form}
 				</div>
 			</div>
 		</header>
