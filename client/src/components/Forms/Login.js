@@ -1,11 +1,12 @@
 import { useContext, useState } from "react";
-import { Context } from "./Context/Context";
-import "./PopUp.css";
+import { Context } from "../Context/Context";
+import "./Login.css";
+import { Form, Button } from "react-bootstrap";
 
 const PopUp = () => {
 	const popUp = useContext(Context);
 	const [text, setText] = useState({
-		name: "",
+		email: "",
 		password: "",
 	});
 
@@ -19,29 +20,25 @@ const PopUp = () => {
 						X
 					</span>
 					<b>Login into BizMarket</b>
-					<form>
-						<div>
-							<label>Name:</label>
-							<br />
-							<input
-								type="text"
-								name="name"
-								className="input-tag"
+					<Form>
+						<Form.Group className="mb-3" controlId="formBasicEmail">
+							<Form.Label>Email address</Form.Label>
+							<Form.Control
+								type="email"
+								placeholder="Enter email"
 								onChange={(e) =>
 									setText({
 										...text,
-										name: e.target.value,
+										email: e.target.value,
 									})
 								}
 							/>
-						</div>
-						<div>
-							<label>Password:</label>
-							<br />
-							<input
+						</Form.Group>
+						<Form.Group className="mb-3" controlId="formBasicPassword">
+							<Form.Label>Password</Form.Label>
+							<Form.Control
 								type="password"
-								name="password"
-								className="input-tag"
+								placeholder="Password"
 								onChange={(e) =>
 									setText({
 										...text,
@@ -49,8 +46,11 @@ const PopUp = () => {
 									})
 								}
 							/>
-						</div>
-					</form>
+						</Form.Group>
+						<Button variant="primary" type="submit">
+							Submit
+						</Button>
+					</Form>
 				</div>
 			</div>
 		</>

@@ -5,7 +5,7 @@ import styles from "./Header.module.scss";
 
 import logo from "../images/logo.png";
 import { Context } from "./Context/Context.js";
-import PopUp from "./PopUp";
+import Login from "./Forms/Login";
 
 const Header = () => {
 	const popUp = useContext(Context);
@@ -38,7 +38,7 @@ const Header = () => {
 						</li>
 					</ul>
 					<Button label="Post an Ad" />
-					{popUp.isOpen && <PopUp />}
+					{popUp.isOpen && <Login />}
 				</div>
 			</div>
 		</header>
