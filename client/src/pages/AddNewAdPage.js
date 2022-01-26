@@ -1,19 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate, Link } from "react-router-dom";
-import styles from "./AddAnAdPage.module.scss";
+import { useNavigate } from "react-router-dom";
+import styles from "./AddNewAdPage.module.scss";
 import iconUpload from "../images/icon-upload.png";
 import { useAddNewAd } from "../formContext/AddNewAdContext";
 
-const AddAnAdPage = () => {
+const AddNewAdPage = () => {
+	// Getting values from context
 	const { data, setValues } = useAddNewAd();
-	// Passing form data object to the next page
 
+	// Passing form data object to the next page
 	const onSubmit = (data) => {
 		setValues(data);
 		navigate("/confirm-add-new-ad");
 	};
 
+	// Defining form
 	const {
 		register,
 		handleSubmit,
@@ -29,6 +31,7 @@ const AddAnAdPage = () => {
 		},
 	});
 
+	// Manual registering image
 	useEffect(() => {
 		register("image");
 	}, []);
@@ -266,4 +269,4 @@ const AddAnAdPage = () => {
 	);
 };
 
-export default AddAnAdPage;
+export default AddNewAdPage;

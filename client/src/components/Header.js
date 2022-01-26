@@ -7,7 +7,7 @@ import logo from "../images/logo.png";
 
 const Header = () => {
 	const navigate = useNavigate();
-	const toAddAnAdPage = () => navigate("/add-an-ad");
+	const toAddNewAdPage = () => navigate("/add-new-ad");
 
 	return (
 		<header>
@@ -30,7 +30,7 @@ const Header = () => {
 						<li className={styles.link}>Login / Register</li>
 					</ul>
 					<div>
-						<Button label="Post an Ad" action={toAddAnAdPage} />
+						<Button label="Post new Ad" action={toAddNewAdPage} />
 					</div>
 				</div>
 			</div>

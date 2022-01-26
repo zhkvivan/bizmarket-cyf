@@ -6,7 +6,7 @@ import styles from "./NoDraftPage.module.scss";
 const NoDraftPage = () => {
 	const navigate = useNavigate();
 	const goToPostPage = () => {
-		navigate("/add-an-ad");
+		navigate("/add-new-ad");
 	};
 	return (
 		<div className={styles.wrapper}>
