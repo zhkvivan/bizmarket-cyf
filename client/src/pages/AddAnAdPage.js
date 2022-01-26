@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import styles from "./AddAnAdPage.module.scss";
 import dropdownArrow from "../images/dropdownArrow.png";
@@ -8,6 +8,7 @@ const AddAnAdPage = () => {
 		register,
 		handleSubmit,
 		watch,
+		setValue,
 		formState: { errors },
 	} = useForm({
 		defaultValues: {
@@ -17,11 +18,35 @@ const AddAnAdPage = () => {
 		},
 	});
 
-	const [title, description] = watch(["title", "description"]);
+	// const { ref, onChange, ...rest } = register("image");
+	useEffect(() => {
+		register("image");
+	}, []);
+
+	const [title, description, img] = watch(["title", "description", "image"]);
 
 	const onSubmit = (data) => {
 		console.log(data);
+		console.log(img);
 	};
+
+	// // Making img upload and preview
+	const fileInputRef = useRef();
+	const [image, setImage] = useState();
+	const [preview, setPreview] = useState();
+
+	useEffect(() => {
+		if (image) {
+			const reader = new FileReader();
+			reader.onloadend = () => {
+				setPreview(reader.result);
+			};
+			reader.readAsDataURL(image);
+		} else {
+			setPreview(null);
+		}
+	}, [image]);
+
 	return (
 		<div className={styles["page-wrap"]}>
 			<div className={styles.container}>
@@ -156,7 +181,50 @@ const AddAnAdPage = () => {
 					{/* Image */}
 					<div className={styles["field-base"]}>
 						<label htmlFor="image">Image:</label>
-						<div></div>
+						<div>
+							<input
+								style={{ display: "none" }}
+								type="file"
+								accept="image/*"
+								ref={fileInputRef}
+								onChange={(e) => {
+									setValue("image", e.target.files);
+									const file = e.target.files[0];
+									if (file) {
+										setImage(file);
+									} else {
+										setImage(null);
+									}
+								}}
+							/>
+
+							<button
+								className={styles["upload-btn"]}
+								onClick={(e) => {
+									e.preventDefault();
+									fileInputRef.current.click();
+								}}
+							>
+								<div className={styles["upload-btn-box"]}>Upload..</div>
+							</button>
+						</div>
+						{preview ? (
+							<div className={styles.preview}>
+								<img src={preview} alt="Uploaded preview" />
+								<button
+									className={styles["del-btn"]}
+									onClick={(e) => {
+										e.preventDefault();
+										setImage(null);
+										setValue("image", null);
+									}}
+								>
+									Delete
+								</button>
+							</div>
+						) : (
+							<div></div>
+						)}
 					</div>
 					<input type="submit" />
 				</form>
