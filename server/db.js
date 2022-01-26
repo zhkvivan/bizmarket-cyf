@@ -1,6 +1,8 @@
 import { Pool } from "pg";
+import fs from "fs";
 
-const dbUrl = process.env.DATABASE_URL || "postgres://localhost:5432/final_project";
+const dbUrl =
+	process.env.DATABASE_URL || "postgres://localhost:5432/final_project";
 
 const pool = new Pool({
 	connectionString: dbUrl,
@@ -11,7 +13,14 @@ const pool = new Pool({
 export const connectDb = async () => {
 	let client;
 	try {
+		let sql = fs.readFileSync("./server/model/schema.sql").toString();
 		client = await pool.connect();
+		client.query(sql, function (err, result) {
+			console.log(result);
+			if (err) {
+				console.log("error: ", err);
+			}
+		});
 	} catch (err) {
 		console.error(err);
 		process.exit(1);

@@ -7,8 +7,6 @@ router.get("/", (_, res) => {
 	res.json({ message: "Hello, world!" });
 });
 
-
-
 router.get("/health", (_, res) => {
 	db.query("select version()")
 		.then((result) => {
@@ -18,4 +16,8 @@ router.get("/health", (_, res) => {
 		});
 
 });
+
+router.get();
+
 export default router;
+
