@@ -7,13 +7,16 @@ import Hero from "./components/Hero";
 function App() {
 	return (
 		<>
-			<Routes>
-				<Route path="/" element={<Layout />}>
-					<Route path="/about" element={<About />} />
-				</Route>
-			</Routes>
+			<Layout>
+				<Routes>
+					<Route path="/" element={<Layout />}>
+						<Route path="/about" element={<About />} />
+					</Route>
+				</Routes>
 
-			<Hero />
+				{/* <Hero /> */}
+				{/* <About/> */}
+			</Layout>
 		</>
 	);
 }
