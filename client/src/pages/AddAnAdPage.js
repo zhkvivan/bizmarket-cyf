@@ -3,8 +3,17 @@ import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
 import styles from "./AddAnAdPage.module.scss";
 import iconUpload from "../images/icon-upload.png";
+import { useAddNewAd } from "../formContext/AddNewAdContext";
 
 const AddAnAdPage = () => {
+	const { data, setValues } = useAddNewAd();
+	// Passing form data object to the next page
+
+	const onSubmit = (data) => {
+		setValues(data);
+		navigate("/confirm-add-new-ad");
+	};
+
 	const {
 		register,
 		handleSubmit,
@@ -13,25 +22,18 @@ const AddAnAdPage = () => {
 		formState: { errors },
 	} = useForm({
 		defaultValues: {
-			title: "",
-			description: "",
-			price: "",
+			category: data.category,
+			title: data.title,
+			description: data.description,
+			price: data.price,
 		},
 	});
 
-	// const { ref, onChange, ...rest } = register("image");
 	useEffect(() => {
 		register("image");
 	}, []);
 
-	const [title, description, img] = watch(["title", "description", "image"]);
-
-	// Passing form data object to the next page
-	const [formData, setFormData] = useState({});
-	const onSubmit = (data) => {
-		console.log(data);
-		setFormData(data);
-	};
+	const [title, description] = watch(["title", "description"]);
 
 	// // Making img upload and preview
 	const fileInputRef = useRef();
@@ -252,7 +254,11 @@ const AddAnAdPage = () => {
 						>
 							Cancel
 						</button>
-						<input type="submit" className={styles["submit-btn"]} />
+						<input
+							type="submit"
+							className={styles["submit-btn"]}
+							value={"Next"}
+						/>
 					</div>
 				</form>
 			</div>
