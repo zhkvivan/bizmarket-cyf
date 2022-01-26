@@ -1,5 +1,4 @@
 import React from "react";
-// import "./Hero.scss";
 import "./Hero.css";
 import HeroImage from "../images/heroimg.jpg";
 
