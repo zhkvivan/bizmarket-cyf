@@ -1,11 +1,19 @@
 import React from "react";
-import "./Hero.scss";
+// import "./Hero.scss";
+import "./Hero.css";
+import HeroImage from "../images/heroimg.jpg";
 
 
 
 const Hero = () => {
   return (
-		<section className="hero">
+		<div
+			style={{
+				backgroundImage: `url("${HeroImage}")`,
+				backgroundSize: "cover",
+			}}
+			className="hero"
+		>
 			<div className="content">
 				<h1> Take your business online.</h1>
 				<p className="search-text">
@@ -15,7 +23,7 @@ const Hero = () => {
 					<button type="button">Create Your Store</button>
 				</a>
 			</div>
-		</section>
+		</div>
 	);
 };
 
