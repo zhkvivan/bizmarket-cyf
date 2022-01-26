@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate, Link } from "react-router-dom";
 import styles from "./AddAnAdPage.module.scss";
-import dropdownArrow from "../images/dropdownArrow.png";
+import iconUpload from "../images/icon-upload.png";
 
 const AddAnAdPage = () => {
 	const {
@@ -25,9 +26,11 @@ const AddAnAdPage = () => {
 
 	const [title, description, img] = watch(["title", "description", "image"]);
 
+	// Passing form data object to the next page
+	const [formData, setFormData] = useState({});
 	const onSubmit = (data) => {
 		console.log(data);
-		console.log(img);
+		setFormData(data);
 	};
 
 	// // Making img upload and preview
@@ -46,6 +49,16 @@ const AddAnAdPage = () => {
 			setPreview(null);
 		}
 	}, [image]);
+
+	// Cancelation confirm
+	const navigate = useNavigate();
+	const cancelConfirm = () => {
+		if (
+			confirm("Are you sure you want to cancel? Draft won't be saved anywhere.")
+		) {
+			navigate(-1);
+		}
+	};
 
 	return (
 		<div className={styles["page-wrap"]}>
@@ -205,7 +218,10 @@ const AddAnAdPage = () => {
 									fileInputRef.current.click();
 								}}
 							>
-								<div className={styles["upload-btn-box"]}>Upload..</div>
+								<div className={styles["upload-btn-box"]}>
+									<img src={iconUpload} alt="Upload icon" />
+									<span>Upload..</span>
+								</div>
 							</button>
 						</div>
 						{preview ? (
@@ -226,7 +242,18 @@ const AddAnAdPage = () => {
 							<div></div>
 						)}
 					</div>
-					<input type="submit" />
+					<div className={styles["buttons-wrapper"]}>
+						<button
+							className={styles["cancel-btn"]}
+							onClick={(e) => {
+								e.preventDefault();
+								cancelConfirm();
+							}}
+						>
+							Cancel
+						</button>
+						<input type="submit" className={styles["submit-btn"]} />
+					</div>
 				</form>
 			</div>
 		</div>
