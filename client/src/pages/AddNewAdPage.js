@@ -73,32 +73,34 @@ const AddNewAdPage = () => {
 					{/* Category */}
 					<div className={styles["field-base"]}>
 						<label htmlFor="categories">Categories:</label>
-						<div className={styles["select-wrapper"]}>
-							<select
-								{...register("category", {
-									required: "This field is required",
-								})}
-								id="categories"
-								className={`${styles.select} ${
-									errors.category && styles["error-field"]
-								}`}
-							>
-								<option value="">Select category</option>
-								<option value="Automotive">Automotive</option>
-								<option value="Electronics">Electronics</option>
-								<option value="Fashion, Clothing">Fashion, Clothing</option>
-								<option value="Floral, Garden">Floral, Garden</option>
-								<option value="Food, Drinks">Food, Drinks</option>
-								<option value="Health, Beauty">Health, Beauty</option>
-								<option value="Home, Decor">Home, Decor</option>
-								<option value="Industial, Materials">
-									Industial, Materials
-								</option>
-								<option value="Pets, Animals">Pets, Animals</option>
-								<option value="Sports, Outdoors">Sports, Outdoors</option>
-								<option value="Toys, Games">Toys, Games</option>
-								<option value="Others">Others</option>
-							</select>
+						<div className={styles.flex}>
+							<div className={styles["select-wrapper"]}>
+								<select
+									{...register("category", {
+										required: "This field is required",
+									})}
+									id="categories"
+									className={`${styles.select} ${
+										errors.category && styles["error-field"]
+									}`}
+								>
+									<option value="">Select category</option>
+									<option value="Automotive">Automotive</option>
+									<option value="Electronics">Electronics</option>
+									<option value="Fashion, Clothing">Fashion, Clothing</option>
+									<option value="Floral, Garden">Floral, Garden</option>
+									<option value="Food, Drinks">Food, Drinks</option>
+									<option value="Health, Beauty">Health, Beauty</option>
+									<option value="Home, Decor">Home, Decor</option>
+									<option value="Industial, Materials">
+										Industial, Materials
+									</option>
+									<option value="Pets, Animals">Pets, Animals</option>
+									<option value="Sports, Outdoors">Sports, Outdoors</option>
+									<option value="Toys, Games">Toys, Games</option>
+									<option value="Others">Others</option>
+								</select>
+							</div>
 							{/* Error handling message: */}
 							<div>
 								{errors.category && (
