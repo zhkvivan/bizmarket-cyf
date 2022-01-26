@@ -1,4 +1,5 @@
 // import { useEffect, useState } from "react";
+import { useContext } from "react";
 // import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -6,8 +7,10 @@ import Hero from "../components/Hero";
 
 import "./Home.css";
 import logo from "./logo.svg";
+import { Context } from "../components/Context/Context";
 
 export function Home() {
+	const popUp = useContext(Context);
 	// const [message, setMessage] = useState("Loading...");
 
 	// useEffect(() => {
@@ -41,6 +44,7 @@ export function Home() {
 				<Link to="/about/this/site">About</Link>
 			</div> */}
 			<Header />
+			{popUp.isOpen && popUp.form}
 			<Hero />
 			<Footer />
 		</main>
