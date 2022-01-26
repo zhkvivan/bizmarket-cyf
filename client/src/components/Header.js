@@ -27,17 +27,17 @@ const Header = () => {
 								About
 							</NavLink>
 						</li>
-						<li className={styles.link}>
+						{/* <li className={styles.link}>
 							<button
 								style={{ backgroundColor: "transparent", border: "none" }}
 								onClick={popUp.togglePopUp}
 							>
 								Login / Register
 							</button>
-						</li>
+						</li> */}
 					</ul>
 					<Button label="Post an Ad" />
-					{popUp.isOpen && popUp.form}
+					{/* {popUp.isOpen && popUp.form} */}
 				</div>
 			</div>
 		</header>
