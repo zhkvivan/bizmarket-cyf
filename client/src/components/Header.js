@@ -30,7 +30,7 @@ const Header = () => {
 						<li className={styles.link}>Login / Register</li>
 					</ul>
 					<div>
-						<Button label="Post an Ad" onClick={toAddAnAdPage} />
+						<Button label="Post an Ad" action={toAddAnAdPage} />
 					</div>
 				</div>
 			</div>
