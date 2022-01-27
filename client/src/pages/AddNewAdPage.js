@@ -15,6 +15,21 @@ const AddNewAdPage = () => {
 		navigate("/confirm-add-new-ad");
 	};
 
+	const categories = [
+		"Automotive",
+		"Electronics",
+		"Fashion, Clothing",
+		"Floral, Garden",
+		"Food, Drinks",
+		"Health, Beauty",
+		"Home, Decor",
+		"Industial, Materials",
+		"Pets, Animals",
+		"Sports, Outdoors",
+		"Toys, Games",
+		"Others",
+	];
+
 	// Defining form
 	const {
 		register,
@@ -85,20 +100,13 @@ const AddNewAdPage = () => {
 									}`}
 								>
 									<option value="">Select category</option>
-									<option value="Automotive">Automotive</option>
-									<option value="Electronics">Electronics</option>
-									<option value="Fashion, Clothing">Fashion, Clothing</option>
-									<option value="Floral, Garden">Floral, Garden</option>
-									<option value="Food, Drinks">Food, Drinks</option>
-									<option value="Health, Beauty">Health, Beauty</option>
-									<option value="Home, Decor">Home, Decor</option>
-									<option value="Industial, Materials">
-										Industial, Materials
-									</option>
-									<option value="Pets, Animals">Pets, Animals</option>
-									<option value="Sports, Outdoors">Sports, Outdoors</option>
-									<option value="Toys, Games">Toys, Games</option>
-									<option value="Others">Others</option>
+									{categories.map((category, index) => {
+										return (
+											<option value={category} key={index}>
+												{category}
+											</option>
+										);
+									})}
 								</select>
 							</div>
 							{/* Error handling message: */}
