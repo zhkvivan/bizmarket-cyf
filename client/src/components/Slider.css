@@ -1,0 +1,35 @@
+.rec.rec-carousel-wrapper:focus,
+.rec.rec-carousel-wrapper .rec-carousel:focus,
+.rec.rec-carousel-wrapper .rec-slider-container:focus,
+.rec.rec-carousel-wrapper .rec-slider-container .rec-slider:focus,
+.rec.rec-carousel-wrapper .rec-slider-container .rec-slider div:focus {
+	outline: none;
+}
+
+.rec.rec-carousel-wrapper .rec-slider-container {
+	/* background: lightblue; */
+}
+
+/* Arrow Styles */
+
+.rec.rec-carousel-wrapper .rec-carousel button {
+	background: none;
+	color: rgba(121, 121, 121, 0.36);
+	border: none;
+	outline: none;
+	box-shadow: none;
+}
+
+.rec.rec-carousel-wrapper .rec-carousel button:hover {
+	color: #1eb897;
+}
+
+.rec.rec-carousel-wrapper .rec-pagination .rec.rec-dot.rec {
+	box-shadow: none;
+	background: none;
+	border: 1px solid #1eb897;
+}
+
+.rec.rec-carousel-wrapper .rec-pagination .rec.rec-dot.rec.rec-dot_active {
+	background: #1eb897;
+}
