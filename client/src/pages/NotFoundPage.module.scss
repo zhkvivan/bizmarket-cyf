@@ -1,0 +1,13 @@
+@import "../components/scssCommon.scss";
+
+.h1 {
+	text-align: center;
+	margin: 100px 0;
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}

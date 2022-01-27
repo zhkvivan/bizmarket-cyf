@@ -1,22 +1,26 @@
 import { Routes, Route } from "react-router-dom";
 import About from "./pages/About";
+import AddNewAdPage from "./pages/AddNewAdPage";
 import Layout from "./components/Layout";
+import AddConfirmPage from "./pages/AddConfirmPage";
+import NotFoundPage from "./pages/NotFoundPage";
+import NoDraftPage from "./pages/NoDraftPage";
 
-import Hero from "./components/Hero";
 
 function App() {
 	return (
 		<>
-			<Layout>
-				<Routes>
-					<Route path="/" element={<Layout />}>
-						<Route path="/about" element={<About />} />
-					</Route>
-				</Routes>
+			<Routes>
+				<Route path="/" element={<Layout />}>
+					<Route path="about" element={<About />} />
+					<Route path="confirm-add-new-ad" element={<AddConfirmPage />} />
+					<Route path="add-new-ad" element={<AddNewAdPage />} />
+					<Route path="page-not-found" element={<NotFoundPage />} />
+					<Route path="no-draft" element={<NoDraftPage />} />
 
-				{/* <Hero /> */}
-				{/* <About/> */}
-			</Layout>
+					<Route path="*" element={<NotFoundPage />} />
+				</Route>
+			</Routes>
 		</>
 	);
 }
