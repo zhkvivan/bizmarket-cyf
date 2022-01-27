@@ -5,13 +5,12 @@ import Footer from "./Footer";
 
 import styles from "./Layout.module.scss";
 
-const Layout = ({children}) => {
+const Layout = () => {
 	return (
 		<>
 			<Header />
 			<main className={styles.main}>
-				{/* <Outlet /> */}
-				{children}
+				 <Outlet />
 			</main>
 			<Footer />
 		</>
