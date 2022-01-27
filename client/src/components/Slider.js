@@ -43,7 +43,7 @@ export const Slider = () => {
 	];
 
 	return (
-		<div className={styles.wrapper}>
+		<section className={`${styles.wrapper} ${styles.container}`}>
 			<Carousel breakPoints={breakPoints} itemPadding={[30, 0]}>
 				{categories.map((category, index) => {
 					return (
@@ -55,6 +55,6 @@ export const Slider = () => {
 					);
 				})}
 			</Carousel>
-		</div>
+		</section>
 	);
 };
