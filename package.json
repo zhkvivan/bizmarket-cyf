@@ -76,11 +76,8 @@
 		"morgan": "^1.10.0",
 		"node-sass": "^7.0.1",
 		"pg": "^8.7.1",
-<<<<<<< HEAD
-		"update-node": "^0.1.0"
-=======
+		"update-node": "^0.1.0",
 		"react-hook-form": "^7.25.0"
->>>>>>> main
 	},
 	"engines": {
 		"node": "^12 || ^14 ||^16 ||^17",
