@@ -8,6 +8,6 @@
 	"rules": {
 		"indent": "off",
 		"operator-linebreak": "off",
-		"linebreak-style" : 0
+		"linebreak-style": 0
 	}
 }
