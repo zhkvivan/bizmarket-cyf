@@ -1,28 +1,41 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Button from "./Button";
 import styles from "./Header.module.scss";
 
-const HeaderMenu = () => {
+import logo from "../images/logo.png";
+
+const Header = () => {
+	const navigate = useNavigate();
+	const toAddNewAdPage = () => navigate("/add-new-ad");
+
 	return (
-		<div className="container">
-			<div className={styles.wrapper}>
-				<Link to="/">
-					<img src="./images/logo.png" alt="" className={styles.logo} />
-				</Link>
+		<header>
+			<div className={`${styles.wrapper} ${styles.container}`}>
+				<NavLink to="/">
+					<img src={logo} alt="logo" className={styles.logo} />
+				</NavLink>
 				<div className={styles.navigation}>
-					<ul>
+					<ul className={styles.menu}>
 						<li>
-							<Link to="/about" className={styles.link}>
-								About
-							</Link>
+							<NavLink to="/" className={styles.link}>
+								Home
+							</NavLink>
 						</li>
+						<li>
+							<NavLink to="/about" className={styles.link}>
+								About
+							</NavLink>
+						</li>
+						<li className={styles.link}>Login / Register</li>
 					</ul>
-					<Button label="Login" />
+					<div>
+						<Button label="Post new Ad" action={toAddNewAdPage} />
+					</div>
 				</div>
 			</div>
-		</div>
+		</header>
 	);
 };
 
-export default HeaderMenu;
+export default Header;

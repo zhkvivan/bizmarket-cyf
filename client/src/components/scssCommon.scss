@@ -1,0 +1,32 @@
+// Scss variables:
+$primary-color: #1eb897;
+$primary-color-hover: #1ba789;
+$primary-color-active: #198c74;
+
+$text-color: #484848;
+
+// Common styles:
+.container {
+	max-width: 1240px;
+	margin: 0px auto;
+	padding: 0 20px;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+li {
+	list-style-type: none;
+}
+
+* {
+	font-family: "Raleway", sans-serif;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	/* display: none; <- Crashes Chrome on hover */
+	-webkit-appearance: none;
+	margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
