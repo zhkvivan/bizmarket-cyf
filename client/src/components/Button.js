@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Button.module.scss";
 
-const Button = ({ label, action, color }) => {
+const Button = ({ label, action, bgColor }) => {
 	const onClickHandler = () => {
 		action();
 	};
@@ -9,8 +9,9 @@ const Button = ({ label, action, color }) => {
 	return (
 		<>
 			<button
-				style={color ?? { backgroundColor: "green" }}
-				className={styles.btn}
+				className={`${styles.btn} ${
+					bgColor ? styles[bgColor] : styles["bg-color"]
+				}`}
 				onClick={onClickHandler}
 			>
 				{label}

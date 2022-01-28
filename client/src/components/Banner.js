@@ -12,7 +12,9 @@ const Banner = () => {
 					sell small wholesale.
 				</p>
 				<p>No extra charges. Just buy and sell.</p>
-				<Button />
+				<div className={styles["btn-wrap"]}>
+					<Button bgColor={"banner-btn"} label={"Search"} />
+				</div>
 			</div>
 		</section>
 	);
