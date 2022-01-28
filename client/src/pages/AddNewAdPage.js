@@ -23,7 +23,7 @@ const AddNewAdPage = () => {
 		"Food, Drinks",
 		"Health, Beauty",
 		"Home, Decor",
-		"Industial, Materials",
+		"Industrial, Materials",
 		"Pets, Animals",
 		"Sports, Outdoors",
 		"Toys, Games",

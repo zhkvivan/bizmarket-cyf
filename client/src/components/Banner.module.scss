@@ -1,0 +1,26 @@
+@import "./scssCommon.scss";
+
+.wrapper {
+	background-image: url("../images/banner-bg.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 470px;
+}
+
+.inner {
+	padding-top: 100px;
+	h2 {
+		color: $text-color;
+		font-weight: 800;
+		font-size: 40px;
+		margin-bottom: 50px;
+	}
+	p {
+		max-width: 415px;
+	}
+}
+
+.btn-wrap {
+	margin-top: 50px;
+}

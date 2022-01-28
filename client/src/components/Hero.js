@@ -1,28 +1,24 @@
 import React from "react";
-import "./Hero.css";
-import HeroImage from "../images/heroimg.jpg";
-
-
+import Button from "./Button";
+import styles from "./Hero.module.scss";
 
 const Hero = () => {
-  return (
-		<div
-			style={{
-				backgroundImage: `url("${HeroImage}")`,
-				backgroundSize: "cover",
-			}}
-			className="hero"
-		>
-			<div className="content">
+	const openRegisterPopup = () => {
+		console.log("Popup should be opend");
+	};
+	return (
+		<section className={styles.hero}>
+			<div className={styles.content}>
 				<h1> Take your business online.</h1>
-				<p className="search-text">
-					Post your ads. Find new buyers. Buy from 10 pieces.{" "}
+				<p className={styles["description"]}>
+					Post your ads. Find new buyers. Buy from 10 pieces.
 				</p>
-				<a href="/login">
+				{/* <a href="/login">
 					<button type="button">Create Your Store</button>
-				</a>
+				</a> */}
+				<Button label={"Create Your Store"} action={openRegisterPopup} />
 			</div>
-		</div>
+		</section>
 	);
 };
 

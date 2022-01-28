@@ -18,7 +18,6 @@ function App() {
 					<Route path="add-new-ad" element={<AddNewAdPage />} />
 					<Route path="page-not-found" element={<NotFoundPage />} />
 					<Route path="no-draft" element={<NoDraftPage />} />
-
 					<Route path="*" element={<NotFoundPage />} />
 				</Route>
 			</Routes>
