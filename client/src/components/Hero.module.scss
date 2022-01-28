@@ -1,0 +1,65 @@
+@import "./scssCommon.scss";
+
+.hero {
+	background-image: linear-gradient(
+			rgba(9, 11, 1, 0.678),
+			rgba(9, 11, 1, 0.651)
+		),
+		url("../images/heroimg.jpg");
+	background-size: cover;
+	background-position: center;
+	color: #fff;
+	height: 60vh;
+	width: 100%;
+	min-height: 400px;
+
+	h1 {
+		font-size: 3.1rem;
+		text-transform: capitalize;
+		font-weight: 900;
+		margin-bottom: 30px;
+	}
+}
+
+.content {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+	max-width: 700px;
+	margin: auto;
+	padding: 1rem;
+	align-items: center;
+
+	button {
+		width: 278px;
+		height: 50px;
+		border-radius: 20px;
+		color: white;
+		font-size: 19px;
+		margin-top: 50px;
+	}
+}
+
+.description {
+	margin: 0;
+	font-size: 1.3rem;
+}
+
+@media screen and (max-width: 940px) {
+	.hero {
+		height: 40vh;
+	}
+
+	.hero h1 {
+		font-size: 2rem;
+	}
+	.hero p {
+		font-size: 0.2rem;
+	}
+	.content button {
+		width: 10rem;
+		font-size: 0.8rem;
+	}
+}
