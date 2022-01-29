@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./AdPage.module.scss";
-import { useParams } from "react-router-dom";
+import { useLocation, Link, useParams } from "react-router-dom";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 const AdPage = () => {
 	const product = {
@@ -16,14 +17,16 @@ const AdPage = () => {
 		categoryId: 1,
 	};
 
-	const { id } = useParams();
+	const categoryName = "Automotive";
 
-	console.log("aa");
+	console.log(useLocation());
+	const { id } = useParams();
+	console.log();
 	return (
 		<>
-			<div>Breadcrumbs</div>
-			<div className={styles.content}>
-				<h1>Sugar</h1>
+			<div className={styles.container}>
+				<Breadcrumbs />
+				<h1>I am an ad with id {id}</h1>
 			</div>
 		</>
 	);

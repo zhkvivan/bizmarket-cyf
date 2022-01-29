@@ -9,7 +9,7 @@ const AddConfirmPage = () => {
 		if (data.title.length === 0) {
 			navigate("/no-draft");
 		}
-	}, []);
+	});
 
 	console.log(data);
 	return <div></div>;
