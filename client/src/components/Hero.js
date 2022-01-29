@@ -13,9 +13,6 @@ const Hero = () => {
 				<p className={styles["description"]}>
 					Post your ads. Find new buyers. Buy from 10 pieces.
 				</p>
-				{/* <a href="/login">
-					<button type="button">Create Your Store</button>
-				</a> */}
 				<Button label={"Create Your Store"} action={openRegisterPopup} />
 			</div>
 		</section>

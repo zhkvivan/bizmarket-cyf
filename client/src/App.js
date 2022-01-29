@@ -6,6 +6,7 @@ import AddConfirmPage from "./pages/AddConfirmPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import NoDraftPage from "./pages/NoDraftPage";
 import Home from "./pages/Home";
+import AdPage from "./pages/AdPage";
 
 function App() {
 	return (
@@ -18,6 +19,9 @@ function App() {
 					<Route path="add-new-ad" element={<AddNewAdPage />} />
 					<Route path="page-not-found" element={<NotFoundPage />} />
 					<Route path="no-draft" element={<NoDraftPage />} />
+					<Route path="category" element={<NoDraftPage />}>
+						<Route path=":id" element={<AdPage />} />
+					</Route>
 					<Route path="*" element={<NotFoundPage />} />
 				</Route>
 			</Routes>
