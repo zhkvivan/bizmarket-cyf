@@ -5,6 +5,7 @@ import Breadcrumbs from "../components/Breadcrumbs";
 import iconHeart from "../images/icon-heart.png";
 import productImg from "../images/product.jpg";
 import Button from "../components/Button";
+import Accordion from "../components/Accordion";
 
 const AdPage = () => {
 	const [emailText, setEmailText] = useState(
@@ -30,7 +31,29 @@ const AdPage = () => {
 		minimumOrder: 10,
 	};
 
-	const categoryName = "Automotive";
+	const faq = [
+		{
+			question: "Question 1",
+			answer:
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+		},
+		{
+			question: "Question 2",
+			answer:
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+		},
+		{
+			question: "Question 3",
+			answer:
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+		},
+		{
+			question: "Question 4",
+			answer:
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+		},
+	];
+
 	return (
 		<>
 			<div className={styles.container}>
@@ -110,6 +133,7 @@ const AdPage = () => {
 						</div>
 					</div>
 				</div>
+				<Accordion faq={faq} />
 			</div>
 		</>
 	);

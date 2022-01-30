@@ -1,0 +1,50 @@
+@import "./scssCommon.scss";
+
+.wrapper {
+	margin: 100px 0;
+}
+
+.item {
+	background-color: white;
+	border-radius: 20px;
+	box-shadow: 0px 0px 34px 4px rgba(30, 184, 151, 0.13);
+	margin-bottom: 50px;
+}
+
+.question-wrap {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 40px;
+	cursor: pointer;
+}
+
+.question {
+	font-weight: 500;
+	font-size: 21px;
+}
+
+.symbols {
+	font-size: 18px;
+	font-weight: 400;
+}
+
+.answer {
+	padding: 0 40px;
+	p {
+		margin: 0;
+		padding: 30px 0;
+	}
+}
+
+.closed {
+	max-height: 0;
+	overflow: hidden;
+}
+
+.opened {
+	height: auto;
+	max-height: 9999px;
+	transition: all 3s ease;
+}
