@@ -1,1 +1,222 @@
 @import "../components/scssCommon.scss";
+
+.container {
+	color: $text-color;
+}
+
+.top-info {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 100px;
+	margin-bottom: 40px;
+}
+
+.heading {
+	max-width: 640px;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.price {
+	span {
+		font-size: 40px;
+		font-weight: 600;
+		font-variant-numeric: lining-nums;
+		margin-left: 10px;
+	}
+}
+
+.icon-heart {
+	width: 37px;
+	height: 37px;
+}
+
+.middle-inner {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: start;
+}
+
+.image-wrapper {
+	width: 760px;
+	height: 500px;
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		border-radius: 10px;
+	}
+}
+
+.seller-info {
+	width: 370px;
+	max-height: 500px;
+	box-shadow: 0px 0px 18px -8px rgba(0, 0, 0, 0.33);
+	border-radius: 10px;
+}
+
+.seller-name-wrapper {
+	height: 115px;
+	width: 100%;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.04);
+	border-radius: 10px 10px 0px 0px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: start;
+	padding-left: 40px;
+}
+
+.seller-pic {
+	width: 64px;
+	height: 64px;
+	background-color: rgb(7, 192, 183);
+	border-radius: 50%;
+}
+
+.seller-name-inner {
+	margin-left: 30px;
+	display: flex;
+	flex-direction: column;
+}
+
+.seller-name {
+	font-size: 20px;
+	font-weight: 600;
+	margin-bottom: 5px;
+}
+
+.seller-company {
+	font-size: 14px;
+}
+
+.contact-info {
+	padding: 40px 50px;
+	display: flex;
+	flex-direction: column;
+}
+
+.contact-info-title {
+	font-weight: 500;
+	font-size: 18px;
+	margin-bottom: 30px;
+}
+
+.seller-phone {
+	font-variant-numeric: lining-nums;
+	position: relative;
+	padding-left: 40px;
+	margin-bottom: 20px;
+	&::before {
+		content: "";
+		background-image: url("../images/icon-phone.png");
+		background-position: center;
+		background-size: cover;
+		position: absolute;
+		top: 50%;
+		left: 0;
+		transform: translateY(-50%);
+
+		width: 25px;
+		height: 25px;
+	}
+}
+
+.seller-email {
+	position: relative;
+	padding-left: 40px;
+	&::before {
+		content: "";
+		background-image: url("../images/icon-mail.png");
+		background-position: center;
+		background-size: cover;
+		position: absolute;
+		top: 50%;
+		left: 0;
+		transform: translateY(-50%);
+
+		width: 25px;
+		height: 25px;
+	}
+	a {
+		text-decoration: none;
+		color: inherit;
+	}
+}
+
+.message {
+	border-radius: 10px;
+	border-color: $primary-color;
+	width: 285px;
+	height: 90px;
+	margin-top: 50px;
+	margin-bottom: 15px;
+	padding: 10px;
+}
+
+.btn-wrap {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	a {
+		text-decoration: none;
+		color: white;
+		background-color: $primary-color;
+		width: 100%;
+		border-radius: 10px;
+		height: 35px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		transition: ease 0.2s all;
+		&:hover {
+			background-color: $primary-color-hover;
+		}
+		&:active {
+			background-color: $primary-color-active;
+		}
+	}
+}
+
+.under-photo {
+	margin-top: 70px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: start;
+}
+
+.description {
+	max-width: 760px;
+}
+
+.details {
+	display: flex;
+	flex-direction: column;
+	max-width: 370px;
+	width: 100%;
+}
+
+.details-header {
+	font-size: 19px;
+	font-weight: 500;
+	border-bottom: 1px solid rgb(212, 212, 212);
+	padding-bottom: 10px;
+	margin-bottom: 20px;
+}
+
+.details-string {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	border-bottom: 1px solid rgb(212, 212, 212);
+	padding-bottom: 5px;
+	span {
+		padding-right: 10px;
+	}
+}
