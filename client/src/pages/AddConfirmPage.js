@@ -1,17 +1,17 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAddNewAd } from "../formContext/AddNewAdContext";
+import { useContextBM } from "../context/Context";
 
 const AddConfirmPage = () => {
 	const navigate = useNavigate();
-	const { data } = useAddNewAd();
+	const { formData } = useContextBM();
 	useEffect(() => {
-		if (data.title.length === 0) {
+		if (formData.title.length === 0) {
 			navigate("/no-draft");
 		}
 	});
 
-	console.log(data);
+	console.log(formData);
 	return <div></div>;
 };
 

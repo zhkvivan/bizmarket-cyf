@@ -13,7 +13,7 @@ const Accordion = ({ faq }) => {
 	};
 
 	return (
-		<div className={styles.wrapper}>
+		<div className={`${styles.wrapper} ${styles.container}`}>
 			{faq.map((item, index) => {
 				return (
 					<div key={index} className={styles.item}>

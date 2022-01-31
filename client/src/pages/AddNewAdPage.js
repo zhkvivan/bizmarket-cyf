@@ -3,32 +3,17 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import styles from "./AddNewAdPage.module.scss";
 import iconUpload from "../images/icon-upload.png";
-import { useAddNewAd } from "../formContext/AddNewAdContext";
+import { useContextBM } from "../context/Context";
 
 const AddNewAdPage = () => {
 	// Getting values from context
-	const { data, setValues } = useAddNewAd();
+	const { formData, setValues, categories } = useContextBM();
 
 	// Passing form data object to the next page
 	const onSubmit = (data) => {
 		setValues(data);
 		navigate("/confirm-add-new-ad");
 	};
-
-	const categories = [
-		"Automotive",
-		"Electronics",
-		"Fashion, Clothing",
-		"Floral, Garden",
-		"Food, Drinks",
-		"Health, Beauty",
-		"Home, Decor",
-		"Industrial, Materials",
-		"Pets, Animals",
-		"Sports, Outdoors",
-		"Toys, Games",
-		"Others",
-	];
 
 	// Defining form
 	const {
@@ -39,10 +24,10 @@ const AddNewAdPage = () => {
 		formState: { errors },
 	} = useForm({
 		defaultValues: {
-			category: data.category,
-			title: data.title,
-			description: data.description,
-			price: data.price,
+			category: formData.category,
+			title: formData.title,
+			description: formData.description,
+			price: formData.price,
 		},
 	});
 
@@ -102,8 +87,8 @@ const AddNewAdPage = () => {
 									<option value="">Select category</option>
 									{categories.map((category, index) => {
 										return (
-											<option value={category} key={index}>
-												{category}
+											<option value={category.name} key={index}>
+												{category.name}
 											</option>
 										);
 									})}

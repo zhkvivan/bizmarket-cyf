@@ -1,7 +1,9 @@
 @import "./scssCommon.scss";
 
 .wrapper {
-	margin: 100px 0;
+	margin: 100px auto;
+	margin-top: 150px;
+	min-height: 600px;
 }
 
 .item {
