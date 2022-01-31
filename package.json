@@ -77,8 +77,9 @@
 		"node-sass": "^7.0.1",
 		"pg": "^8.7.1",
 		"react-elastic-carousel": "^0.11.5",
-		"update-node": "^0.1.0",
-		"react-hook-form": "^7.25.0"
+		"react-hook-form": "^7.25.0",
+		"styled-components": "^5.3.3",
+		"update-node": "^0.1.0"
 	},
 	"engines": {
 		"node": "^12 || ^14 ||^16 ||^17",
