@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Button from "./Button";
 import styles from "./Header.module.scss";
 
@@ -8,6 +8,8 @@ import { Context } from "./Context/Context.js";
 
 const Header = () => {
 	const popUp = useContext(Context);
+	const navigate = useNavigate();
+	const toAddNewAdPage = () => navigate("/add-new-ad");
 
 	return (
 		<header>
@@ -36,7 +38,9 @@ const Header = () => {
 							</button>
 						</li>
 					</ul>
-					<Button label="Post an Ad" />
+					<div>
+						<Button label="Post new Ad" action={toAddNewAdPage} />
+					</div>
 					{popUp.isOpen && popUp.form}
 				</div>
 			</div>

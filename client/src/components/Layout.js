@@ -13,7 +13,7 @@ const Layout = () => {
 				<Header />
 			</Provider>
 			<main className={styles.main}>
-				<Outlet />
+				 <Outlet />
 			</main>
 			<Footer />
 		</>

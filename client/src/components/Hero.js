@@ -1,22 +1,25 @@
 import React from "react";
-import "./Hero.scss";
-
-
+import Button from "./Button";
+import styles from "./Hero.module.scss";
 
 const Hero = () => {
-  return (
-    <section className="hero">
-      <div className="content">
-        <h1> Take your business online.</h1>
-        <p className="search-text">
-          Post your ads. Find new buyers. Buy from 10 pieces.{" "}
-        </p>
-        <a href="/login">
-          <button type="button">Create Your Store</button>
-        </a>
-      </div>
-    </section>
-  );
+	const openRegisterPopup = () => {
+		console.log("Popup should be opend");
+	};
+	return (
+		<section className={styles.hero}>
+			<div className={styles.content}>
+				<h1> Take your business online.</h1>
+				<p className={styles["description"]}>
+					Post your ads. Find new buyers. Buy from 10 pieces.
+				</p>
+				{/* <a href="/login">
+					<button type="button">Create Your Store</button>
+				</a> */}
+				<Button label={"Create Your Store"} action={openRegisterPopup} />
+			</div>
+		</section>
+	);
 };
 
 export default Hero;

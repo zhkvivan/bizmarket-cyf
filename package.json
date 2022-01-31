@@ -32,8 +32,8 @@
 	},
 	"homepage": "https://github.com/textbook/starter-kit#readme",
 	"devDependencies": {
-		"@babel/cli": "^7.15.7",
-		"@babel/core": "^7.15.8",
+		"@babel/cli": "^7.16.8",
+		"@babel/core": "^7.16.12",
 		"@babel/node": "^7.15.8",
 		"@babel/plugin-proposal-class-properties": "^7.14.5",
 		"@babel/plugin-transform-runtime": "^7.15.8",
@@ -62,10 +62,11 @@
 		"sass": "^1.49.0",
 		"sass-loader": "^12.4.0",
 		"style-loader": "^3.3.1",
+		"url-loader": "^4.1.1",
 		"wait-on": "^6.0.0",
 		"webpack": "^5.66.0",
 		"webpack-cli": "^4.9.1",
-		"webpack-dev-server": "^4.3.1",
+		"webpack-dev-server": "^4.7.3",
 		"webpack-merge": "^5.8.0"
 	},
 	"dependencies": {
@@ -76,10 +77,16 @@
 		"morgan": "^1.10.0",
 		"node-sass": "^7.0.1",
 		"pg": "^8.7.1",
+<<<<<<< HEAD
 		"react-bootstrap": "^2.1.1"
+=======
+		"react-elastic-carousel": "^0.11.5",
+		"update-node": "^0.1.0",
+		"react-hook-form": "^7.25.0"
+>>>>>>> 034f01568259e818cb8c353cfcb5b7edb322a646
 	},
 	"engines": {
-		"node": "^12 || ^14",
+		"node": "^12 || ^14 ||^16 ||^17",
 		"npm": "^6 ||^7 ||^8"
 	}
 }

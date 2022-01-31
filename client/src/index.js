@@ -6,11 +6,13 @@ import Hero from "./components/Hero";
 
 import "./index.scss";
 import App from "./App";
+import { AddNewAdProvider } from "./formContext/AddNewAdContext";
 
 ReactDOM.render(
 	<BrowserRouter>
-		<App />
-		<Hero />
+		<AddNewAdProvider>
+			<App />
+		</AddNewAdProvider>
 	</BrowserRouter>,
 	document.getElementById("root")
 );
