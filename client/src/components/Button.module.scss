@@ -3,18 +3,32 @@
 .btn {
 	width: 140px;
 	height: 35px;
-	background-color: $primary-color;
 	color: white;
 	border: none;
 	border-radius: 20px;
 	font-size: 14px;
 	transition: ease 0.2s all;
 	cursor: pointer;
+}
+
+.bg-color {
+	background-color: $primary-color;
 
 	&:hover {
 		background-color: $primary-color-hover;
 	}
 	&:active {
 		background-color: #198c74;
+	}
+}
+
+.banner-btn {
+	background-color: #16a184;
+
+	&:hover {
+		background-color: #0c8168;
+	}
+	&:active {
+		background-color: #0a6451;
 	}
 }

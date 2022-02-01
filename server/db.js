@@ -13,13 +13,14 @@ const pool = new Pool({
 export const connectDb = async () => {
 	let client;
 	try {
-		let sql = fs.readFileSync("./server/model/schema.sql").toString();
+		const sql = fs.readFileSync("./server/model/schema.sql").toString();
+		const mock = fs.readFileSync("./server/model/data.sql").toString();
 		client = await pool.connect();
-		client.query(sql, function (err, result) {
-			console.log(result);
+		client.query(sql, (err, _) => {
 			if (err) {
-				console.log("error: ", err);
+				console.log("Error creating database or it already exists so continuing anyway");
 			}
+			client.query(mock, (_, response) => console.log('Created mock data'));
 		});
 	} catch (err) {
 		console.error(err);
