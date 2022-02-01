@@ -11,7 +11,7 @@ CREATE TABLE sellerAccount (
 CREATE TABLE category (
     id serial PRIMARY KEY,
     name VARCHAR(255),
-    link VALUES(255)
+    link VARCHAR(255)
 );
 
 CREATE TABLE adListing (
