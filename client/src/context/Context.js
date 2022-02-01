@@ -20,9 +20,19 @@ export const ContextProvider = ({ children }) => {
 	// Saving categories from server
 	const [categories, setCategories] = useState([]);
 
+	// Saving current category
+	const [currentCategory, setCurrentCategory] = useState(null);
+
 	return (
 		<Context.Provider
-			value={{ formData, setFormValues, categories, setCategories }}
+			value={{
+				formData,
+				setFormValues,
+				categories,
+				setCategories,
+				currentCategory,
+				setCurrentCategory,
+			}}
 		>
 			{children}
 		</Context.Provider>

@@ -3,6 +3,12 @@ import db from "./db";
 
 const router = new Router();
 
+router.use(
+	cors({
+		allowedOrigins: ["*"],
+	})
+);
+
 router.get("/", (_, res) => {
 	res.json({ message: "Hello, world!" });
 });
@@ -16,21 +22,18 @@ router.get("/health", (_, res) => {
 });
 
 router.get("/categories", (_, res) => {
-	db
-		.query("SELECT id, name FROM category")
-		.then(result => {
-			console.debug('successfully got all categories', result);
+	db.query("SELECT id, name FROM category")
+		.then((result) => {
+			console.debug("successfully got all categories", result);
 			if (result.rows.length > 0) {
-				res
-					.status(200)
-					.send({ results: result.rows });
+				res.status(200).send({ results: result.rows });
 			}
 		})
-		.catch(error => {
-			console.error('Failed to get all categories', error);
+		.catch((error) => {
+			console.error("Failed to get all categories", error);
 			res
 				.status(500) // Internal server error
-				.json({ message: 'Oh, no! Something went wrong... Sorry about that!' });
+				.json({ message: "Oh, no! Something went wrong... Sorry about that!" });
 		});
 });
 

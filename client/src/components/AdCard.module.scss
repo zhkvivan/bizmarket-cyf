@@ -1,0 +1,16 @@
+@import "../components/scssCommon.scss";
+
+$card-width: 288px;
+
+.wrap {
+	width: $card-width;
+	height: 371px;
+	background-color: white;
+	border-radius: 20px;
+	box-shadow: 0px 0px 18px rgba(0, 0, 0, 0.28);
+}
+
+.img-wrap {
+	width: $card-width;
+	height: 205px;
+}

@@ -41,17 +41,19 @@ export const Slider = () => {
 		<section className={`${styles.wrapper} ${styles.container}`}>
 			<Carousel breakPoints={breakPoints} itemPadding={[30, 0]}>
 				{categories.map((category) => {
-					// const icon = "icon-" + category.link.split("-")[0] + ".png";
 					const icon =
 						"icon-" + category.name.split(", ")[0].toLowerCase() + ".png";
 
 					return (
 						<Link
 							key={category.id}
-							to={`/category/${category.name
+							to={`/category/${category.id}/${category.name
 								.split(", ")
 								.join("-")
 								.toLowerCase()}`}
+							state={{
+								category: category,
+							}}
 						>
 							<SliderItem icon={icon} label={category.name} />
 						</Link>
