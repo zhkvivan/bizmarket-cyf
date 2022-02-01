@@ -10,7 +10,8 @@ CREATE TABLE sellerAccount (
 
 CREATE TABLE category (
     id serial PRIMARY KEY,
-    name VARCHAR(255)
+    name VARCHAR(255),
+    link VALUES(255)
 );
 
 CREATE TABLE adListing (
@@ -22,7 +23,7 @@ CREATE TABLE adListing (
     updatedDate TIMESTAMP,
     expiryDate TIMESTAMP,
     price VARCHAR(50),
-    quantity VARCHAR(255),
+    quantity VARCHAR(255),cat
     description VARCHAR(1000),
     location VARCHAR(255),
     imageURL VARCHAR(255),
