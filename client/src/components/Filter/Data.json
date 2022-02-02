@@ -1,0 +1,29 @@
+{
+	"activeAds": [
+		{
+			"title": " New iphone  for sale",
+			"sellername": "Ivan",
+			"Category": "Electronics"
+		},
+		{
+			"title": "  iphone 12  for sale",
+			"sellername": "Ivan",
+			"Category": "Electronics"
+		},
+		{
+			"title": "Funko Collection For £ 200",
+			"sellername": "Peter",
+			"Category": "Toys and Games"
+		},
+		{
+			"title": " Barely used iphone available at discount price",
+			"sellername": "Mirabela",
+			"Category": "Electronics"
+		},
+		{
+			"title": "plastic iphone for sale ",
+			"sellername": "Peter",
+			"Category": "Toys and Games"
+		}
+	]
+}
