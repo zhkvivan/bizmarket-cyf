@@ -10,12 +10,17 @@ CREATE TABLE sellerAccount (
 
 CREATE TABLE category (
     id serial PRIMARY KEY,
-    name VARCHAR(255)
+    name VARCHAR(255),
+    link VARCHAR(255)
 );
 
 CREATE TABLE adListing (
     id serial PRIMARY KEY,
     adTitle VARCHAR(255),
+    sellerName VARCHAR(255),
+    sellerCompany VARCHAR(255),
+    sellerPhone VARCHAR(255),
+    sellerEmail VARCHAR(255),
     accountId INT,
     foreign key (accountId) references sellerAccount(id),
     createdDate TIMESTAMP,
@@ -23,6 +28,7 @@ CREATE TABLE adListing (
     expiryDate TIMESTAMP,
     price VARCHAR(50),
     quantity VARCHAR(255),
+    minQuantity VARCHAR(255),
     description VARCHAR(1000),
     location VARCHAR(255),
     imageURL VARCHAR(255),
