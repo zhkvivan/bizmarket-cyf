@@ -69,18 +69,21 @@ function App() {
 						name: "Other",
 					},
 				];
-				response.sort((a, b) => {
-					const catA = a.name;
-					const catB = b.name;
 
-					if (catA > catB) {
-						return 1;
-					} else if (catB > catA) {
-						return -1;
-					} else {
-						return 0;
-					}
-				});
+				// response.data.results.sort((a, b) => {
+				// 	const catA = a.name;
+				// 	const catB = b.name;
+
+				// 	if (catA > catB) {
+				// 		return 1;
+				// 	} else if (catB > catA) {
+				// 		return -1;
+				// 	} else {
+				// 		return 0;
+				// 	}
+				// });
+				// console.log(response.data.results);
+				// setCategories(response.data.results);
 				setCategories(response);
 			} catch (error) {
 				console.error(error);

@@ -7,11 +7,11 @@ import { useContextBM } from "../context/Context";
 
 const AddNewAdPage = () => {
 	// Getting values from context
-	const { formData, setValues, categories } = useContextBM();
+	const { formData, setFormValues, categories } = useContextBM();
 
 	// Passing form data object to the next page
 	const onSubmit = (data) => {
-		setValues(data);
+		setFormValues(data);
 		navigate("/confirm-add-new-ad");
 	};
 
@@ -25,9 +25,14 @@ const AddNewAdPage = () => {
 	} = useForm({
 		defaultValues: {
 			category: formData.category,
-			title: formData.title,
+			adTitle: formData.adTitle,
 			description: formData.description,
 			price: formData.price,
+			sellerName: formData.sellerName,
+			sellerCompany: formData.sellerCompany,
+			sellerPhone: formData.sellerPhone,
+			sellerEmail: formData.sellerEmail,
+			minimumQuantity: formData.minimumQuantity,
 		},
 	});
 
@@ -36,7 +41,12 @@ const AddNewAdPage = () => {
 		register("image");
 	}, []);
 
-	const [title, description] = watch(["title", "description"]);
+	const [adTitle, description, sellerName, sellerCompany] = watch([
+		"adTitle",
+		"description",
+		"sellerName",
+		"sellerCompany",
+	]);
 
 	// // Making img upload and preview
 	const fileInputRef = useRef();
@@ -104,12 +114,12 @@ const AddNewAdPage = () => {
 							</div>
 						</div>
 					</div>
-					{/* Title */}
+					{/* adTitle */}
 					<div className={styles["field-base"]}>
-						<label htmlFor="title">Ad title:</label>
+						<label htmlFor="adTitle">Ad title:</label>
 						<div className={styles["input-wrapper"]}>
 							<input
-								{...register("title", {
+								{...register("adTitle", {
 									required: "This field is required",
 									minLength: {
 										value: 2,
@@ -117,7 +127,7 @@ const AddNewAdPage = () => {
 									},
 								})}
 								className={`${styles.input} ${
-									errors.title && styles["error-field"]
+									errors.adTitle && styles["error-field"]
 								}`}
 								type="text"
 								placeholder="Type here.."
@@ -125,15 +135,15 @@ const AddNewAdPage = () => {
 							/>
 							{/* Error handling message: */}
 							<div>
-								{errors.title && (
+								{errors.adTitle && (
 									<span className={styles["error-text"]}>
-										{errors.title.message}
+										{errors.adTitle.message}
 									</span>
 								)}
 							</div>
 						</div>
 						<span className={styles.remaining}>
-							{100 - title.length} characters remaining
+							{100 - adTitle.length} characters remaining
 						</span>
 					</div>
 					{/* Description */}
@@ -173,11 +183,12 @@ const AddNewAdPage = () => {
 							<div className={styles["price-wrap"]}>
 								<input
 									type="number"
+									min="0"
 									placeholder="0"
 									{...register("price", {
 										required: "This field is required",
 									})}
-									className={`${styles.input} ${
+									className={`${styles.input} ${styles.price} ${
 										errors.price && styles["error-field"]
 									}`}
 								/>
@@ -186,6 +197,31 @@ const AddNewAdPage = () => {
 								{errors.price && (
 									<span className={styles["error-text"]}>
 										{errors.price.message}
+									</span>
+								)}
+							</div>
+						</div>
+					</div>
+					{/* Minimum Quantity */}
+					<div className={styles["field-base"]}>
+						<label htmlFor="minimumQuantity">Minimum order quantity:</label>
+						<div>
+							<input
+								type="number"
+								min="1"
+								placeholder="1"
+								{...register("minimumQuantity", {
+									required: "This field is required",
+								})}
+								className={`${styles.input} ${styles.price} ${
+									errors.price && styles["error-field"]
+								}`}
+							/>
+
+							<div>
+								{errors.minimumQuantity && (
+									<span className={styles["error-text"]}>
+										{errors.minimumQuantity.message}
 									</span>
 								)}
 							</div>
@@ -202,6 +238,7 @@ const AddNewAdPage = () => {
 								ref={fileInputRef}
 								onChange={(e) => {
 									setValue("image", e.target.files);
+									console.log(e.target.files);
 									const file = e.target.files[0];
 									if (file) {
 										setImage(file);
@@ -242,6 +279,130 @@ const AddNewAdPage = () => {
 							<div></div>
 						)}
 					</div>
+					{/* Contact info */}
+					<h2>Contact information</h2>
+					{/* Seller name */}
+					<div className={styles["field-base"]}>
+						<label htmlFor="sellerName">Your name:</label>
+						<div className={styles["input-wrapper"]}>
+							<input
+								{...register("sellerName", {
+									required: "This field is required",
+									minLength: {
+										value: 2,
+										message: "Name is too short",
+									},
+								})}
+								className={`${styles.input} ${
+									errors.sellerName && styles["error-field"]
+								}`}
+								type="text"
+								placeholder="Type here.."
+								maxLength={100}
+							/>
+							{/* Error handling message: */}
+							<div>
+								{errors.sellerName && (
+									<span className={styles["error-text"]}>
+										{errors.sellerName.message}
+									</span>
+								)}
+							</div>
+						</div>
+						<span className={styles.remaining}>
+							{100 - sellerName.length} characters remaining
+						</span>
+					</div>
+					{/* Seller company */}
+					<div className={styles["field-base"]}>
+						<label htmlFor="sellerCompany">Your company name:</label>
+						<div className={styles["input-wrapper"]}>
+							<input
+								{...register("sellerCompany", {
+									minLength: {
+										value: 2,
+										message: "Company name is too short",
+									},
+								})}
+								className={`${styles.input} ${
+									errors.sellerCompany && styles["error-field"]
+								}`}
+								type="text"
+								placeholder="Type here.."
+								maxLength={100}
+							/>
+							{/* Error handling message: */}
+							<div>
+								{errors.sellerCompany && (
+									<span className={styles["error-text"]}>
+										{errors.sellerCompany.message}
+									</span>
+								)}
+							</div>
+						</div>
+						<span className={styles.remaining}>
+							{100 - sellerCompany.length} characters remaining
+						</span>
+					</div>
+					{/* Phone number */}
+					<div className={styles["field-base"]}>
+						<label htmlFor="sellerPhone">Your phone number:</label>
+						<div className={styles["input-wrapper"]}>
+							<input
+								{...register("sellerPhone", {
+									required: "This field is required",
+									minLength: {
+										value: 4,
+										message: "Number is too short",
+									},
+								})}
+								className={`${styles.input} ${
+									errors.sellerPhone && styles["error-field"]
+								}`}
+								type="number"
+								placeholder="Type here.."
+								maxLength={100}
+							/>
+							{/* Error handling message: */}
+							<div>
+								{errors.sellerPhone && (
+									<span className={styles["error-text"]}>
+										{errors.sellerPhone.message}
+									</span>
+								)}
+							</div>
+						</div>
+					</div>
+					{/* sellerEmail */}
+					<div className={styles["field-base"]}>
+						<label htmlFor="sellersellerEmail">Your email:</label>
+						<div className={styles["input-wrapper"]}>
+							<input
+								{...register("sellerEmail", {
+									required: "This field is required",
+									minLength: {
+										value: 4,
+										message: "Number is too short",
+									},
+								})}
+								className={`${styles.input} ${
+									errors.sellerEmail && styles["error-field"]
+								}`}
+								type="sellerEmail"
+								placeholder="Type here.."
+								maxLength={100}
+							/>
+							{/* Error handling message: */}
+							<div>
+								{errors.sellerEmail && (
+									<span className={styles["error-text"]}>
+										{errors.sellerEmail.message}
+									</span>
+								)}
+							</div>
+						</div>
+					</div>
+					{/* Buttons */}
 					<div className={styles["buttons-wrapper"]}>
 						<button
 							className={styles["cancel-btn"]}

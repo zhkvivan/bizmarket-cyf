@@ -5,9 +5,14 @@ const Context = createContext();
 export const ContextProvider = ({ children }) => {
 	// Adding new ad form
 	const [formData, setFormData] = useState({
-		title: "",
+		adTitle: "",
 		description: "",
 		price: "",
+		sellerName: "",
+		sellerCompany: "",
+		sellerPhone: "",
+		sellerEmail: "",
+		minimumQuantity: "",
 	});
 
 	const setFormValues = (values) => {

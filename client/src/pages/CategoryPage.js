@@ -42,6 +42,23 @@ const CategoryPage = () => {
 		fetchData();
 	}, []);
 
+	const ad = {
+		id: 1,
+		adTitle: "Sugar",
+		sellerName: "John Doe",
+		sellerCompany: "Food LTD",
+		createdDate: "",
+		updatetDate: "",
+		expiryDate: "",
+		minimumQuantity: "",
+		price: 5,
+		description: "Sugar - very good sugar!",
+		location: "",
+		imageURL: undefined,
+		categoryId: 1,
+		sellerEmail: "test@bizmarket.com",
+	};
+
 	return (
 		<div className={styles.container}>
 			{/* <Breadcrumbs /> */}
@@ -59,7 +76,7 @@ const CategoryPage = () => {
 							</div>
 						</div>
 						<div className={styles.ads}>
-							<AdCard />
+							<AdCard ad={ad} />
 						</div>
 					</div>
 				) : (

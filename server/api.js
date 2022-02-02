@@ -1,13 +1,10 @@
 import { Router } from "express";
 import db from "./db";
+import cors from "cors";
 
 const router = new Router();
 
-router.use(
-	cors({
-		allowedOrigins: ["*"],
-	})
-);
+router.use(cors());
 
 router.get("/", (_, res) => {
 	res.json({ message: "Hello, world!" });

@@ -2,6 +2,14 @@
 
 .container {
 	color: $text-color;
+	margin-top: 100px;
+}
+
+.demo-container {
+	padding: 50px;
+	box-shadow: 0px 0px 46px -3px rgba(0, 0, 0, 0.25);
+	border-radius: 20px;
+	margin-bottom: 100px;
 }
 
 .top-info {
@@ -9,12 +17,12 @@
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	margin-top: 100px;
+	// margin-top: 100px;
 	margin-bottom: 40px;
 }
 
 .heading {
-	max-width: 640px;
+	max-width: 760px;
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
@@ -58,6 +66,10 @@
 	max-height: 500px;
 	box-shadow: 0px 0px 18px -8px rgba(0, 0, 0, 0.33);
 	border-radius: 10px;
+}
+
+.demo-seller-info {
+	width: 340px;
 }
 
 .seller-name-wrapper {
@@ -200,6 +212,10 @@
 	flex-direction: column;
 	max-width: 370px;
 	width: 100%;
+}
+
+.demo-details {
+	max-width: 340px;
 }
 
 .details-header {
