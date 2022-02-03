@@ -10,7 +10,8 @@ CREATE TABLE sellerAccount (
 
 CREATE TABLE category (
     id serial PRIMARY KEY,
-    name VARCHAR(255)
+    name VARCHAR(255),
+    link VARCHAR(75)
 );
 
 CREATE TABLE adListing (

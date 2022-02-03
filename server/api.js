@@ -28,7 +28,7 @@ router.get("/categories", (_, res) => {
 		.catch((error) => {
 			console.error("Failed to get all categories", error);
 			res
-				.status(500) // Internal server error
+				.status(500)
 				.json({ message: "Oh, no! Something went wrong... Sorry about that!" });
 		});
 });
