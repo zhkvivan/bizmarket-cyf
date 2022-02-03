@@ -19,56 +19,6 @@ function App() {
 		const fetchData = async () => {
 			try {
 				const response = await BizMarketApi.get("/categories");
-				// const response = await [
-				// 	{
-				// 		id: 1,
-				// 		name: "Food, Drinks",
-				// 	},
-				// 	{
-				// 		id: 2,
-				// 		name: "Automotive",
-				// 	},
-				// 	{
-				// 		id: 3,
-				// 		name: "Electronics",
-				// 	},
-				// 	{
-				// 		id: 4,
-				// 		name: "Fashion, Clothing",
-				// 	},
-				// 	{
-				// 		id: 5,
-				// 		name: "Floral, Garden",
-				// 	},
-				// 	{
-				// 		id: 6,
-				// 		name: "Health, Beauty",
-				// 	},
-				// 	{
-				// 		id: 7,
-				// 		name: "Home, Decor",
-				// 	},
-				// 	{
-				// 		id: 8,
-				// 		name: "Industrial, Materials",
-				// 	},
-				// 	{
-				// 		id: 9,
-				// 		name: "Pets, Animals",
-				// 	},
-				// 	{
-				// 		id: 10,
-				// 		name: "Sports, Outdoors",
-				// 	},
-				// 	{
-				// 		id: 11,
-				// 		name: "Toys, Games",
-				// 	},
-				// 	{
-				// 		id: 12,
-				// 		name: "Other",
-				// 	},
-				// ];
 
 				response.data.results.sort((a, b) => {
 					const catA = a.name;
