@@ -3,13 +3,13 @@ import { BrowserRouter } from "react-router-dom";
 
 import "./index.scss";
 import App from "./App";
-import { AddNewAdProvider } from "./formContext/AddNewAdContext";
+import { ContextProvider } from "./context/Context";
 
 ReactDOM.render(
 	<BrowserRouter>
-		<AddNewAdProvider>
+		<ContextProvider>
 			<App />
-		</AddNewAdProvider>
+		</ContextProvider>
 	</BrowserRouter>,
 	document.getElementById("root")
 );
