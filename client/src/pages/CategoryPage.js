@@ -8,19 +8,14 @@ import AdCard from "../components/AdCard";
 
 const CategoryPage = () => {
 	const { categoryId } = useParams();
-	// const location = useLocation();
-	// const { category } = location.state;
-	// console.log(category);
 
 	const { categories, currentCategory, setCurrentCategory } = useContextBM();
 	if (categories.length > 0) {
-		console.log(categories);
 		const category = categories.filter(
 			(category) => category.id === +categoryId
 		)[0];
 
 		setCurrentCategory(category);
-		console.log(currentCategory);
 	}
 
 	const [sortWay, setSortWay] = useState("most popular");
@@ -64,7 +59,9 @@ const CategoryPage = () => {
 		<div className={styles.container}>
 			{/* <Breadcrumbs /> */}
 			<div className={styles.inner}>
-				<div className={styles.filters}></div>
+				<div className={styles.filters}>
+					<h2>Filters</h2>
+				</div>
 				{currentCategory ? (
 					<div className={styles.content}>
 						<div className={styles["top-bar"]}>
