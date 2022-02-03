@@ -50,7 +50,6 @@ router.post("/ad", (req, res) => {
 	const parameterizedInsertStatement = `
 		INSERT INTO adListing(
 			adTitle, 
-			accountId, 
 			sellerName,
 			sellerCompany,
 			sellerPhone,
@@ -64,7 +63,7 @@ router.post("/ad", (req, res) => {
 			location, 
 			imageURL, 
 			categoryId) 
-		VALUES($1, 1, $2, $3, $4, $5, current_timestamp, current_timestamp, $6, $7, $8, $9, $10, $11, 1);`;
+		VALUES($1, $2, $3, $4, $5, current_timestamp, current_timestamp, $6, $7, $8, $9, $10, $11, 1);`;
 
 	const parameterizedQueryValues = [
 		input.title,
@@ -89,6 +88,24 @@ router.post("/ad", (req, res) => {
 			console.error("Failed to create new Ad ", error);
 			res
 				.status(500)
+				.json({ message: "Oh, no! Something went wrong... Sorry about that!" });
+		});
+});
+
+router.get("/ad", (_, res) => {
+	db.query("SELECT * FROM adListing")
+		.then((result) => {
+			//console.debug("successfully got the ads", result);
+			if (result.rows.length > 0) {
+				res.status(200).send({ results: result.rows });
+			} else {
+				res.status(404).json({ message: "Not Found" });
+			}
+		})
+		.catch((error) => {
+			console.error("Failed to get all ads", error);
+			res
+				.status(500) // Internal server error
 				.json({ message: "Oh, no! Something went wrong... Sorry about that!" });
 		});
 });
