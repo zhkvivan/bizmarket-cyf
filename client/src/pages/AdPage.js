@@ -6,8 +6,13 @@ import iconHeart from "../images/icon-heart.png";
 import productImg from "../images/product.jpg";
 import Accordion from "../components/Accordion";
 import imgPlaceholder from "../images/no-image.jpeg";
+import BizMarketApi from "../api/BizMarketApi";
 
 const AdPage = ({ product, noAccordion, isDemo }) => {
+	const [currentProduct, setCurrentProduct] = useState({});
+	const location = useLocation();
+	const { categoryId, adId } = useParams();
+
 	const [emailText, setEmailText] = useState(
 		"Hi, I would be interested in this item.."
 	);
@@ -18,35 +23,61 @@ const AdPage = ({ product, noAccordion, isDemo }) => {
 	const [image, setImage] = useState(null);
 
 	useEffect(() => {
-		window.scrollTo(0, 0);
-		console.log(image);
+		console.log(product);
+		if (product) {
+			setCurrentProduct(product);
+		} else if (location.state != null) {
+			setCurrentProduct(location.state.product);
+		} else {
+			const fetchData = async () => {
+				try {
+					// const response = await BizMarketApi.get("/ad", {
+					// 	params: {
+					// 		categoryId: categoryId,
+					// 		adId: adId,
+					// 	},
+					// });
+					console.log("inside fetchData");
+					// console.log(response);
+					const adExpamle = {
+						id: 1,
+						adTitle: "Iphone",
+						sellerName: "Steve Jobs",
+						sellerCompany: "Apple",
+						createdDate: "",
+						updatetDate: "",
+						expiryDate: "",
+						minimumQuantity: "100",
+						price: 395,
+						description:
+							"Смартфоны производства корпорации Apple. iPhone 13 является базовой моделью 15-го поколения. Содержит процессор Apple A15 в котором 15 млрд транзисторов. представлен 14 сентября 2021 года вместе со своим «младшим братом» iPhone 13 mini и «профессиональными» моделями iPhone 13 Pro и iPhone 13 Pro Max. Продажи начались 24 сентября. Дата предварительного заказа - 17 сентября 2021 года.",
+						location: "",
+						imageURL: undefined,
+						categoryId: 1,
+						sellerEmail: "test@bizmarket.com",
+					};
+					setCurrentProduct(adExpamle);
+				} catch (error) {
+					console.error(error);
+				}
+			};
+			fetchData();
+		}
 
-		if (product.image != undefined) {
+		window.scrollTo(0, 0);
+	}, []);
+
+	useEffect(() => {
+		if (currentProduct.image != undefined) {
 			const reader = new FileReader();
-			console.log("внутри ридера");
 			reader.onloadend = () => {
 				setImage(reader.result);
 			};
-			reader.readAsDataURL(product.image[0]);
+			reader.readAsDataURL(currentProduct.image[0]);
 		}
 		console.log(image);
-	}, [product.image]);
-
-	// const product = {
-	// 	id: 1,
-	// 	adTitle: "Sugar",
-	// 	createdDate: "",
-	// 	updatetDate: "",
-	// 	expiryDatae: "",
-	// 	quantity: "",
-	// 	price: 5,
-	// 	description: "Sugar - very good sugar!",
-	// 	location: "",
-	// 	imageURL: "",
-	// 	categoryId: 1,
-	// 	sellerEmail: "test@bizmarket.com",
-	// 	minimumOrder: 10,
-	// };
+		console.log(location);
+	}, [currentProduct.image]);
 
 	const faq = [
 		{
@@ -80,9 +111,9 @@ const AdPage = ({ product, noAccordion, isDemo }) => {
 			>
 				<div className={styles["top-info"]}>
 					<div className={styles.heading}>
-						<h1 className={styles.h1}>{product.adTitle}</h1>
+						<h1 className={styles.h1}>{currentProduct.adTitle}</h1>
 						<div className={styles.price}>
-							from <span>£ {product.price}</span>
+							from <span>£ {currentProduct.price}</span>
 						</div>
 					</div>
 					<img
@@ -94,8 +125,8 @@ const AdPage = ({ product, noAccordion, isDemo }) => {
 				<div className={styles["middle-inner"]}>
 					<div className={styles["image-wrapper"]}>
 						<img
-							src={product.image === undefined ? imgPlaceholder : image}
-							alt={`${product.adTitle}`}
+							src={currentProduct.image === undefined ? imgPlaceholder : image}
+							alt={`${currentProduct.adTitle}`}
 						/>
 					</div>
 					<div
@@ -109,23 +140,25 @@ const AdPage = ({ product, noAccordion, isDemo }) => {
 							</div>
 							<div className={styles["seller-name-inner"]}>
 								<span className={styles["seller-name"]}>
-									{product.sellerName}
+									{currentProduct.sellerName}
 								</span>
 								<span className={styles["seller-company"]}>
-									{product.sellerCompany ? product.sellerCompany : ""}
+									{currentProduct.sellerCompany
+										? currentProduct.sellerCompany
+										: ""}
 								</span>
 							</div>
 						</div>
 						<div className={styles["contact-info"]}>
 							<h3 className={styles["contact-info-title"]}>Contact seller</h3>
 							<span className={styles["seller-phone"]}>
-								{product.sellerPhone}
+								{currentProduct.sellerPhone}
 							</span>
 							<span className={styles["seller-email"]}>
 								<a
-									href={`mailto:${product.sellerEmail}?subject=Question about ${product.adTitle} from BizMarket`}
+									href={`mailto:${currentProduct.sellerEmail}?subject=Question about ${currentProduct.adTitle} from BizMarket`}
 								>
-									{product.sellerEmail}
+									{currentProduct.sellerEmail}
 								</a>
 							</span>
 
@@ -136,7 +169,7 @@ const AdPage = ({ product, noAccordion, isDemo }) => {
 							></textarea>
 							<div className={styles["btn-wrap"]}>
 								<a
-									href={`mailto:${product.sellerEmail}?subject=Question about ${product.adTitle} from BizMarket&body=${emailText}`}
+									href={`mailto:${currentProduct.sellerEmail}?subject=Question about ${currentProduct.adTitle} from BizMarket&body=${emailText}`}
 								>
 									Send an email
 								</a>
@@ -146,7 +179,7 @@ const AdPage = ({ product, noAccordion, isDemo }) => {
 				</div>
 				<div className={styles["under-photo"]}>
 					<div className={styles["description"]}>
-						<p>{product.description}</p>
+						<p>{currentProduct.description}</p>
 					</div>
 					<div
 						className={`${styles.details} ${
@@ -156,7 +189,7 @@ const AdPage = ({ product, noAccordion, isDemo }) => {
 						<div className={styles["details-header"]}>Details</div>
 						<div className={styles["details-string"]}>
 							<span>Minimum order quantity</span>
-							<span>{product.minimumQuantity}</span>
+							<span>{currentProduct.minimumQuantity}</span>
 						</div>
 					</div>
 				</div>

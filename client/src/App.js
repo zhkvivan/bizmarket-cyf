@@ -18,73 +18,73 @@ function App() {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				// const response = await BizMarketApi.get("/categories");
-				const response = await [
-					{
-						id: 1,
-						name: "Food, Drinks",
-					},
-					{
-						id: 2,
-						name: "Automotive",
-					},
-					{
-						id: 3,
-						name: "Electronics",
-					},
-					{
-						id: 4,
-						name: "Fashion, Clothing",
-					},
-					{
-						id: 5,
-						name: "Floral, Garden",
-					},
-					{
-						id: 6,
-						name: "Health, Beauty",
-					},
-					{
-						id: 7,
-						name: "Home, Decor",
-					},
-					{
-						id: 8,
-						name: "Industrial, Materials",
-					},
-					{
-						id: 9,
-						name: "Pets, Animals",
-					},
-					{
-						id: 10,
-						name: "Sports, Outdoors",
-					},
-					{
-						id: 11,
-						name: "Toys, Games",
-					},
-					{
-						id: 12,
-						name: "Other",
-					},
-				];
+				const response = await BizMarketApi.get("/categories");
+				// const response = await [
+				// 	{
+				// 		id: 1,
+				// 		name: "Food, Drinks",
+				// 	},
+				// 	{
+				// 		id: 2,
+				// 		name: "Automotive",
+				// 	},
+				// 	{
+				// 		id: 3,
+				// 		name: "Electronics",
+				// 	},
+				// 	{
+				// 		id: 4,
+				// 		name: "Fashion, Clothing",
+				// 	},
+				// 	{
+				// 		id: 5,
+				// 		name: "Floral, Garden",
+				// 	},
+				// 	{
+				// 		id: 6,
+				// 		name: "Health, Beauty",
+				// 	},
+				// 	{
+				// 		id: 7,
+				// 		name: "Home, Decor",
+				// 	},
+				// 	{
+				// 		id: 8,
+				// 		name: "Industrial, Materials",
+				// 	},
+				// 	{
+				// 		id: 9,
+				// 		name: "Pets, Animals",
+				// 	},
+				// 	{
+				// 		id: 10,
+				// 		name: "Sports, Outdoors",
+				// 	},
+				// 	{
+				// 		id: 11,
+				// 		name: "Toys, Games",
+				// 	},
+				// 	{
+				// 		id: 12,
+				// 		name: "Other",
+				// 	},
+				// ];
 
-				// response.data.results.sort((a, b) => {
-				// 	const catA = a.name;
-				// 	const catB = b.name;
+				response.data.results.sort((a, b) => {
+					const catA = a.name;
+					const catB = b.name;
 
-				// 	if (catA > catB) {
-				// 		return 1;
-				// 	} else if (catB > catA) {
-				// 		return -1;
-				// 	} else {
-				// 		return 0;
-				// 	}
-				// });
-				// console.log(response.data.results);
-				// setCategories(response.data.results);
-				setCategories(response);
+					if (catA > catB) {
+						return 1;
+					} else if (catB > catA) {
+						return -1;
+					} else {
+						return 0;
+					}
+				});
+				console.log(response.data.results);
+				setCategories(response.data.results);
+				// setCategories(response);
 			} catch (error) {
 				console.error(error);
 			}

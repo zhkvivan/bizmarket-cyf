@@ -3,6 +3,7 @@ import db from "./db";
 import cors from "cors";
 
 const router = new Router();
+router.use(cors());
 
 router.use(cors());
 
@@ -19,7 +20,7 @@ router.get("/health", (_, res) => {
 });
 
 router.get("/categories", (_, res) => {
-	db.query("SELECT id, name FROM category")
+	db.query("SELECT id, name, link FROM category")
 		.then((result) => {
 			console.debug("successfully got all categories", result);
 			if (result.rows.length > 0) {
@@ -29,7 +30,7 @@ router.get("/categories", (_, res) => {
 		.catch((error) => {
 			console.error("Failed to get all categories", error);
 			res
-				.status(500) // Internal server error
+				.status(500)
 				.json({ message: "Oh, no! Something went wrong... Sorry about that!" });
 		});
 });

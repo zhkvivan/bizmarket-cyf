@@ -3,11 +3,12 @@
 .inner {
 	display: flex;
 	flex-direction: row;
-
+	align-items: flex-start;
 	margin-top: 100px;
 }
 
 .filters {
+	flex-shrink: 0;
 	width: 250px;
 	min-height: 300px;
 	border-radius: 20px;
@@ -17,6 +18,8 @@
 
 .content {
 	flex-grow: 1;
+	max-width: 910px;
+	width: 100%;
 }
 
 .top-bar {
@@ -38,5 +41,10 @@ h1 {
 }
 
 .ads {
+	margin: 0 -11.5px;
 	margin-top: 40px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
 }

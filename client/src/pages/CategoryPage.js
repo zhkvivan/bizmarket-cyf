@@ -26,6 +26,7 @@ const CategoryPage = () => {
 	const [sortWay, setSortWay] = useState("most popular");
 
 	useEffect(() => {
+		window.scrollTo(0, 0);
 		const fetchData = async () => {
 			try {
 				const response = await BizMarketApi.get("/search", {
@@ -76,7 +77,11 @@ const CategoryPage = () => {
 							</div>
 						</div>
 						<div className={styles.ads}>
-							<AdCard ad={ad} />
+							<AdCard product={ad} />
+							<AdCard product={ad} />
+							<AdCard product={ad} />
+							<AdCard product={ad} />
+							<AdCard product={ad} />
 						</div>
 					</div>
 				) : (

@@ -8,10 +8,7 @@ import BizMarketApi from "../api/BizMarketApi";
 const AddConfirmPage = () => {
 	const navigate = useNavigate();
 	const { formData, setFormData, setFormValues } = useContextBM();
-	const formDataToServer = {
-		...formData,
-	};
-	console.log(formDataToServer);
+
 	useEffect(() => {
 		if (formData.adTitle.length === 0) {
 			navigate("/no-draft");
@@ -26,7 +23,6 @@ const AddConfirmPage = () => {
 		}
 	};
 
-	console.log(formData);
 	return (
 		<>
 			<div className={styles.container}>
