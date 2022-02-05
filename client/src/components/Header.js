@@ -4,10 +4,17 @@ import Button from "./Button";
 import styles from "./Header.module.scss";
 
 import logo from "../images/logo.png";
+import { useContextBM } from "../context/Context";
+import NavMenu from "./NavMenu";
 
 const Header = () => {
 	const navigate = useNavigate();
 	const toAddNewAdPage = () => navigate("/add-new-ad");
+
+	const { isOpen, setIsOpen } = useContextBM();
+	const menuHandler = () => {
+		setIsOpen(true);
+	};
 
 	return (
 		<header>
@@ -16,22 +23,11 @@ const Header = () => {
 					<img src={logo} alt="logo" className={styles.logo} />
 				</NavLink>
 				<div className={styles.navigation}>
-					<ul className={styles.menu}>
-						<li>
-							<NavLink to="/" className={styles.link}>
-								Home
-							</NavLink>
-						</li>
-						<li>
-							<NavLink to="/about" className={styles.link}>
-								About
-							</NavLink>
-						</li>
-						<li className={styles.link}>Login / Register</li>
-					</ul>
-					<div>
+					<NavMenu place={"header"} />
+					<div className={styles["btn-wrap"]}>
 						<Button label="Post new Ad" action={toAddNewAdPage} />
 					</div>
+					<span className={styles["menu-icon"]} onClick={menuHandler}></span>
 				</div>
 			</div>
 		</header>

@@ -22,6 +22,9 @@ export const ContextProvider = ({ children }) => {
 		}));
 	};
 
+	//Burger menu
+	const [isOpen, setIsOpen] = useState(false);
+
 	// Saving categories from server
 	const [categories, setCategories] = useState([]);
 
@@ -37,6 +40,8 @@ export const ContextProvider = ({ children }) => {
 				setCategories,
 				currentCategory,
 				setCurrentCategory,
+				isOpen,
+				setIsOpen,
 			}}
 		>
 			{children}

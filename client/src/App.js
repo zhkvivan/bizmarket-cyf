@@ -11,6 +11,7 @@ import CategoryPage from "./pages/CategoryPage";
 import { useEffect } from "react";
 import BizMarketApi from "./api/BizMarketApi";
 import { useContextBM } from "./context/Context";
+import BurgerMenu from "./components/BurgerMenu";
 
 function App() {
 	// Getting categories from server
@@ -44,6 +45,7 @@ function App() {
 
 	return (
 		<>
+			<BurgerMenu />
 			<Routes>
 				<Route path="/" element={<Layout />}>
 					<Route exact path="/" element={<Home />} />
