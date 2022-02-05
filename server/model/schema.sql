@@ -1,6 +1,6 @@
-DROP TABLE sellerAccount CASCADE;
-DROP TABLE category CASCADE;
-DROP TABLE adListing CASCADE;
+-- DROP TABLE sellerAccount CASCADE;
+-- DROP TABLE category CASCADE;
+-- DROP TABLE adListing CASCADE;
 
 CREATE TABLE sellerAccount (
     id serial PRIMARY KEY,
@@ -11,7 +11,7 @@ CREATE TABLE sellerAccount (
 CREATE TABLE category (
     id serial PRIMARY KEY,
     name VARCHAR(255),
-    link VARCHAR(255)
+    link VARCHAR(75)
 );
 
 CREATE TABLE adListing (
@@ -19,10 +19,8 @@ CREATE TABLE adListing (
     adTitle VARCHAR(255),
     sellerName VARCHAR(255),
     sellerCompany VARCHAR(255),
-    sellerPhone VARCHAR(255),
-    sellerEmail VARCHAR(255),
-    accountId INT,
-    foreign key (accountId) references sellerAccount(id),
+    sellerPhone VARCHAR(50),
+    sellerEmail VARCHAR(75),
     createdDate TIMESTAMP,
     updatedDate TIMESTAMP,
     expiryDate TIMESTAMP,
