@@ -1,10 +1,15 @@
 @import "../components/scssCommon.scss";
+@import "../components/mixins.scss";
 
 .page-wrap {
 	background-color: #fcfcfc;
 	label {
 		flex-basis: 180px;
+		flex-shrink: 0;
 		margin-top: 10px;
+		@include responsive(580px) {
+			flex-basis: 100px;
+		}
 	}
 	padding-bottom: 10px;
 	h1 {
@@ -13,6 +18,15 @@
 }
 
 .input-wrapper {
+	max-width: 950px;
+	width: 100%;
+	display: flex;
+	@include responsive(1050px) {
+		flex-direction: column;
+	}
+}
+
+.input-box {
 	max-width: 530px;
 	width: 100%;
 }
@@ -72,6 +86,7 @@
 	min-height: 90px;
 	margin-bottom: 50px;
 	padding: 25px 0;
+	padding-right: 25px;
 	background-color: white;
 	border-radius: 20px;
 	display: flex;
@@ -131,6 +146,9 @@
 .remaining {
 	margin-left: 40px;
 	margin-top: 10px;
+	@include responsive(1050px) {
+		margin-left: 0px;
+	}
 }
 
 .error-text {
@@ -173,6 +191,13 @@
 	}
 }
 
+.img-box {
+	display: flex;
+	@include responsive(615px) {
+		flex-direction: column;
+	}
+}
+
 .preview {
 	width: 140px;
 	height: 140px;
@@ -180,6 +205,11 @@
 	margin-left: 40px;
 	display: flex;
 	flex-direction: column;
+
+	@include responsive(615px) {
+		margin-left: 0;
+		margin-top: 20px;
+	}
 
 	img {
 		width: 100%;
