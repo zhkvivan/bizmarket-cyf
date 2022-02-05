@@ -26,7 +26,7 @@ CREATE TABLE adListing (
     expiryDate TIMESTAMP,
     price VARCHAR(50),
     quantity VARCHAR(255),
-    minimumQuantity VARCHAR(25),
+    minQuantity VARCHAR(255),
     description VARCHAR(1000),
     location VARCHAR(255),
     imageURL VARCHAR(255),
