@@ -1,0 +1,17 @@
+@import "./scssCommon.scss";
+
+.wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 390px;
+}
+
+.link {
+	text-decoration: none;
+	color: $text-color;
+	transition: all 0.5s ease;
+	&:hover {
+		transform: translateY(-2%);
+	}
+}
