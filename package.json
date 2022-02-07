@@ -71,14 +71,11 @@
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.15.4",
-<<<<<<< HEAD
 		"@material-ui/core": "^4.12.3",
 		"@material-ui/icons": "^4.11.2",
-=======
 		"axios": "^0.25.0",
 		"cors": "^2.8.5",
 		"dotenv": "^16.0.0",
->>>>>>> e436f018b19b2029ee53d137a8231c155269bd0d
 		"express": "^4.17.1",
 		"helmet": "^4.6.0",
 		"morgan": "^1.10.0",
@@ -86,10 +83,7 @@
 		"pg": "^8.7.1",
 		"react-elastic-carousel": "^0.11.5",
 		"react-hook-form": "^7.25.0",
-<<<<<<< HEAD
 		"styled-components": "^5.3.3",
-=======
->>>>>>> e436f018b19b2029ee53d137a8231c155269bd0d
 		"update-node": "^0.1.0"
 	},
 	"engines": {

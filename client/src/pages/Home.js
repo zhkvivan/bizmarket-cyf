@@ -3,11 +3,8 @@ import Banner from "../components/Banner";
 import { Slider } from "../components/Slider";
 // import styles from "./Home.module.scss";
 import Hero from "../components/Hero";
-<<<<<<< HEAD
 import FilterProduct from "../components/Filter/FilterProduct";
-=======
 import Accordion from "../components/Accordion";
->>>>>>> e436f018b19b2029ee53d137a8231c155269bd0d
 
 export default function Home() {
 	const faq = [
