@@ -55,11 +55,16 @@ const CategoryPage = () => {
 		sellerEmail: "test@bizmarket.com",
 	};
 
+	const [isFilterOpen, setIsFilterOpen] = useState(false);
+	const handleFiltersOpen = () => {
+		isFilterOpen ? setIsFilterOpen(false) : setIsFilterOpen(true);
+	};
+
 	return (
 		<div className={styles.container}>
 			{/* <Breadcrumbs /> */}
 			<div className={styles.inner}>
-				<div className={styles.filters}>
+				<div className={isFilterOpen ? styles["filter-open"] : styles.filters}>
 					<h2>Filters</h2>
 				</div>
 				{currentCategory ? (
@@ -68,9 +73,17 @@ const CategoryPage = () => {
 							<h1 className={styles.h1}>
 								Most recent ads in category {currentCategory.name}
 							</h1>
-							<div className={styles["sort-wrap"]}>
-								<span>Sort by: </span>
-								<span>{sortWay}</span>
+							<div className={styles.options}>
+								<span
+									onClick={handleFiltersOpen}
+									className={styles["filters-toggle"]}
+								>
+									Filters
+								</span>
+								<div className={styles["sort-wrap"]}>
+									<span>Sort by: </span>
+									<span> {sortWay}</span>
+								</div>
 							</div>
 						</div>
 						<div className={styles.ads}>

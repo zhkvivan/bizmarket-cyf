@@ -1,10 +1,12 @@
 @import "../components/scssCommon.scss";
+@import "../components//mixins.scss";
 
 .inner {
 	display: flex;
 	flex-direction: row;
 	align-items: flex-start;
 	margin-top: 100px;
+	position: relative;
 }
 
 .filters {
@@ -12,12 +14,43 @@
 	width: 250px;
 	min-height: 300px;
 	border-radius: 20px;
-	box-shadow: 0px 0px 18px -8px rgba(0, 0, 0, 0.36);
+	box-shadow: 0px 0px 18px -8px rgba(0, 0, 0, 0.676);
+	background-color: white;
 	margin-right: 40px;
 	padding: 50px 20px;
+
+	@include responsive(950px) {
+		// display: none;
+
+		position: absolute;
+		left: -100%;
+		top: 100px;
+		// right: 0px;
+		// z-index: 2;
+		transition: all 0.3s ease;
+	}
 	h2 {
 		font-size: 20px;
 		color: $text-color;
+	}
+}
+
+.filter-open {
+	@include responsive(950px) {
+		flex-shrink: 0;
+		width: 250px;
+		min-height: 300px;
+		border-radius: 20px;
+		box-shadow: 0px 0px 18px -8px rgba(0, 0, 0, 0.656);
+		background-color: white;
+		margin-right: 40px;
+		padding: 50px 20px;
+
+		position: absolute;
+		top: 100px;
+		left: 0px;
+		z-index: 2;
+		transition: all 0.3s ease;
 	}
 }
 
@@ -28,14 +61,36 @@
 }
 
 .top-bar {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: flex-end;
+	// display: flex;
+	// flex-direction: row;
+	// justify-content: space-between;
+	// align-items: flex-end;
 	max-width: 100%;
 	h1 {
 		margin: 0;
 		color: $text-color;
+		@include responsive(1000px) {
+			font-size: 24px;
+		}
+	}
+}
+
+.options {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	margin-top: 30px;
+	@include responsive(950px) {
+		justify-content: space-between;
+	}
+}
+
+.filters-toggle {
+	cursor: pointer;
+	text-decoration: underline;
+	display: none;
+	@include responsive(950px) {
+		display: block;
 	}
 }
 
@@ -43,6 +98,11 @@
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	flex-basis: 160px;
+	flex-shrink: 0;
+	@include responsive(1000px) {
+		font-size: 14px;
+	}
 }
 
 .ads {
