@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Paper, Container, InputBase, IconButton } from "@material-ui/core";
 
-// import { Search } from "@material-ui/icons";
+import { Search } from "@material-ui/icons";
 import data from "./Data.json";
 
 import "./FilterProduct.scss";
@@ -9,8 +9,24 @@ import { string } from "prop-types";
 
 const FilterProduct = () => {
 	const [input, setInput] = useState("");
+	useEffect(() => {
+		fetch("http://localhost:3100/api/categories")
+			.then((res) => console.log("res", res))
+			.catch((error) => console.log("error", error));
+	});
+	const handleSubmit = (e) => {
+		console.log("e", e);
+	};
 	return (
 		<div className="filter-bar">
+			<form onSubmit={handleSubmit}>
+				<select name="categories" value="categories">
+					<option value="auto">Auto</option>
+					<option value="Elect">Elect</option>
+					<option value="phone">Phone</option>
+				</select>
+				<input type="submit" value="submit" />
+			</form>
 			<Container>
 				<Paper component="form" className="root" onSubmit={() => {}}>
 					<InputBase
@@ -21,7 +37,7 @@ const FilterProduct = () => {
 					/>
 
 					<IconButton type="submit" aria-label="search">
-						{/*<Search />)*/}
+						<Search />
 					</IconButton>
 				</Paper>
 				{data.activeAds
