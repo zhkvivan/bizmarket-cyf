@@ -22,11 +22,7 @@ const SearchResultPage = () => {
 		fetchData();
 	}, [location.state]);
 
-	return (
-		<div>
-			<button onClick={() => console.log(searchQuery)}>Click</button>
-		</div>
-	);
+	return <div></div>;
 };
 
 export default SearchResultPage;

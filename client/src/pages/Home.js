@@ -32,7 +32,7 @@ export default function Home() {
 	return (
 		<>
 			<Hero />
-			<SearchBar />
+			{/* <SearchBar /> */}
 			<Slider />
 			<Banner />
 			<Accordion faq={faq} />

@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import BizMarketApi from "../api/BizMarketApi";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useContextBM } from "../context/Context";
+import styles from "./SearchBar.module.scss";
 
 const SearchBar = () => {
 	const navigate = useNavigate();
@@ -23,23 +24,29 @@ const SearchBar = () => {
 	};
 
 	return (
-		<div>
-			<form onSubmit={handleSubmit}>
-				<select id="categories">
-					<option value="">Select category</option>
-					{categories.map((category) => {
-						return (
-							<option value={category.id} key={category.id}>
-								{category.name}
-							</option>
-						);
-					})}
-				</select>
-				<label htmlFor="searchTerm">Search</label>
-				<input name="searchTerm" type="search" />
-
-				<input type="submit" />
-			</form>
+		<div className={styles.wrapper}>
+			<div className={styles.container}>
+				<form onSubmit={handleSubmit}>
+					<div className={styles["form-inner"]}>
+						<div className={styles["select-wrapper"]}>
+							<select id="categories" className={styles.select}>
+								<option value={"0"}>All categories</option>
+								{categories.map((category) => {
+									return (
+										<option value={category.id} key={category.id}>
+											{category.name}
+										</option>
+									);
+								})}
+							</select>
+						</div>
+						<input name="searchTerm" type="search" />
+						<div className={styles["btn-wrap"]}>
+							<button type="submit" className={styles.btn}></button>
+						</div>
+					</div>
+				</form>
+			</div>
 		</div>
 	);
 };

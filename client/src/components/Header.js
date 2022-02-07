@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import Button from "./Button";
 import styles from "./Header.module.scss";
 
@@ -10,6 +10,8 @@ import SearchBar from "./SearchBar";
 
 const Header = () => {
 	const navigate = useNavigate();
+	const location = useLocation();
+
 	const toAddNewAdPage = () => navigate("/add-new-ad");
 
 	const { isOpen, setIsOpen } = useContextBM();
@@ -31,7 +33,7 @@ const Header = () => {
 					<span className={styles["menu-icon"]} onClick={menuHandler}></span>
 				</div>
 			</div>
-			<SearchBar />
+			{location.pathname === "/" ? "" : <SearchBar />}
 		</header>
 	);
 };
