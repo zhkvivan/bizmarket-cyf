@@ -27,12 +27,14 @@
 	outline: none;
 	padding-left: 10px;
 	font-size: 14px;
+	font-variant-numeric: lining-nums;
 
-	&[type="number"] {
+	&.price {
 		width: 80px;
 		padding-left: 20px;
 		padding-right: 20px;
 		text-align: right;
+		font-variant-numeric: lining-nums;
 	}
 }
 
@@ -50,6 +52,7 @@
 
 .price-wrap {
 	position: relative;
+
 	&:before {
 		content: "£";
 		position: absolute;

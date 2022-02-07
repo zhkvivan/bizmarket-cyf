@@ -1,1 +1,55 @@
 @import "../components/scssCommon.scss";
+
+.container {
+	margin-top: 100px;
+}
+
+.ad-wrapper {
+	margin-top: 50px;
+	padding: 1px 0;
+	box-shadow: 0px 0px 18px -8px rgba(0, 0, 0, 0.36);
+	background-color: white;
+}
+
+.h2 {
+	font-size: 32px;
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+.buttons-wrapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 100px;
+}
+
+.cancel-btn {
+	border: none;
+	background: none;
+	outline: none;
+	width: 140px;
+	height: 35px;
+	border: 1px solid $primary-color;
+	border-radius: 10px;
+	cursor: pointer;
+	margin: 0 15px;
+	font-size: 14px;
+}
+
+.submit-btn {
+	border: none;
+	background: none;
+	outline: none;
+	width: 140px;
+	height: 35px;
+	border: 1px solid $primary-color;
+	background: $primary-color;
+	border-radius: 10px;
+	color: white;
+	cursor: pointer;
+	margin: 0 15px;
+	font-size: 14px;
+}
