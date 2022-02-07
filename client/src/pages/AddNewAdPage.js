@@ -95,9 +95,9 @@ const AddNewAdPage = () => {
 									}`}
 								>
 									<option value="">Select category</option>
-									{categories.map((category, index) => {
+									{categories.map((category) => {
 										return (
-											<option value={category.name} key={index}>
+											<option value={category.id} key={category.id}>
 												{category.name}
 											</option>
 										);

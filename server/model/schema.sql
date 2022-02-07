@@ -1,6 +1,6 @@
--- DROP TABLE sellerAccount CASCADE;
--- DROP TABLE category CASCADE;
--- DROP TABLE adListing CASCADE;
+DROP TABLE sellerAccount CASCADE;
+DROP TABLE category CASCADE;
+DROP TABLE adListing CASCADE;
 
 CREATE TABLE sellerAccount (
     id serial PRIMARY KEY,

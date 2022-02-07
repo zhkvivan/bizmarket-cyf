@@ -5,7 +5,6 @@ import cors from "cors";
 const router = new Router();
 router.use(cors());
 
-
 router.get("/", (_, res) => {
 	res.json({ message: "Hello, world!" });
 });
@@ -19,7 +18,6 @@ router.get("/health", (_, res) => {
 });
 
 router.get("/categories", (_, res) => {
-
 	db.query("SELECT id, name, link FROM category")
 		.then((result) => {
 			console.debug("successfully got all categories", result);
@@ -60,15 +58,15 @@ router.post("/ad", (req, res) => {
 			updatedDate, 
 			price, 
 			quantity, 
-			minimumQuantity,
+			minQuantity,
 			description, 
 			location, 
 			imageURL, 
 			categoryId) 
-		VALUES($1, $2, $3, $4, $5, current_timestamp, current_timestamp, $6, $7, $8, $9, $10, $11, 1);`;
+		VALUES($1, $2, $3, $4, $5, current_timestamp, current_timestamp, $6, $7, $8, $9, $10, $11, $12);`;
 
 	const parameterizedQueryValues = [
-		input.title,
+		input.adTitle,
 		input.sellerName,
 		input.sellerCompany,
 		input.sellerPhone,
@@ -79,6 +77,7 @@ router.post("/ad", (req, res) => {
 		input.description,
 		input.location,
 		input.imageURL,
+		input.category,
 	];
 
 	db.query(parameterizedInsertStatement, parameterizedQueryValues)

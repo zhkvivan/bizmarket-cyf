@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import BizMarketApi from "./api/BizMarketApi";
 import { useContextBM } from "./context/Context";
 import BurgerMenu from "./components/BurgerMenu";
+import SearchResultPage from "./pages/SearchResultPage";
 
 function App() {
 	// Getting categories from server
@@ -58,6 +59,7 @@ function App() {
 						path="category/:categoryId/:categoryName"
 						element={<CategoryPage />}
 					/>
+					<Route path="search" element={<SearchResultPage />} />
 					<Route
 						path="category/:categoryId/:categoryName/:adId"
 						element={<AdPage />}

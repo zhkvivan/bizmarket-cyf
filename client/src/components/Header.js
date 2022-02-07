@@ -6,6 +6,7 @@ import styles from "./Header.module.scss";
 import logo from "../images/logo.png";
 import { useContextBM } from "../context/Context";
 import NavMenu from "./NavMenu";
+import SearchBar from "./SearchBar";
 
 const Header = () => {
 	const navigate = useNavigate();
@@ -30,6 +31,7 @@ const Header = () => {
 					<span className={styles["menu-icon"]} onClick={menuHandler}></span>
 				</div>
 			</div>
+			<SearchBar />
 		</header>
 	);
 };
