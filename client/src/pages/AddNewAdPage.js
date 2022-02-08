@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./AddNewAdPage.module.scss";
 import iconUpload from "../images/icon-upload.png";
 import { useContextBM } from "../context/Context";
 
 const AddNewAdPage = () => {
+	// console.log(useLocation());
 	// Getting values from context
 	const { formData, setFormValues, categories } = useContextBM();
 
@@ -95,9 +96,9 @@ const AddNewAdPage = () => {
 									}`}
 								>
 									<option value="">Select category</option>
-									{categories.map((category, index) => {
+									{categories.map((category) => {
 										return (
-											<option value={category.name} key={index}>
+											<option value={category.id} key={category.id}>
 												{category.name}
 											</option>
 										);
@@ -118,63 +119,67 @@ const AddNewAdPage = () => {
 					<div className={styles["field-base"]}>
 						<label htmlFor="adTitle">Ad title:</label>
 						<div className={styles["input-wrapper"]}>
-							<input
-								{...register("adTitle", {
-									required: "This field is required",
-									minLength: {
-										value: 2,
-										message: "Title is too short",
-									},
-								})}
-								className={`${styles.input} ${
-									errors.adTitle && styles["error-field"]
-								}`}
-								type="text"
-								placeholder="Type here.."
-								maxLength={100}
-							/>
-							{/* Error handling message: */}
-							<div>
-								{errors.adTitle && (
-									<span className={styles["error-text"]}>
-										{errors.adTitle.message}
-									</span>
-								)}
+							<div className={styles["input-box"]}>
+								<input
+									{...register("adTitle", {
+										required: "This field is required",
+										minLength: {
+											value: 2,
+											message: "Title is too short",
+										},
+									})}
+									className={`${styles.input} ${
+										errors.adTitle && styles["error-field"]
+									}`}
+									type="text"
+									placeholder="Type here.."
+									maxLength={100}
+								/>
+								{/* Error handling message: */}
+								<div>
+									{errors.adTitle && (
+										<span className={styles["error-text"]}>
+											{errors.adTitle.message}
+										</span>
+									)}
+								</div>
 							</div>
+							<span className={styles.remaining}>
+								{100 - adTitle.length} characters remaining
+							</span>
 						</div>
-						<span className={styles.remaining}>
-							{100 - adTitle.length} characters remaining
-						</span>
 					</div>
 					{/* Description */}
 					<div className={styles["field-base"]}>
 						<label htmlFor="description">Description:</label>
 						<div className={styles["input-wrapper"]}>
-							<textarea
-								{...register("description", {
-									required: "This field is required",
-									minLength: {
-										value: 2,
-										message: "Title is too short",
-									},
-								})}
-								className={`${styles.textarea} ${
-									errors.description && styles["error-field"]
-								}`}
-								placeholder="Type here.."
-								maxLength={1000}
-							/>
-							<div>
-								{errors.description && (
-									<span className={styles["error-text"]}>
-										{errors.description.message}
-									</span>
-								)}
+							<div className={styles["input-box"]}>
+								<textarea
+									{...register("description", {
+										required: "This field is required",
+										minLength: {
+											value: 2,
+											message: "Title is too short",
+										},
+									})}
+									className={`${styles.textarea} ${
+										errors.description && styles["error-field"]
+									}`}
+									placeholder="Type here.."
+									maxLength={1000}
+								/>
+								<div>
+									{errors.description && (
+										<span className={styles["error-text"]}>
+											{errors.description.message}
+										</span>
+									)}
+								</div>
 							</div>
+							<span className={styles.remaining}>
+								{1000 - description.length} characters remaining
+							</span>
 						</div>
-						<span className={styles.remaining}>
-							{1000 - description.length} characters remaining
-						</span>
 					</div>
 					{/* Price */}
 					<div className={styles["field-base"]}>
@@ -230,54 +235,56 @@ const AddNewAdPage = () => {
 					{/* Image */}
 					<div className={styles["field-base"]}>
 						<label htmlFor="image">Image:</label>
-						<div>
-							<input
-								style={{ display: "none" }}
-								type="file"
-								accept="image/*"
-								ref={fileInputRef}
-								onChange={(e) => {
-									setValue("image", e.target.files);
-									console.log(e.target.files);
-									const file = e.target.files[0];
-									if (file) {
-										setImage(file);
-									} else {
-										setImage(null);
-									}
-								}}
-							/>
+						<div className={styles["img-box"]}>
+							<div>
+								<input
+									style={{ display: "none" }}
+									type="file"
+									accept="image/*"
+									ref={fileInputRef}
+									onChange={(e) => {
+										setValue("image", e.target.files);
+										console.log(e.target.files);
+										const file = e.target.files[0];
+										if (file) {
+											setImage(file);
+										} else {
+											setImage(null);
+										}
+									}}
+								/>
 
-							<button
-								className={styles["upload-btn"]}
-								onClick={(e) => {
-									e.preventDefault();
-									fileInputRef.current.click();
-								}}
-							>
-								<div className={styles["upload-btn-box"]}>
-									<img src={iconUpload} alt="Upload icon" />
-									<span>Upload..</span>
-								</div>
-							</button>
-						</div>
-						{preview ? (
-							<div className={styles.preview}>
-								<img src={preview} alt="Uploaded preview" />
 								<button
-									className={styles["del-btn"]}
+									className={styles["upload-btn"]}
 									onClick={(e) => {
 										e.preventDefault();
-										setImage(null);
-										setValue("image", null);
+										fileInputRef.current.click();
 									}}
 								>
-									Delete
+									<div className={styles["upload-btn-box"]}>
+										<img src={iconUpload} alt="Upload icon" />
+										<span>Upload..</span>
+									</div>
 								</button>
 							</div>
-						) : (
-							<div></div>
-						)}
+							{preview ? (
+								<div className={styles.preview}>
+									<img src={preview} alt="Uploaded preview" />
+									<button
+										className={styles["del-btn"]}
+										onClick={(e) => {
+											e.preventDefault();
+											setImage(null);
+											setValue("image", null);
+										}}
+									>
+										Delete
+									</button>
+								</div>
+							) : (
+								<div></div>
+							)}
+						</div>
 					</div>
 					{/* Contact info */}
 					<h2>Contact information</h2>
@@ -285,64 +292,68 @@ const AddNewAdPage = () => {
 					<div className={styles["field-base"]}>
 						<label htmlFor="sellerName">Your name:</label>
 						<div className={styles["input-wrapper"]}>
-							<input
-								{...register("sellerName", {
-									required: "This field is required",
-									minLength: {
-										value: 2,
-										message: "Name is too short",
-									},
-								})}
-								className={`${styles.input} ${
-									errors.sellerName && styles["error-field"]
-								}`}
-								type="text"
-								placeholder="Type here.."
-								maxLength={100}
-							/>
-							{/* Error handling message: */}
-							<div>
-								{errors.sellerName && (
-									<span className={styles["error-text"]}>
-										{errors.sellerName.message}
-									</span>
-								)}
+							<div className={styles["input-box"]}>
+								<input
+									{...register("sellerName", {
+										required: "This field is required",
+										minLength: {
+											value: 2,
+											message: "Name is too short",
+										},
+									})}
+									className={`${styles.input} ${
+										errors.sellerName && styles["error-field"]
+									}`}
+									type="text"
+									placeholder="Type here.."
+									maxLength={100}
+								/>
+								{/* Error handling message: */}
+								<div>
+									{errors.sellerName && (
+										<span className={styles["error-text"]}>
+											{errors.sellerName.message}
+										</span>
+									)}
+								</div>
 							</div>
+							<span className={styles.remaining}>
+								{100 - sellerName.length} characters remaining
+							</span>
 						</div>
-						<span className={styles.remaining}>
-							{100 - sellerName.length} characters remaining
-						</span>
 					</div>
 					{/* Seller company */}
 					<div className={styles["field-base"]}>
 						<label htmlFor="sellerCompany">Your company name:</label>
 						<div className={styles["input-wrapper"]}>
-							<input
-								{...register("sellerCompany", {
-									minLength: {
-										value: 2,
-										message: "Company name is too short",
-									},
-								})}
-								className={`${styles.input} ${
-									errors.sellerCompany && styles["error-field"]
-								}`}
-								type="text"
-								placeholder="Type here.."
-								maxLength={100}
-							/>
-							{/* Error handling message: */}
-							<div>
-								{errors.sellerCompany && (
-									<span className={styles["error-text"]}>
-										{errors.sellerCompany.message}
-									</span>
-								)}
+							<div className={styles["input-box"]}>
+								<input
+									{...register("sellerCompany", {
+										minLength: {
+											value: 2,
+											message: "Company name is too short",
+										},
+									})}
+									className={`${styles.input} ${
+										errors.sellerCompany && styles["error-field"]
+									}`}
+									type="text"
+									placeholder="Type here.."
+									maxLength={100}
+								/>
+								{/* Error handling message: */}
+								<div>
+									{errors.sellerCompany && (
+										<span className={styles["error-text"]}>
+											{errors.sellerCompany.message}
+										</span>
+									)}
+								</div>
 							</div>
+							<span className={styles.remaining}>
+								{100 - sellerCompany.length} characters remaining
+							</span>
 						</div>
-						<span className={styles.remaining}>
-							{100 - sellerCompany.length} characters remaining
-						</span>
 					</div>
 					{/* Phone number */}
 					<div className={styles["field-base"]}>
