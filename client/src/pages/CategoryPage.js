@@ -34,11 +34,11 @@ const CategoryPage = () => {
 		window.scrollTo(0, 0);
 		const fetchData = async () => {
 			try {
-				const response = await BizMarketApi.get("/category", {
-					params: {
-						categoryId: currentCategory.id,
-					},
-				});
+				// const response = await BizMarketApi.get("/category", {
+				// 	params: {
+				// 		categoryId: currentCategory.id,
+				// 	},
+				// });
 				// console.log(response);
 
 				const mockResponse = [
@@ -129,7 +129,7 @@ const CategoryPage = () => {
 			{/* <Breadcrumbs /> */}
 			<div className={styles.inner}>
 				<Filters />
-				{currentCategory ? (
+				{currentSearchResult ? (
 					<div className={styles.content}>
 						<div className={styles["top-bar"]}>
 							<h1 className={styles.h1}>
@@ -149,15 +149,13 @@ const CategoryPage = () => {
 							</div>
 						</div>
 						<div className={styles.ads}>
-							<AdCard product={ad} />
-							<AdCard product={ad} />
-							<AdCard product={ad} />
-							<AdCard product={ad} />
-							<AdCard product={ad} />
+							{currentSearchResult.map((ad) => {
+								return <AdCard product={ad} key={ad.id} />;
+							})}
 						</div>
 					</div>
 				) : (
-					""
+					"Nothing"
 				)}
 			</div>
 		</div>
