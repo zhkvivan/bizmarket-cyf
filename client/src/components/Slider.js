@@ -11,9 +11,11 @@ export const Slider = () => {
 	const { categories } = useContextBM();
 
 	const breakPoints = [
-		{ width: 1, itemsToShow: 1, itemsToScroll: 1 },
-		{ width: 360, itemsToShow: 2, itemsToScroll: 2 },
-		{ width: 560, itemsToShow: 3, itemsToScroll: 3 },
+		{ width: 1, itemsToShow: 2, itemsToScroll: 2 },
+		{ width: 360, itemsToShow: 3, itemsToScroll: 3 },
+		{ width: 445, itemsToShow: 4, itemsToScroll: 4 },
+		{ width: 550, itemsToShow: 5, itemsToScroll: 5 },
+		{ width: 580, itemsToShow: 3, itemsToScroll: 3 },
 		{ width: 760, itemsToShow: 4, itemsToScroll: 4 },
 		{ width: 960, itemsToShow: 5, itemsToScroll: 5 },
 		{ width: 1080, itemsToShow: 6, itemsToScroll: 6 },
@@ -21,7 +23,24 @@ export const Slider = () => {
 
 	return (
 		<section className={`${styles.wrapper} ${styles.container}`}>
-			<Carousel breakPoints={breakPoints} itemPadding={[30, 0]}>
+			<div className={styles.carousel}>
+				<Carousel breakPoints={breakPoints} itemPadding={[30, 0]}>
+					{categories.map((category) => {
+						const icon = "icon-" + category.link.split("-")[0] + ".png";
+
+						return (
+							<Link
+								key={category.id}
+								to={`/category/${category.id}/${category.link}`}
+								className={styles.link}
+							>
+								<SliderItem icon={icon} label={category.name} />
+							</Link>
+						);
+					})}
+				</Carousel>
+			</div>
+			<div className={styles.slabs}>
 				{categories.map((category) => {
 					const icon = "icon-" + category.link.split("-")[0] + ".png";
 
@@ -35,7 +54,7 @@ export const Slider = () => {
 						</Link>
 					);
 				})}
-			</Carousel>
+			</div>
 		</section>
 	);
 };
