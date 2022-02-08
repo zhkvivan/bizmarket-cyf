@@ -6,9 +6,11 @@ import data from "./Data.json";
 
 import "./FilterProduct.scss";
 import { string } from "prop-types";
+import { Form } from "react-bootstrap";
 
 const FilterProduct = () => {
 	const [input, setInput] = useState("");
+	const [form, setForm] = useState("");
 	useEffect(() => {
 		fetch("http://localhost:3100/api/categories")
 			.then((res) => console.log("res", res))
@@ -17,17 +19,26 @@ const FilterProduct = () => {
 	const handleSubmit = (e) => {
 		console.log("e", e);
 	};
+	console.log("Form", form);
+	console.log("Data", data.activeAds[0].title);
 	return (
 		<div className="filter-bar">
-			<form onSubmit={handleSubmit}>
-				<select name="categories" value="categories">
-					<option value="auto">Auto</option>
-					<option value="Elect">Elect</option>
-					<option value="phone">Phone</option>
-				</select>
-				<input type="submit" value="submit" />
-			</form>
 			<Container>
+				<Form.Group controlId="formBasicSelect">
+					<Form.Label>Select Norm Type</Form.Label>
+					<Form.Control
+						as="select"
+						value={form}
+						onChange={(e) => {
+							console.log("e.target.value", e.target.value);
+							setForm(e.target.value);
+						}}
+					>
+						<option value="Electronics">Electronics</option>
+						<option value="Toys and Games">Toys and Games</option>
+					</Form.Control>
+				</Form.Group>
+
 				<Paper component="form" className="root" onSubmit={() => {}}>
 					<InputBase
 						className="input"
