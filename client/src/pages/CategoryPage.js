@@ -9,7 +9,14 @@ import AdCard from "../components/AdCard";
 const CategoryPage = () => {
 	const { categoryId } = useParams();
 
-	const { categories, currentCategory, setCurrentCategory } = useContextBM();
+	const {
+		categories,
+		currentCategory,
+		setCurrentCategory,
+		currentSearchResult,
+		setCurrentSearchResult,
+	} = useContextBM();
+
 	if (categories.length > 0) {
 		const category = categories.filter(
 			(category) => category.id === +categoryId
@@ -24,13 +31,68 @@ const CategoryPage = () => {
 		window.scrollTo(0, 0);
 		const fetchData = async () => {
 			try {
-				const response = await BizMarketApi.get("/search", {
+				const response = await BizMarketApi.get("/category", {
 					params: {
-						categoryId: 2,
-						searchTerm: "iphone",
+						categoryId: currentCategory.id,
 					},
 				});
-				console.log(response);
+				// console.log(response);
+
+				const mockResponse = [
+					{
+						id: 1,
+						adTitle: "Sugar",
+						sellerName: "John Doe",
+						sellerCompany: "Food LTD",
+						createdDate: "",
+						updatetDate: "",
+						expiryDate: "",
+						minimumQuantity: "",
+						price: 5,
+						description: "Sugar - very good sugar!",
+						location: "",
+						imageURL: undefined,
+						categoryId: 1,
+						sellerEmail: "test@bizmarket.com",
+						sellerPhone: "3434t34634",
+					},
+					{
+						id: 4,
+						adTitle: "Chicken nuggets",
+						sellerName: "John Doe",
+						sellerCompany: "Food LTD",
+						createdDate: "",
+						updatetDate: "",
+						expiryDate: "",
+						minimumQuantity: "",
+						price: 5,
+						description: "Sugar - very good sugar!",
+						location: "",
+						imageURL: undefined,
+						categoryId: 1,
+						sellerEmail: "test@bizmarket.com",
+						sellerPhone: "3434t34634",
+					},
+					{
+						id: 41,
+						adTitle: "iMac 2022",
+						sellerName: "Tim Cook",
+						sellerCompany: "Food LTD",
+						createdDate: "",
+						updatetDate: "",
+						expiryDate: "",
+						minimumQuantity: "",
+						price: 5,
+						description: "Sugar - very good sugar!",
+						location: "",
+						imageURL: undefined,
+						categoryId: 1,
+						sellerEmail: "test@bizmarket.com",
+						sellerPhone: "3434t34634",
+					},
+				];
+
+				setCurrentSearchResult(mockResponse);
 			} catch (error) {
 				console.error(error);
 			}

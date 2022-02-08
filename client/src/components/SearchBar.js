@@ -15,7 +15,7 @@ const SearchBar = () => {
 		const query = form.searchTerm.value;
 		const category = form.categories.value;
 
-		navigate(`search?term=${query}`, {
+		navigate(`search?query=${query}&categoryId=${category}`, {
 			state: {
 				query: query,
 				category: category,

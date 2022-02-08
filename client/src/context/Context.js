@@ -44,6 +44,8 @@ export const ContextProvider = ({ children }) => {
 	// Saving current category
 	const [currentCategory, setCurrentCategory] = useState(null);
 
+	// Saving current search result
+	const [currentSearchResult, setCurrentSearchResult] = useState(null);
 	return (
 		<Context.Provider
 			value={{
@@ -55,6 +57,8 @@ export const ContextProvider = ({ children }) => {
 				setCurrentCategory,
 				isOpen,
 				setIsOpen,
+				currentSearchResult,
+				setCurrentSearchResult,
 			}}
 		>
 			{children}
