@@ -1,10 +1,31 @@
 @import "./scssCommon.scss";
+@import "./mixins.scss";
+
+.container {
+	padding: 0 10px;
+}
 
 .wrapper {
+	// display: flex;
+	// justify-content: center;
+	// align-items: center;
+	// height: 390px;
+	// @include responsive(735px) {
+	// 	height: 270px;
+	// }
+}
+
+.carousel {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	height: 390px;
+	@include responsive(735px) {
+		height: 270px;
+	}
+	@include responsive(520px) {
+		display: none;
+	}
 }
 
 .link {
@@ -13,5 +34,19 @@
 	transition: all 0.5s ease;
 	&:hover {
 		transform: translateY(-2%);
+	}
+
+	@include responsive(520px) {
+		margin-bottom: 20px;
+	}
+}
+
+.slabs {
+	padding: 30px 0;
+	display: none;
+	@include responsive(520px) {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-evenly;
 	}
 }

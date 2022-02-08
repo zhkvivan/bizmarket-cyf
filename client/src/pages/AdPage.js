@@ -126,11 +126,7 @@ const AdPage = ({ product, noAccordion, isDemo }) => {
 							alt={`${currentProduct.adTitle}`}
 						/>
 					</div>
-					<div
-						className={`${styles["seller-info"]} ${
-							isDemo ? styles["demo-seller-info"] : ""
-						}`}
-					>
+					<div className={`${styles["seller-info"]}`}>
 						<div className={styles["seller-name-wrapper"]}>
 							<div className={styles["seller-img"]}>
 								<div className={styles["seller-pic"]}></div>
@@ -182,11 +178,7 @@ const AdPage = ({ product, noAccordion, isDemo }) => {
 					<div className={styles["description"]}>
 						<p>{currentProduct.description}</p>
 					</div>
-					<div
-						className={`${styles.details} ${
-							isDemo ? styles["demo-details"] : ""
-						}`}
-					>
+					<div className={`${styles.details}`}>
 						<div className={styles["details-header"]}>Details</div>
 						<div className={styles["details-string"]}>
 							<span>Minimum order quantity</span>
