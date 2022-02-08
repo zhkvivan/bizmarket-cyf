@@ -10,12 +10,18 @@ const CongratulationPage = () => {
 	const { categories } = useContextBM();
 	console.log(location);
 
+	useEffect(() => {
+		!location.state && navigate("/");
+	}, []);
+
 	const newAdInfo = {
-		categoryId: location.state.categoryId,
-		categoryLink: categories.filter(
-			(category) => category.id === +location.state.categoryId
-		)[0].link,
-		adId: location.state.adId,
+		categoryId: location.state && location.state.categoryId,
+		categoryLink:
+			location.state &&
+			categories.filter(
+				(category) => category.id === +location.state.categoryId
+			)[0].link,
+		adId: location.state && location.state.adId,
 	};
 
 	const backButtonHandler = () => {
