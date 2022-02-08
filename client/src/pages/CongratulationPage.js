@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import YesNoBtns from "../components/YesNoBtns";
 import { useContextBM } from "../context/Context";
 import styles from "./CongratulationPage.module.scss";
+import Confetti from "react-confetti";
 
 const CongratulationPage = () => {
 	const navigate = useNavigate();
@@ -36,9 +37,14 @@ const CongratulationPage = () => {
 
 	return (
 		<div className={styles.container}>
+			<Confetti
+				recycle={false}
+				confettiSource={{ x: 0, y: 0, w: window.innerWidth, h: 0 }}
+				initialVelocityY={-20}
+			/>
 			<div className={styles.content}>
 				<h1>Congratulations! You've just created an Ad!</h1>
-				<div>Would you like to go to your Ad?</div>
+				<p>Would you like to go to your Ad?</p>
 				<YesNoBtns
 					yesLable={"Go to my Ad"}
 					yesAction={toMyAdButtonHandler}
