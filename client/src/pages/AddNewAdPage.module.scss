@@ -2,13 +2,11 @@
 @import "../components/mixins.scss";
 
 .container {
-	// margin-top: 50px;
-	// padding-top: 50px;
+	padding-top: 20px;
 	color: $text-color;
 }
 
 .page-wrap {
-	
 	label {
 		flex-basis: 180px;
 		flex-shrink: 0;

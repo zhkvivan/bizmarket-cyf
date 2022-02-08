@@ -12,7 +12,10 @@ const Header = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 
-	const toAddNewAdPage = () => navigate("/add-new-ad");
+	const toAddNewAdPage = () => {
+		navigate("/add-new-ad");
+		resetDraft();
+	};
 
 	const { isOpen, setIsOpen, setFormValues } = useContextBM();
 	const menuHandler = () => {
@@ -20,10 +23,7 @@ const Header = () => {
 	};
 
 	const resetDraft = () => {
-		if (
-			location.pathname === "/add-new-ad" ||
-			location.pathname === "/confirm-add-new-ad"
-		) {
+		if (location.pathname === "/confirm-add-new-ad") {
 			setFormValues({
 				category: undefined,
 				adTitle: "",
@@ -45,7 +45,7 @@ const Header = () => {
 					<img src={logo} alt="logo" className={styles.logo} />
 				</NavLink>
 				<div className={styles.navigation}>
-					<NavMenu place={"header"} />
+					<NavMenu place={"header"} resetDraft={resetDraft} />
 					<div className={styles["btn-wrap"]}>
 						<Button label="Post new Ad" action={toAddNewAdPage} />
 					</div>

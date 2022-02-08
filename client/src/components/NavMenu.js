@@ -3,7 +3,7 @@ import styles from "./NavMenu.module.scss";
 import { NavLink } from "react-router-dom";
 import { useContextBM } from "../context/Context";
 
-const NavMenu = ({ place }) => {
+const NavMenu = ({ place, resetDraft }) => {
 	const { setIsOpen } = useContextBM();
 	return (
 		<>
@@ -12,7 +12,12 @@ const NavMenu = ({ place }) => {
 					place === "header" ? styles.menu : styles["menu-burger"]
 				}`}
 			>
-				<li onClick={() => setIsOpen(false)}>
+				<li
+					onClick={() => {
+						setIsOpen(false);
+						resetDraft();
+					}}
+				>
 					<NavLink
 						to="/"
 						className={`${
@@ -22,7 +27,12 @@ const NavMenu = ({ place }) => {
 						Home
 					</NavLink>
 				</li>
-				<li onClick={() => setIsOpen(false)}>
+				<li
+					onClick={() => {
+						setIsOpen(false);
+						resetDraft();
+					}}
+				>
 					<NavLink
 						to="/about"
 						className={`${
