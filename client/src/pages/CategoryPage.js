@@ -5,6 +5,7 @@ import styles from "./CategoryPage.module.scss";
 import { useContextBM } from "../context/Context";
 import BizMarketApi from "../api/BizMarketApi";
 import AdCard from "../components/AdCard";
+import Filters from "../components/Filters";
 
 const CategoryPage = () => {
 	const { categoryId } = useParams();
@@ -15,6 +16,8 @@ const CategoryPage = () => {
 		setCurrentCategory,
 		currentSearchResult,
 		setCurrentSearchResult,
+		isFilterOpen,
+		setIsFilterOpen,
 	} = useContextBM();
 
 	if (categories.length > 0) {
@@ -117,7 +120,6 @@ const CategoryPage = () => {
 		sellerEmail: "test@bizmarket.com",
 	};
 
-	const [isFilterOpen, setIsFilterOpen] = useState(false);
 	const handleFiltersOpen = () => {
 		isFilterOpen ? setIsFilterOpen(false) : setIsFilterOpen(true);
 	};
@@ -126,9 +128,7 @@ const CategoryPage = () => {
 		<div className={styles.container}>
 			{/* <Breadcrumbs /> */}
 			<div className={styles.inner}>
-				<div className={isFilterOpen ? styles["filter-open"] : styles.filters}>
-					<h2>Filters</h2>
-				</div>
+				<Filters />
 				{currentCategory ? (
 					<div className={styles.content}>
 						<div className={styles["top-bar"]}>

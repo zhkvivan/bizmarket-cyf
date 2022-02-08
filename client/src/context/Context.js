@@ -46,6 +46,10 @@ export const ContextProvider = ({ children }) => {
 
 	// Saving current search result
 	const [currentSearchResult, setCurrentSearchResult] = useState(null);
+
+	// Setting up filter opening mechanism
+	const [isFilterOpen, setIsFilterOpen] = useState(false);
+
 	return (
 		<Context.Provider
 			value={{
@@ -59,6 +63,8 @@ export const ContextProvider = ({ children }) => {
 				setIsOpen,
 				currentSearchResult,
 				setCurrentSearchResult,
+				isFilterOpen,
+				setIsFilterOpen,
 			}}
 		>
 			{children}
