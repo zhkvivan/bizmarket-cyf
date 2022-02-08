@@ -55,6 +55,7 @@ const AdPage = ({ product, noAccordion, isDemo }) => {
 						imageURL: undefined,
 						categoryId: 1,
 						sellerEmail: "test@bizmarket.com",
+						sellerPhone: "34340688",
 					};
 					setCurrentProduct(adExpamle);
 				} catch (error) {
@@ -104,11 +105,7 @@ const AdPage = ({ product, noAccordion, isDemo }) => {
 
 	return (
 		<>
-			<div
-				className={`${styles.container} ${
-					isDemo ? styles["demo-container"] : ""
-				}`}
-			>
+			<div className={`${styles.container}`}>
 				<div className={styles["top-info"]}>
 					<div className={styles.heading}>
 						<h1 className={styles.h1}>{currentProduct.adTitle}</h1>
@@ -151,28 +148,32 @@ const AdPage = ({ product, noAccordion, isDemo }) => {
 						</div>
 						<div className={styles["contact-info"]}>
 							<h3 className={styles["contact-info-title"]}>Contact seller</h3>
-							<span className={styles["seller-phone"]}>
-								{currentProduct.sellerPhone}
-							</span>
-							<span className={styles["seller-email"]}>
-								<a
-									href={`mailto:${currentProduct.sellerEmail}?subject=Question about ${currentProduct.adTitle} from BizMarket`}
-								>
-									{currentProduct.sellerEmail}
-								</a>
-							</span>
+							<div className={styles.communications}>
+								<span className={styles["seller-phone"]}>
+									{currentProduct.sellerPhone}
+								</span>
+								<span className={styles["seller-email"]}>
+									<a
+										href={`mailto:${currentProduct.sellerEmail}?subject=Question about ${currentProduct.adTitle} from BizMarket`}
+									>
+										{currentProduct.sellerEmail}
+									</a>
+								</span>
+							</div>
 
-							<textarea
-								className={styles.message}
-								value={emailText}
-								onChange={textAreaHandler}
-							></textarea>
-							<div className={styles["btn-wrap"]}>
-								<a
-									href={`mailto:${currentProduct.sellerEmail}?subject=Question about ${currentProduct.adTitle} from BizMarket&body=${emailText}`}
-								>
-									Send an email
-								</a>
+							<div className={styles["message-wrapper"]}>
+								<textarea
+									className={styles.message}
+									value={emailText}
+									onChange={textAreaHandler}
+								></textarea>
+								<div className={styles["btn-wrap"]}>
+									<a
+										href={`mailto:${currentProduct.sellerEmail}?subject=Question about ${currentProduct.adTitle} from BizMarket&body=${emailText}`}
+									>
+										Send an email
+									</a>
+								</div>
 							</div>
 						</div>
 					</div>

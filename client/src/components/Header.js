@@ -14,15 +14,34 @@ const Header = () => {
 
 	const toAddNewAdPage = () => navigate("/add-new-ad");
 
-	const { isOpen, setIsOpen } = useContextBM();
+	const { isOpen, setIsOpen, setFormValues } = useContextBM();
 	const menuHandler = () => {
 		setIsOpen(true);
+	};
+
+	const resetDraft = () => {
+		if (
+			location.pathname === "/add-new-ad" ||
+			location.pathname === "/confirm-add-new-ad"
+		) {
+			setFormValues({
+				category: undefined,
+				adTitle: "",
+				description: "",
+				price: "",
+				sellerName: "",
+				sellerCompany: "",
+				sellerPhone: "",
+				sellerEmail: "",
+				minimumQuantity: "",
+			});
+		}
 	};
 
 	return (
 		<header>
 			<div className={`${styles.wrapper} ${styles.container}`}>
-				<NavLink to="/">
+				<NavLink to="/" onClick={resetDraft}>
 					<img src={logo} alt="logo" className={styles.logo} />
 				</NavLink>
 				<div className={styles.navigation}>

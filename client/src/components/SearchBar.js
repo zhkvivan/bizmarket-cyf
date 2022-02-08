@@ -40,9 +40,11 @@ const SearchBar = () => {
 								})}
 							</select>
 						</div>
-						<input name="searchTerm" type="search" />
-						<div className={styles["btn-wrap"]}>
-							<button type="submit" className={styles.btn}></button>
+						<div className={styles.search}>
+							<input name="searchTerm" type="search" />
+							<div className={styles["btn-wrap"]}>
+								<button type="submit" className={styles.btn}></button>
+							</div>
 						</div>
 					</div>
 				</form>

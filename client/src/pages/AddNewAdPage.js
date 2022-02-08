@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./AddNewAdPage.module.scss";
 import iconUpload from "../images/icon-upload.png";
 import { useContextBM } from "../context/Context";
 
 const AddNewAdPage = () => {
+	// console.log(useLocation());
 	// Getting values from context
 	const { formData, setFormValues, categories } = useContextBM();
 

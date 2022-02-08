@@ -1,8 +1,14 @@
 @import "../components/scssCommon.scss";
 @import "../components/mixins.scss";
 
+.container {
+	// margin-top: 50px;
+	// padding-top: 50px;
+	color: $text-color;
+}
+
 .page-wrap {
-	background-color: #fcfcfc;
+	
 	label {
 		flex-basis: 180px;
 		flex-shrink: 0;
@@ -74,12 +80,6 @@
 		top: 53%;
 		transform: translateY(-50%);
 	}
-}
-
-.container {
-	margin-top: 50px;
-	padding-top: 50px;
-	color: $text-color;
 }
 
 .field-base {
