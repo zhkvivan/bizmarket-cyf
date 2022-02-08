@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import YesNoBtns from "../components/YesNoBtns";
 import { useContextBM } from "../context/Context";
@@ -9,11 +9,12 @@ const CongratulationPage = () => {
 	const location = useLocation();
 	const { categories } = useContextBM();
 	console.log(location);
+
 	const newAdInfo = {
 		categoryId: location.state.categoryId,
-		categoryName: categories.filter(
+		categoryLink: categories.filter(
 			(category) => category.id === +location.state.categoryId
-		)[0].name,
+		)[0].link,
 		adId: location.state.adId,
 	};
 
@@ -21,9 +22,9 @@ const CongratulationPage = () => {
 		navigate("/");
 	};
 
-	const toAdButtonHandler = () => {
+	const toMyAdButtonHandler = () => {
 		navigate(
-			`/category/${newAdInfo.categoryId}/${newAdInfo.categoryName}/${newAdInfo.adId}`
+			`/category/${newAdInfo.categoryId}/${newAdInfo.categoryLink}/${newAdInfo.adId}`
 		);
 	};
 
@@ -34,7 +35,7 @@ const CongratulationPage = () => {
 				<div>Would you like to go to your Ad?</div>
 				<YesNoBtns
 					yesLable={"Go to my Ad"}
-					yesAction={toAdButtonHandler}
+					yesAction={toMyAdButtonHandler}
 					noLable={"Back to Home"}
 					noAction={backButtonHandler}
 				/>

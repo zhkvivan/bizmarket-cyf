@@ -83,7 +83,9 @@ router.post("/ad", (req, res) => {
 	db.query(parameterizedInsertStatement, parameterizedQueryValues)
 		.then((result) => {
 			console.debug("Successfully created ad", result);
-			res.status(201).json({ message: "Ad created successfully" });
+			res
+				.status(201)
+				.json({ message: "Ad created successfully", categoryId: 1, adId: 35 });
 		})
 		.catch((error) => {
 			console.error("Failed to create new Ad ", error);
