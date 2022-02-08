@@ -1,0 +1,53 @@
+@import "../components/scssCommon.scss";
+@import "../components/mixins.scss";
+
+.wrapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 100px;
+}
+
+.no-btn {
+	border: none;
+	background: none;
+	width: 140px;
+	height: 35px;
+	border: 1px solid $primary-color;
+	border-radius: 10px;
+	cursor: pointer;
+	margin: 0 15px;
+	font-size: 14px;
+	color: $text-color;
+	transition: all 0.5s ease;
+	&:hover {
+		background-color: $primary-color;
+		color: white;
+	}
+	&:active {
+		background-color: $primary-color-active;
+		color: white;
+	}
+}
+
+.yes-btn {
+	width: 140px;
+	height: 35px;
+	border: 1px solid $primary-color;
+	background: $primary-color;
+	border-radius: 10px;
+	color: white;
+	cursor: pointer;
+	margin: 0 15px;
+	font-size: 14px;
+	transition: all 0.5s ease;
+	&:hover {
+		background-color: $primary-color-hover;
+		color: white;
+	}
+	&:active {
+		background-color: $primary-color-active;
+		color: white;
+	}
+}

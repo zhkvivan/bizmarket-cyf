@@ -1,2 +1,11 @@
 @import "../components/scssCommon.scss";
 @import "../components/mixins.scss";
+
+.content {
+	margin-top: 50px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: $text-color;
+}
