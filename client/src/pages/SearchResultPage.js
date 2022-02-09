@@ -14,6 +14,7 @@ import AdCard from "../components/AdCard";
 
 const SearchResultPage = () => {
 	const {
+		categories,
 		currentSearchResult,
 		setCurrentSearchResult,
 		isFilterOpen,
@@ -24,10 +25,18 @@ const SearchResultPage = () => {
 	const queryString = searchParams.get("query");
 	const categoryId = searchParams.get("categoryId");
 
+	console.log(categoryId);
+	let categoryName;
+	if (categoryId !== "0") {
+		categoryName = categories.filter(
+			(category) => category.id === +categoryId
+		)[0].name;
+	}
+
+	console.log(categoryName);
+
 	const location = useLocation();
 	const navigate = useNavigate();
-	console.log("term", queryString);
-	console.log("categoryId", categoryId);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -131,7 +140,15 @@ const SearchResultPage = () => {
 					<div className={styles.content}>
 						<div className={styles["top-bar"]}>
 							<h1 className={styles.h1}>
-								{!queryString ? "Recent ads" : `Results for "${queryString}":`}
+								{!queryString
+									? "Recent ads"
+									: `${
+											currentSearchResult.length
+									  } results for "${queryString}" in ${
+											categoryId === "0"
+												? "all categories"
+												: `category ${categoryName}`
+									  }`}
 							</h1>
 							<div className={styles.options}>
 								<span
