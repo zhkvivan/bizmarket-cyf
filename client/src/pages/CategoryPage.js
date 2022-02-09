@@ -16,7 +16,7 @@
 // 					})
 // 			: filterByPrice.max;
 // 	const min =
-// 		filterByPrice.min === 0 || filterByPrice.min === NaN
+// 		filterByPrice.min === 0 || filterByPrice.min === isNaN
 // 			? data
 // 					.map((item) => {
 // 						return item.price;
@@ -52,6 +52,8 @@ import { useContextBM } from "../context/Context";
 import BizMarketApi from "../api/BizMarketApi";
 import AdCard from "../components/AdCard";
 import Filters from "../components/CategoryPage/Filters";
+import Data from "../components/CategoryPage/Data.json";
+import Cards from "../components/CategoryPage/Cards";
 
 const CategoryPage = () => {
 	const { categoryId } = useParams();
@@ -64,6 +66,7 @@ const CategoryPage = () => {
 		setCurrentSearchResult,
 		isFilterOpen,
 		setIsFilterOpen,
+		filterByPrice,
 	} = useContextBM();
 
 	if (categories.length > 0) {
@@ -76,6 +79,25 @@ const CategoryPage = () => {
 
 	const [sortWay, setSortWay] = useState("most popular");
 
+	const max =
+		filterByPrice.max === 0
+			? Data.map((item) => {
+					return item.price;
+			  }).reduce((a, b) => {
+					return Math.max(a, b);
+			  })
+			: filterByPrice.max;
+	const min =
+		filterByPrice.min === 0
+			? Data.map((item) => {
+					return item.price;
+			  }).reduce((a, b) => {
+					return Math.min(a, b);
+			  })
+			: filterByPrice.min;
+
+	console.log("max", max);
+
 	useEffect(() => {
 		window.scrollTo(0, 0);
 		const fetchData = async () => {
@@ -87,61 +109,62 @@ const CategoryPage = () => {
 				// });
 				// console.log(response);
 
-				const mockResponse = [
-					{
-						id: 1,
-						adTitle: "Sugar",
-						sellerName: "John Doe",
-						sellerCompany: "Food LTD",
-						createdDate: "",
-						updatetDate: "",
-						expiryDate: "",
-						minimumQuantity: "",
-						price: 5,
-						description: "Sugar - very good sugar!",
-						location: "",
-						imageURL: undefined,
-						categoryId: 1,
-						sellerEmail: "test@bizmarket.com",
-						sellerPhone: "3434t34634",
-					},
-					{
-						id: 4,
-						adTitle: "Chicken nuggets",
-						sellerName: "John Doe",
-						sellerCompany: "Food LTD",
-						createdDate: "",
-						updatetDate: "",
-						expiryDate: "",
-						minimumQuantity: "",
-						price: 5,
-						description: "Sugar - very good sugar!",
-						location: "",
-						imageURL: undefined,
-						categoryId: 1,
-						sellerEmail: "test@bizmarket.com",
-						sellerPhone: "3434t34634",
-					},
-					{
-						id: 41,
-						adTitle: "iMac 2022",
-						sellerName: "Tim Cook",
-						sellerCompany: "Food LTD",
-						createdDate: "",
-						updatetDate: "",
-						expiryDate: "",
-						minimumQuantity: "",
-						price: 5,
-						description: "Sugar - very good sugar!",
-						location: "",
-						imageURL: undefined,
-						categoryId: 1,
-						sellerEmail: "test@bizmarket.com",
-						sellerPhone: "3434t34634",
-					},
-				];
+				// const mockResponse = [
+				// 	{
+				// 		id: 1,
+				// 		adTitle: "Sugar",
+				// 		sellerName: "John Doe",
+				// 		sellerCompany: "Food LTD",
+				// 		createdDate: "",
+				// 		updatetDate: "",
+				// 		expiryDate: "",
+				// 		minimumQuantity: "",
+				// 		price: 5,
+				// 		description: "Sugar - very good sugar!",
+				// 		location: "",
+				// 		imageURL: undefined,
+				// 		categoryId: 1,
+				// 		sellerEmail: "test@bizmarket.com",
+				// 		sellerPhone: "3434t34634",
+				// 	},
+				// 	{
+				// 		id: 4,
+				// 		adTitle: "Chicken nuggets",
+				// 		sellerName: "John Doe",
+				// 		sellerCompany: "Food LTD",
+				// 		createdDate: "",
+				// 		updatetDate: "",
+				// 		expiryDate: "",
+				// 		minimumQuantity: "",
+				// 		price: 5,
+				// 		description: "Sugar - very good sugar!",
+				// 		location: "",
+				// 		imageURL: undefined,
+				// 		categoryId: 1,
+				// 		sellerEmail: "test@bizmarket.com",
+				// 		sellerPhone: "3434t34634",
+				// 	},
+				// 	{
+				// 		id: 41,
+				// 		adTitle: "iMac 2022",
+				// 		sellerName: "Tim Cook",
+				// 		sellerCompany: "Food LTD",
+				// 		createdDate: "",
+				// 		updatetDate: "",
+				// 		expiryDate: "",
+				// 		minimumQuantity: "",
+				// 		price: 5,
+				// 		description: "Sugar - very good sugar!",
+				// 		location: "",
+				// 		imageURL: undefined,
+				// 		categoryId: 1,
+				// 		sellerEmail: "test@bizmarket.com",
+				// 		sellerPhone: "3434t34634",
+				// 	},
+				// ];
 
-				setCurrentSearchResult(mockResponse);
+				// setCurrentSearchResult(mockResponse);
+				setCurrentSearchResult(Data);
 			} catch (error) {
 				console.error(error);
 			}
@@ -149,22 +172,22 @@ const CategoryPage = () => {
 		fetchData();
 	}, []);
 
-	const ad = {
-		id: 1,
-		adTitle: "Sugar",
-		sellerName: "John Doe",
-		sellerCompany: "Food LTD",
-		createdDate: "",
-		updatetDate: "",
-		expiryDate: "",
-		minimumQuantity: "",
-		price: 5,
-		description: "Sugar - very good sugar!",
-		location: "",
-		imageURL: undefined,
-		categoryId: 1,
-		sellerEmail: "test@bizmarket.com",
-	};
+	// const ad = {
+	// 	id: 1,
+	// 	adTitle: "Sugar",
+	// 	sellerName: "John Doe",
+	// 	sellerCompany: "Food LTD",
+	// 	createdDate: "",
+	// 	updatetDate: "",
+	// 	expiryDate: "",
+	// 	minimumQuantity: "",
+	// 	price: 5,
+	// 	description: "Sugar - very good sugar!",
+	// 	location: "",
+	// 	imageURL: undefined,
+	// 	categoryId: 1,
+	// 	sellerEmail: "test@bizmarket.com",
+	// };
 
 	const handleFiltersOpen = () => {
 		isFilterOpen ? setIsFilterOpen(false) : setIsFilterOpen(true);
@@ -195,9 +218,25 @@ const CategoryPage = () => {
 							</div>
 						</div>
 						<div className={styles.ads}>
-							{currentSearchResult.map((ad) => {
+							{/* {currentSearchResult.map((ad) => {
 								return <AdCard product={ad} key={ad.id} />;
+							})} */}
+							{currentSearchResult.map((ad) => {
+								return (
+									<div key={ad.id}>
+										{ad.price >= min && ad.price <= max ? (
+											<AdCard product={ad} />
+										) : null}
+									</div>
+								);
 							})}
+							{/* {data.map((item, index) => (
+								<div key={index}>
+									{item.price >= min && item.price <= max ? (
+										<Cards props={item} />
+									) : null}
+								</div>
+							))} */}
 						</div>
 					</div>
 				) : (
