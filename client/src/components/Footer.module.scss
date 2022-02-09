@@ -1,7 +1,8 @@
 @import "./scssCommon.scss";
+@import "./mixins.scss";
 
 footer {
-	height: 270px;
+	min-height: 270px;
 	background-color: $primary-color;
 	color: white;
 	flex-shrink: 0;
@@ -12,6 +13,12 @@ footer {
 	img {
 		width: 100%;
 	}
+	@include responsive(800px) {
+		margin-bottom: 50px;
+	}
+	@include responsive(550px) {
+		width: 140px;
+	}
 }
 
 .content {
@@ -19,29 +26,48 @@ footer {
 	flex-direction: row;
 	justify-content: space-between;
 	min-width: 500px;
+	margin-bottom: 30px;
+
+	@include responsive(550px) {
+		font-size: 14px;
+		min-width: unset;
+	}
 }
 
 .column {
 	display: flex;
 	flex-direction: column;
-}
-
-h5 {
-	margin: 0;
-	margin-bottom: 15px;
-	font-size: 19px;
+	@include responsive(550px) {
+		margin: 0 20px;
+	}
+	h5 {
+		margin: 0;
+		margin-bottom: 15px;
+		font-size: 19px;
+		@include responsive(550px) {
+			font-size: 16px;
+		}
+	}
 }
 
 .line {
 	width: 60px;
 	border-bottom: 2px solid white;
+	@include responsive(550px) {
+	}
 }
 
 .menu {
 	margin-top: 25px;
+	@include responsive(550px) {
+		margin-top: 10px;
+	}
 
 	li {
 		margin-bottom: 10px;
+		@include responsive(550px) {
+			margin-bottom: 10px;
+		}
 	}
 }
 
@@ -53,6 +79,9 @@ h5 {
 	&:hover {
 		color: $text-color;
 	}
+	@include responsive(550px) {
+		font-size: 14px;
+	}
 }
 
 .container {
@@ -60,4 +89,8 @@ h5 {
 	flex-direction: row;
 	justify-content: space-between;
 	padding-top: 70px;
+	@include responsive(800px) {
+		flex-direction: column;
+		align-items: center;
+	}
 }

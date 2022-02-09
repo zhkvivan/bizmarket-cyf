@@ -1,4 +1,5 @@
 @import "./scssCommon.scss";
+@import "./mixins.scss";
 
 header {
 	flex-shrink: 0;
@@ -8,11 +9,19 @@ header {
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	height: 90px;
+	min-height: 90px;
+	position: relative;
+	@include responsive(500px) {
+		flex-direction: column;
+		padding: 20px 0;
+	}
 }
 
 .logo {
 	width: 172px;
+	@include responsive(500px) {
+		width: 140px;
+	}
 }
 
 .navigation {
@@ -22,20 +31,32 @@ header {
 	align-items: center;
 }
 
-.menu {
-	margin-right: 40px;
-	display: flex;
-	flex-direction: row;
+.btn-wrap {
+	@include responsive(850px) {
+		padding-right: 60px;
+	}
+	@include responsive(500px) {
+		padding-right: 0px;
+		margin-top: 15px;
+	}
 }
 
-.link {
-	color: $text-color;
-	text-decoration: none;
-	transition: ease 0.2s all;
-	margin: 0 30px;
-	cursor: pointer;
-
-	&:hover {
-		color: $primary-color-hover;
+.menu-icon {
+	display: none;
+	@include responsive(850px) {
+		display: block;
+		&::before {
+			content: "";
+			position: absolute;
+			right: 30px;
+			top: 50%;
+			transform: translateY(-50%);
+			background-image: url("../images/icon-menu.png");
+			background-position: center;
+			background-size: cover;
+			width: 35px;
+			height: 35px;
+			cursor: pointer;
+		}
 	}
 }

@@ -13,11 +13,19 @@
 	width: 100%;
 	min-height: 400px;
 
+	@media screen and (max-width) {
+		height: 40vh;
+	}
+
 	h1 {
 		font-size: 3.1rem;
 		text-transform: capitalize;
 		font-weight: 900;
 		margin-bottom: 30px;
+
+		@media screen and (max-width: 600px) {
+			font-size: 2rem;
+		}
 	}
 }
 
@@ -39,27 +47,20 @@
 		color: white;
 		font-size: 19px;
 		margin-top: 50px;
+
+		@media screen and (max-width: 600px) {
+			font-size: 14px;
+			width: 200px;
+			height: 40px;
+		}
 	}
 }
 
 .description {
 	margin: 0;
 	font-size: 1.3rem;
-}
 
-@media screen and (max-width: 940px) {
-	.hero {
-		height: 40vh;
-	}
-
-	.hero h1 {
-		font-size: 2rem;
-	}
-	.hero p {
-		font-size: 0.2rem;
-	}
-	.content button {
-		width: 10rem;
-		font-size: 0.8rem;
+	@media screen and (max-width: 600px) {
+		font-size: 1rem;
 	}
 }
