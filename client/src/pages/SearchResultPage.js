@@ -29,8 +29,6 @@ const SearchResultPage = () => {
 	console.log("term", queryString);
 	console.log("categoryId", categoryId);
 
-	// const [sortWay, setSortWay] = useState("most popular");
-
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
