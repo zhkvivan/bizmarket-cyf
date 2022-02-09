@@ -96,8 +96,6 @@ const CategoryPage = () => {
 			  })
 			: filterByPrice.min;
 
-	console.log("max", max);
-
 	useEffect(() => {
 		window.scrollTo(0, 0);
 		const fetchData = async () => {
