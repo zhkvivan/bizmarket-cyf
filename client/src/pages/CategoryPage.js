@@ -20,17 +20,16 @@ const CategoryPage = () => {
 		setIsFilterOpen,
 	} = useContextBM();
 
-	if (categories.length > 0) {
-		const category = categories.filter(
-			(category) => category.id === +categoryId
-		)[0];
-
-		setCurrentCategory(category);
-	}
-
 	const [sortWay, setSortWay] = useState("most popular");
 
 	useEffect(() => {
+		if (categories.length > 0) {
+			const category = categories.filter(
+				(category) => category.id === +categoryId
+			)[0];
+
+			setCurrentCategory(category);
+		}
 		window.scrollTo(0, 0);
 		const fetchData = async () => {
 			try {
