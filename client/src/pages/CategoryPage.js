@@ -5,7 +5,7 @@ import styles from "./CategoryPage.module.scss";
 import { useContextBM } from "../context/Context";
 import BizMarketApi from "../api/BizMarketApi";
 import AdCard from "../components/AdCard";
-import Filters from "../components/Filters";
+import Filters from "../components/CategoryPage/Filters";
 
 const CategoryPage = () => {
 	const { categoryId } = useParams();

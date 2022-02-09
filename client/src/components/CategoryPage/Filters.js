@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useContextBM } from "../context/Context";
+import { useContextBM } from "../../context/Context";
 import styles from "./Filters.module.scss";
 
 const Filters = () => {
