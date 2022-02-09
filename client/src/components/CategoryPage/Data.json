@@ -1,0 +1,42 @@
+{
+	"Item1": {
+		"id": 1,
+		"price": 5
+	},
+	"Item2": {
+		"id": 2,
+		"price": 10
+	},
+	"Item3": {
+		"id": 3,
+		"price": 8
+	},
+	"Item4": {
+		"id": 4,
+		"price": 5
+	},
+	"Item5": {
+		"id": 5,
+		"price": 10
+	},
+	"Item6": {
+		"id": 6,
+		"price": 8
+	},
+	"Item7": {
+		"id": 7,
+		"price": 5
+	},
+	"Item8": {
+		"id": 8,
+		"price": 10
+	},
+	"Item9": {
+		"id": 9,
+		"price": 15
+	},
+	"Item10": {
+		"id": 10,
+		"price": 8
+	}
+}

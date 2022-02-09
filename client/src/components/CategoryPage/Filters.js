@@ -8,8 +8,22 @@ const Filters = () => {
 	return (
 		<div className={isFilterOpen ? styles["filter-open"] : styles.filters}>
 			<h2>Filters</h2>
-			<input type="number" placeholder="min" />
-			<input type="number" placeholder="max" />
+			<input
+				type="number"
+				placeholder="min"
+				name="min"
+				onChange={(e) =>
+					setFilterByPrice({ ...filterByPrice, min: e.target.value })
+				}
+			/>
+			<input
+				type="number"
+				placeholder="max"
+				name="max"
+				onChange={(e) =>
+					setFilterByPrice({ ...filterByPrice, max: e.target.value })
+				}
+			/>
 		</div>
 	);
 };

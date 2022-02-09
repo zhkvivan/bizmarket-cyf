@@ -1,12 +1,13 @@
 import Filters from "../components/CategoryPage/Filters";
 import Cards from "../components/CategoryPage/Cards";
 import styles from "./CategoryPage.module.scss";
-
+import data from "../components/CategoryPage/Data.json";
 
 const CategoryPage = () => {
+	console.log("data", data);
+
 	return (
 		<>
-			<h1>This is the category page</h1>
 			<Filters />
 			<div className={styles.ads}>
 				<Cards />
