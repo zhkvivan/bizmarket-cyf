@@ -2,7 +2,8 @@ import { useContextBM } from "../../context/Context";
 import styles from "./Filters.module.scss";
 
 const Filters = () => {
-	const { isFilterOpen, setIsFilterOpen } = useContextBM();
+	const { isFilterOpen, setIsFilterOpen, filterByPrice, setFilterByPrice } =
+		useContextBM();
 
 	return (
 		<div className={isFilterOpen ? styles["filter-open"] : styles.filters}>

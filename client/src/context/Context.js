@@ -49,6 +49,7 @@ export const ContextProvider = ({ children }) => {
 
 	// Setting up filter opening mechanism
 	const [isFilterOpen, setIsFilterOpen] = useState(false);
+	const [filterByPrice, setFilterByPrice] = useState();
 
 	return (
 		<Context.Provider
@@ -65,6 +66,8 @@ export const ContextProvider = ({ children }) => {
 				setCurrentSearchResult,
 				isFilterOpen,
 				setIsFilterOpen,
+				filterByPrice,
+				setFilterByPrice,
 			}}
 		>
 			{children}
