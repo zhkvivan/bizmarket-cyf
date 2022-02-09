@@ -136,23 +136,6 @@ const CategoryPage = () => {
 		fetchData();
 	}, []);
 
-	const ad = {
-		id: 1,
-		adTitle: "Sugar",
-		sellerName: "John Doe",
-		sellerCompany: "Food LTD",
-		createdDate: "",
-		updatetDate: "",
-		expiryDate: "",
-		minimumQuantity: "",
-		price: 5,
-		description: "Sugar - very good sugar!",
-		location: "",
-		imageURL: undefined,
-		categoryId: 1,
-		sellerEmail: "test@bizmarket.com",
-	};
-
 	const handleFiltersOpen = () => {
 		isFilterOpen ? setIsFilterOpen(false) : setIsFilterOpen(true);
 	};

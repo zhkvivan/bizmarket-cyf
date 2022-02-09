@@ -1,13 +1,22 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import BizMarketApi from "../api/BizMarketApi";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { useContextBM } from "../context/Context";
-import styles from "./SearchBar.module.scss";
+import stylesHeader from "./SearchBar.module.scss";
+import stylesHome from "./SearchBarHomePage.module.scss";
 
 const SearchBar = () => {
+	const location = useLocation();
 	const navigate = useNavigate();
 	const { categories } = useContextBM();
+
+	let styles = {
+		...stylesHeader,
+	};
+	if (location.pathname === "/") {
+		styles = { ...stylesHeader, ...stylesHome };
+	}
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
