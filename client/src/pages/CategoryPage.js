@@ -1,10 +1,16 @@
 import Filters from "../components/CategoryPage/Filters";
+import Cards from "../components/CategoryPage/Cards";
+import styles from "./CategoryPage.module.scss";
+
 
 const CategoryPage = () => {
 	return (
 		<>
 			<h1>This is the category page</h1>
 			<Filters />
+			<div className={styles.ads}>
+				<Cards />
+			</div>
 		</>
 	);
 };
