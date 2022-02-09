@@ -49,7 +49,7 @@ export const ContextProvider = ({ children }) => {
 
 	// Setting up filter opening mechanism
 	const [isFilterOpen, setIsFilterOpen] = useState(false);
-	const [filterByPrice, setFilterByPrice] = useState();
+	const [filterByPrice, setFilterByPrice] = useState({ min: 0, max: 0 });
 
 	return (
 		<Context.Provider

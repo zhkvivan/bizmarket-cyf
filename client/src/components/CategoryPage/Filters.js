@@ -13,7 +13,7 @@ const Filters = () => {
 				placeholder="min"
 				name="min"
 				onChange={(e) =>
-					setFilterByPrice({ ...filterByPrice, min: e.target.value })
+					setFilterByPrice({ ...filterByPrice, min: parseInt(e.target.value) })
 				}
 			/>
 			<input
@@ -21,7 +21,7 @@ const Filters = () => {
 				placeholder="max"
 				name="max"
 				onChange={(e) =>
-					setFilterByPrice({ ...filterByPrice, max: e.target.value })
+					setFilterByPrice({ ...filterByPrice, max: parseInt(e.target.value) })
 				}
 			/>
 		</div>

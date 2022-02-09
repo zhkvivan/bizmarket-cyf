@@ -1,11 +1,7 @@
-import { useContextBM } from "../../context/Context";
-
-const Cards = () => {
-	const { filterByPrice } = useContextBM();
-	console.log("filter", filterByPrice);
+const Cards = ({ props }) => {
 	return (
 		<div>
-			<h1>This is the card component</h1>
+			<h6>{props.price}</h6>
 		</div>
 	);
 };

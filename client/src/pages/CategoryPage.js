@@ -2,15 +2,72 @@ import Filters from "../components/CategoryPage/Filters";
 import Cards from "../components/CategoryPage/Cards";
 import styles from "./CategoryPage.module.scss";
 import data from "../components/CategoryPage/Data.json";
+import { useContextBM } from "../context/Context";
 
 const CategoryPage = () => {
-	console.log("data", data);
+	const { filterByPrice } = useContextBM();
+	const max = data
+		.map((item) => {
+			return item.price;
+		})
+		.reduce((a, b) => {
+			return Math.max(a, b);
+		});
+	const min = data
+		.map((item) => {
+			return item.price;
+		})
+		.reduce((a, b) => {
+			return Math.min(a, b);
+		});
+
+	console.log("max", max);
+	console.log("min", min);
+	console.log("filterByPrice", filterByPrice.min === 0);
+
+	// const { filterByPrice, setFilterByPrice } = useContextBM();
+	// const maximum =
+	// 	filterByPrice.max === 0
+	// 		? data.reduce((prev, current) => {
+	// 				return prev.price > current.price ? prev : current;
+	// 		  })
+	// 		: filterByPrice.max;
+	// const minimum = data.reduce((prev, current) => {
+	// 	return prev.price < current.price ? prev : current;
+	// });
+
+	// setFilterByPrice(maximum.price);
+
+	// console.log("max", maximum);
+	// console.log("min", minimum);
+	// console.log("f", filterByPrice.min);
+
+	// const filtered = data.filter((element) => {
+	// 	return element.price >= minimum.price && element.price <= maximum.price
+	// 		? true
+	// 		: false;
+	// });
+
+	// console.log("filtered", filtered);
+	// console.log("F", filterByPrice.max !== 0 ? 1 : 2);
 
 	return (
 		<>
 			<Filters />
 			<div className={styles.ads}>
-				<Cards />
+				{/* <Cards props={data} /> */}
+				{data.map((item, index) => (
+					<div key={index}>
+						<Cards props={item} />
+					</div>
+				))}
+				{/* {data.map((item, index) => {
+					return (
+						<div key={index}>
+							<h3>{item.price}</h3>
+						</div>
+					);
+				})} */}
 			</div>
 		</>
 	);

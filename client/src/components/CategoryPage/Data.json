@@ -1,42 +1,42 @@
-{
-	"Item1": {
+[
+	{
 		"id": 1,
-		"price": 5
+		"price": 12
 	},
-	"Item2": {
+	{
 		"id": 2,
 		"price": 10
 	},
-	"Item3": {
+	{
 		"id": 3,
-		"price": 8
+		"price": 5
 	},
-	"Item4": {
+	{
 		"id": 4,
-		"price": 5
+		"price": 8
 	},
-	"Item5": {
+	{
 		"id": 5,
-		"price": 10
+		"price": 20
 	},
-	"Item6": {
+	{
 		"id": 6,
-		"price": 8
+		"price": 25
 	},
-	"Item7": {
+	{
 		"id": 7,
-		"price": 5
+		"price": 1
 	},
-	"Item8": {
+	{
 		"id": 8,
-		"price": 10
+		"price": 2
 	},
-	"Item9": {
+	{
 		"id": 9,
-		"price": 15
+		"price": 35
 	},
-	"Item10": {
+	{
 		"id": 10,
-		"price": 8
+		"price": 60
 	}
-}
+]
