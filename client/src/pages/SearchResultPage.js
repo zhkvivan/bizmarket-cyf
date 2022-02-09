@@ -6,7 +6,7 @@ import {
 	useParams,
 } from "react-router-dom";
 import { useContextBM } from "../context/Context";
-import styles from "./SearchResultPage.module.scss";
+import styles from "./CategoryPage.module.scss";
 
 import BizMarketApi from "../api/BizMarketApi";
 import Filters from "../components/Filters";
