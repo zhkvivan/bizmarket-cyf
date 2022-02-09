@@ -30,6 +30,7 @@ const SearchResultPage = () => {
 	console.log("categoryId", categoryId);
 
 	useEffect(() => {
+		window.scrollTo(0, 0);
 		const fetchData = async () => {
 			try {
 				// const response = await BizMarketApi.get("/search", {
@@ -129,7 +130,9 @@ const SearchResultPage = () => {
 				{currentSearchResult ? (
 					<div className={styles.content}>
 						<div className={styles["top-bar"]}>
-							<h1 className={styles.h1}>Results for search</h1>
+							<h1 className={styles.h1}>
+								{!queryString ? "Recent ads" : `Results for "${queryString}":`}
+							</h1>
 							<div className={styles.options}>
 								<span
 									onClick={handleFiltersOpen}
