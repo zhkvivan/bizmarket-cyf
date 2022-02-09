@@ -1,7 +1,10 @@
+import Filters from "../components/CategoryPage/Filters";
+
 const CategoryPage = () => {
 	return (
 		<>
 			<h1>This is the category page</h1>
+			<Filters />
 		</>
 	);
 };
