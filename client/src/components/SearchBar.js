@@ -1,7 +1,7 @@
-import React from "react";
-import { useForm } from "react-hook-form";
+import React, { useState } from "react";
 import BizMarketApi from "../api/BizMarketApi";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import { useContextBM } from "../context/Context";
 import stylesHeader from "./SearchBar.module.scss";
 import stylesHome from "./SearchBarHomePage.module.scss";
@@ -18,16 +18,28 @@ const SearchBar = () => {
 		styles = { ...stylesHeader, ...stylesHome };
 	}
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		const form = e.target;
-		const query = form.searchTerm.value;
-		const category = form.categories.value;
+	const [searchParams, setSearchParams] = useSearchParams();
+	const queryString = searchParams.get("query");
+	const categoryId = searchParams.get("categoryId");
 
-		navigate(`search?query=${query}&categoryId=${category}`, {
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm({
+		defaultValues: {
+			category: categoryId || 0,
+			query: queryString || "",
+		},
+	});
+
+	const onSubmit = (data) => {
+		console.log(data);
+
+		navigate(`search?query=${data.query}&categoryId=${data.category}`, {
 			state: {
-				query: query,
-				category: category,
+				query: data.query,
+				category: data.category,
 			},
 		});
 	};
@@ -35,10 +47,14 @@ const SearchBar = () => {
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.container}>
-				<form onSubmit={handleSubmit}>
+				<form onSubmit={handleSubmit(onSubmit)}>
 					<div className={styles["form-inner"]}>
 						<div className={styles["select-wrapper"]}>
-							<select id="categories" className={styles.select}>
+							<select
+								id="categories"
+								className={styles.select}
+								{...register("category")}
+							>
 								<option value={"0"}>All categories</option>
 								{categories.map((category) => {
 									return (
@@ -50,13 +66,27 @@ const SearchBar = () => {
 							</select>
 						</div>
 						<div className={styles.search}>
-							<input name="searchTerm" type="search" />
+							<input
+								name="query"
+								type="search"
+								placeholder="Type here to search"
+								{...register("query", {
+									required: "Please enter someting to the search field",
+									minLength: {
+										value: 2,
+										message: "Your query is too short",
+									},
+								})}
+							/>
 							<div className={styles["btn-wrap"]}>
 								<button type="submit" className={styles.btn}></button>
 							</div>
 						</div>
 					</div>
 				</form>
+				{errors.query && (
+					<div className={styles["error-text"]}>{errors.query.message}</div>
+				)}
 			</div>
 		</div>
 	);
