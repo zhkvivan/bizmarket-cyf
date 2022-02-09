@@ -3,15 +3,24 @@
 
 $card-width: 288px;
 
-.link {
-	text-decoration: none;
-	display: block;
+.outer {
 	@include responsive(815px) {
 		width: 45%;
 	}
 	@include responsive(500px) {
 		width: 100%;
 	}
+}
+
+.link {
+	text-decoration: none;
+	display: block;
+	// @include responsive(815px) {
+	// 	width: 45%;
+	// }
+	// @include responsive(500px) {
+	// 	width: 100%;
+	// }
 }
 
 .wrap {
@@ -70,7 +79,7 @@ $card-width: 288px;
 	align-items: center;
 	@include responsive(950px) {
 		flex-direction: column-reverse;
-		margin-top: 30px;
+		margin-top: -70px;
 		text-align: center;
 	}
 	@include responsive(815px) {
@@ -96,6 +105,8 @@ $card-width: 288px;
 		font-weight: 500;
 	}
 	.btn {
+		cursor: pointer;
+		border: none;
 		margin-top: 15px;
 		color: white;
 		background-color: $primary-color;
@@ -120,7 +131,23 @@ $card-width: 288px;
 	}
 }
 
+.info {
+	@include responsive(950px) {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	@include responsive(815px) {
+		align-items: flex-start;
+		padding-right: 10px;
+	}
+	@include responsive(500px) {
+	}
+}
+
 .price-wrapper {
+	z-index: 10;
+	flex-shrink: 0;
 	border-radius: 50%;
 	background-color: $primary-color;
 	width: 90px;
@@ -132,10 +159,9 @@ $card-width: 288px;
 	color: white;
 
 	@include responsive(950px) {
-		transform: translateY(-120px);
-		position: absolute;
 		width: 70px;
 		height: 70px;
+		margin-bottom: 20px;
 	}
 	@include responsive(815px) {
 		transform: translateY(0px);
