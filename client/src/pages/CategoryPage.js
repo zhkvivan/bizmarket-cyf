@@ -1,6 +1,5 @@
 import Filters from "../components/CategoryPage/Filters";
 import Cards from "../components/CategoryPage/Cards";
-import styles from "./CategoryPage.module.scss";
 import data from "../components/CategoryPage/Data.json";
 import { useContextBM } from "../context/Context";
 
@@ -30,16 +29,13 @@ const CategoryPage = () => {
 	return (
 		<>
 			<Filters />
-			<div className={styles.ads}>
-				{data.map((item, index) => (
-					<div key={index}>
-						{console.log("i", item)}
-						{item.price >= min && item.price <= max ? (
-							<Cards props={item} />
-						) : null}
-					</div>
-				))}
-			</div>
+			{data.map((item, index) => (
+				<div key={index}>
+					{item.price >= min && item.price <= max ? (
+						<Cards props={item} />
+					) : null}
+				</div>
+			))}
 		</>
 	);
 };
