@@ -1,42 +1,69 @@
 [
 	{
 		"id": 1,
-		"price": 12
+		"adTitle": "Sugar",
+		"sellerName": "John Doe",
+		"sellerCompany": "Food LTD",
+		"createdDate": "",
+		"updatetDate": "",
+		"expiryDate": "",
+		"minimumQuantity": "",
+		"price": 5,
+		"description": "Sugar - very good sugar!",
+		"location": "",
+		"imageURL": "undefined",
+		"categoryId": 1,
+		"sellerEmail": "test@bizmarket.com",
+		"sellerPhone": "3434t34634"
 	},
 	{
 		"id": 2,
-		"price": 10
+		"adTitle": "Chicken nuggets",
+		"sellerName": "John Doe",
+		"sellerCompany": "Food LTD",
+		"createdDate": "",
+		"updatetDate": "",
+		"expiryDate": "",
+		"minimumQuantity": "",
+		"price": 5,
+		"description": "Sugar - very good sugar!",
+		"location": "",
+		"imageURL": "undefined",
+		"categoryId": 1,
+		"sellerEmail": "test@bizmarket.com",
+		"sellerPhone": "3434t34634"
 	},
 	{
 		"id": 3,
-		"price": 5
+		"adTitle": "iMac 2022",
+		"sellerName": "Tim Cook",
+		"sellerCompany": "Food LTD",
+		"createdDate": "",
+		"updatetDate": "",
+		"expiryDate": "",
+		"minimumQuantity": "",
+		"price": 10,
+		"description": "Sugar - very good sugar!",
+		"location": "",
+		"imageURL": "undefined",
+		"categoryId": 1,
+		"sellerEmail": "test@bizmarket.com",
+		"sellerPhone": "3434t34634"
 	},
 	{
 		"id": 4,
-		"price": 8
-	},
-	{
-		"id": 5,
-		"price": 20
-	},
-	{
-		"id": 6,
-		"price": 25
-	},
-	{
-		"id": 7,
-		"price": 1
-	},
-	{
-		"id": 8,
-		"price": 2
-	},
-	{
-		"id": 9,
-		"price": 35
-	},
-	{
-		"id": 10,
-		"price": 60
+		"adTitle": "Sugar",
+		"sellerName": "John Doe",
+		"sellerCompany": "Food LTD",
+		"createdDate": "",
+		"updatetDate": "",
+		"expiryDate": "",
+		"minimumQuantity": "",
+		"price": 5,
+		"description": "Sugar - very good sugar!",
+		"location": "",
+		"imageURL": "undefined",
+		"categoryId": 1,
+		"sellerEmail": "test@bizmarket.com"
 	}
 ]

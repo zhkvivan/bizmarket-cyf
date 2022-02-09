@@ -6,68 +6,39 @@ import { useContextBM } from "../context/Context";
 
 const CategoryPage = () => {
 	const { filterByPrice } = useContextBM();
-	const max = data
-		.map((item) => {
-			return item.price;
-		})
-		.reduce((a, b) => {
-			return Math.max(a, b);
-		});
-	const min = data
-		.map((item) => {
-			return item.price;
-		})
-		.reduce((a, b) => {
-			return Math.min(a, b);
-		});
-
-	console.log("max", max);
-	console.log("min", min);
-	console.log("filterByPrice", filterByPrice.min === 0);
-
-	// const { filterByPrice, setFilterByPrice } = useContextBM();
-	// const maximum =
-	// 	filterByPrice.max === 0
-	// 		? data.reduce((prev, current) => {
-	// 				return prev.price > current.price ? prev : current;
-	// 		  })
-	// 		: filterByPrice.max;
-	// const minimum = data.reduce((prev, current) => {
-	// 	return prev.price < current.price ? prev : current;
-	// });
-
-	// setFilterByPrice(maximum.price);
-
-	// console.log("max", maximum);
-	// console.log("min", minimum);
-	// console.log("f", filterByPrice.min);
-
-	// const filtered = data.filter((element) => {
-	// 	return element.price >= minimum.price && element.price <= maximum.price
-	// 		? true
-	// 		: false;
-	// });
-
-	// console.log("filtered", filtered);
-	// console.log("F", filterByPrice.max !== 0 ? 1 : 2);
+	const max =
+		filterByPrice.max === 0
+			? data
+					.map((item) => {
+						return item.price;
+					})
+					.reduce((a, b) => {
+						return Math.max(a, b);
+					})
+			: filterByPrice.max;
+	const min =
+		filterByPrice.min === 0
+			? data
+					.map((item) => {
+						return item.price;
+					})
+					.reduce((a, b) => {
+						return Math.min(a, b);
+					})
+			: filterByPrice.min;
 
 	return (
 		<>
 			<Filters />
 			<div className={styles.ads}>
-				{/* <Cards props={data} /> */}
 				{data.map((item, index) => (
 					<div key={index}>
-						<Cards props={item} />
+						{console.log("i", item)}
+						{item.price >= min && item.price <= max ? (
+							<Cards props={item} />
+						) : null}
 					</div>
 				))}
-				{/* {data.map((item, index) => {
-					return (
-						<div key={index}>
-							<h3>{item.price}</h3>
-						</div>
-					);
-				})} */}
 			</div>
 		</>
 	);
