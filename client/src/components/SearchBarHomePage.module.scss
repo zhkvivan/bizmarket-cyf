@@ -1,0 +1,11 @@
+@import "../components/scssCommon.scss";
+@import "../components/mixins.scss";
+
+.wrapper {
+	padding: 0;
+	transform: translateY(-51%);
+}
+
+.container {
+	max-width: 900px;
+}

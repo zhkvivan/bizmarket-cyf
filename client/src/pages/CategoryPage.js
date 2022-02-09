@@ -20,17 +20,16 @@ const CategoryPage = () => {
 		setIsFilterOpen,
 	} = useContextBM();
 
-	if (categories.length > 0) {
-		const category = categories.filter(
-			(category) => category.id === +categoryId
-		)[0];
-
-		setCurrentCategory(category);
-	}
-
 	const [sortWay, setSortWay] = useState("most popular");
 
 	useEffect(() => {
+		if (categories.length > 0) {
+			const category = categories.filter(
+				(category) => category.id === +categoryId
+			)[0];
+
+			setCurrentCategory(category);
+		}
 		window.scrollTo(0, 0);
 		const fetchData = async () => {
 			try {
@@ -61,7 +60,41 @@ const CategoryPage = () => {
 					},
 					{
 						id: 4,
-						adTitle: "Chicken nuggets",
+						adTitle: "Chicken nuggets coca cola burgers pepsi fries",
+						sellerName: "John Doe",
+						sellerCompany: "Food LTD",
+						createdDate: "",
+						updatetDate: "",
+						expiryDate: "",
+						minimumQuantity: "",
+						price: 5,
+						description: "Sugar - very good sugar!",
+						location: "",
+						imageURL: undefined,
+						categoryId: 1,
+						sellerEmail: "test@bizmarket.com",
+						sellerPhone: "3434t34634",
+					},
+					{
+						id: 3,
+						adTitle: "Chicken nuggets coca cola burgers pepsi fries",
+						sellerName: "John Doe",
+						sellerCompany: "Food LTD",
+						createdDate: "",
+						updatetDate: "",
+						expiryDate: "",
+						minimumQuantity: "",
+						price: 5,
+						description: "Sugar - very good sugar!",
+						location: "",
+						imageURL: undefined,
+						categoryId: 1,
+						sellerEmail: "test@bizmarket.com",
+						sellerPhone: "3434t34634",
+					},
+					{
+						id: 433,
+						adTitle: "Chicken nuggets coca cola burgers pepsi fries",
 						sellerName: "John Doe",
 						sellerCompany: "Food LTD",
 						createdDate: "",
@@ -103,23 +136,6 @@ const CategoryPage = () => {
 		fetchData();
 	}, []);
 
-	const ad = {
-		id: 1,
-		adTitle: "Sugar",
-		sellerName: "John Doe",
-		sellerCompany: "Food LTD",
-		createdDate: "",
-		updatetDate: "",
-		expiryDate: "",
-		minimumQuantity: "",
-		price: 5,
-		description: "Sugar - very good sugar!",
-		location: "",
-		imageURL: undefined,
-		categoryId: 1,
-		sellerEmail: "test@bizmarket.com",
-	};
-
 	const handleFiltersOpen = () => {
 		isFilterOpen ? setIsFilterOpen(false) : setIsFilterOpen(true);
 	};
@@ -129,7 +145,7 @@ const CategoryPage = () => {
 			{/* <Breadcrumbs /> */}
 			<div className={styles.inner}>
 				<Filters />
-				{currentSearchResult ? (
+				{currentSearchResult && currentCategory ? (
 					<div className={styles.content}>
 						<div className={styles["top-bar"]}>
 							<h1 className={styles.h1}>
