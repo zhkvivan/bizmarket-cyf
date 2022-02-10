@@ -6,8 +6,6 @@ import { useContextBM } from "../context/Context";
 import BizMarketApi from "../api/BizMarketApi";
 import AdCard from "../components/AdCard";
 import Filters from "../components/Filters";
-import Data from "../components/CategoryPage/Data.json";
-import Cards from "../components/CategoryPage/Cards";
 
 const CategoryPage = () => {
 	const { categoryId } = useParams();
