@@ -5,7 +5,13 @@ const Filters = () => {
 	const { isFilterOpen, setIsFilterOpen, filterByPrice, setFilterByPrice } =
 		useContextBM();
 
-	const resetFilters = () => {};
+	const resetFilters = (e) => {
+		e.preventDefault();
+		const form = e.target;
+		setFilterByPrice({ min: 0, max: 0 });
+		form.min.value = "";
+		form.max.value = "";
+	};
 
 	return (
 		<div className={isFilterOpen ? styles["filter-open"] : styles.filters}>
@@ -14,31 +20,33 @@ const Filters = () => {
 				<div className={styles["filter-type-heading"]}>Filter by price</div>
 			</div>
 			<div className={styles.inputs}>
-				<input
-					type="number"
-					placeholder="min"
-					name="min"
-					onChange={(e) =>
-						setFilterByPrice({
-							...filterByPrice,
-							min: e.target.value ? parseInt(e.target.value) : 0,
-						})
-					}
-				/>
-				<span> — </span>
-				<input
-					type="number"
-					placeholder="max"
-					name="max"
-					onChange={(e) =>
-						setFilterByPrice({
-							...filterByPrice,
-							max: e.target.value ? parseInt(e.target.value) : 0,
-						})
-					}
-				/>
+				<form onSubmit={resetFilters}>
+					<input
+						type="number"
+						placeholder="min"
+						name="min"
+						onChange={(e) =>
+							setFilterByPrice({
+								...filterByPrice,
+								min: e.target.value ? parseInt(e.target.value) : 0,
+							})
+						}
+					/>
+					<span> — </span>
+					<input
+						type="number"
+						placeholder="max"
+						name="max"
+						onChange={(e) =>
+							setFilterByPrice({
+								...filterByPrice,
+								max: e.target.value ? parseInt(e.target.value) : 0,
+							})
+						}
+					/>
+					<button type="submit">Reset filters</button>
+				</form>
 			</div>
-			<button onClick={resetFilters}>Reset filters</button>
 		</div>
 	);
 };
