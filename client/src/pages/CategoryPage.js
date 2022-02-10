@@ -79,22 +79,29 @@ const CategoryPage = () => {
 
 	const [sortWay, setSortWay] = useState("most popular");
 
-	const max =
-		filterByPrice.max === 0
-			? Data.map((item) => {
-					return item.price;
-			  }).reduce((a, b) => {
-					return Math.max(a, b);
-			  })
-			: filterByPrice.max;
-	const min =
-		filterByPrice.min === 0
-			? Data.map((item) => {
-					return item.price;
-			  }).reduce((a, b) => {
-					return Math.min(a, b);
-			  })
-			: filterByPrice.min;
+	let min, max;
+	if (currentSearchResult) {
+		max =
+			filterByPrice.max === 0
+				? currentSearchResult
+						.map((item) => {
+							return item.price;
+						})
+						.reduce((a, b) => {
+							return Math.max(a, b);
+						})
+				: filterByPrice.max;
+		min =
+			filterByPrice.min === 0
+				? currentSearchResult
+						.map((item) => {
+							return item.price;
+						})
+						.reduce((a, b) => {
+							return Math.min(a, b);
+						})
+				: filterByPrice.min;
+	}
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -107,85 +114,68 @@ const CategoryPage = () => {
 				// });
 				// console.log(response);
 
-				// const mockResponse = [
-				// 	{
-				// 		id: 1,
-				// 		adTitle: "Sugar",
-				// 		sellerName: "John Doe",
-				// 		sellerCompany: "Food LTD",
-				// 		createdDate: "",
-				// 		updatetDate: "",
-				// 		expiryDate: "",
-				// 		minimumQuantity: "",
-				// 		price: 5,
-				// 		description: "Sugar - very good sugar!",
-				// 		location: "",
-				// 		imageURL: undefined,
-				// 		categoryId: 1,
-				// 		sellerEmail: "test@bizmarket.com",
-				// 		sellerPhone: "3434t34634",
-				// 	},
-				// 	{
-				// 		id: 4,
-				// 		adTitle: "Chicken nuggets",
-				// 		sellerName: "John Doe",
-				// 		sellerCompany: "Food LTD",
-				// 		createdDate: "",
-				// 		updatetDate: "",
-				// 		expiryDate: "",
-				// 		minimumQuantity: "",
-				// 		price: 5,
-				// 		description: "Sugar - very good sugar!",
-				// 		location: "",
-				// 		imageURL: undefined,
-				// 		categoryId: 1,
-				// 		sellerEmail: "test@bizmarket.com",
-				// 		sellerPhone: "3434t34634",
-				// 	},
-				// 	{
-				// 		id: 41,
-				// 		adTitle: "iMac 2022",
-				// 		sellerName: "Tim Cook",
-				// 		sellerCompany: "Food LTD",
-				// 		createdDate: "",
-				// 		updatetDate: "",
-				// 		expiryDate: "",
-				// 		minimumQuantity: "",
-				// 		price: 5,
-				// 		description: "Sugar - very good sugar!",
-				// 		location: "",
-				// 		imageURL: undefined,
-				// 		categoryId: 1,
-				// 		sellerEmail: "test@bizmarket.com",
-				// 		sellerPhone: "3434t34634",
-				// 	},
-				// ];
+				const mockResponse = [
+					{
+						id: 1,
+						adTitle: "Sugar",
+						sellerName: "John Doe",
+						sellerCompany: "Food LTD",
+						createdDate: "",
+						updatetDate: "",
+						expiryDate: "",
+						minimumQuantity: "",
+						price: 5,
+						description: "Sugar - very good sugar!",
+						location: "",
+						imageURL: undefined,
+						categoryId: 1,
+						sellerEmail: "test@bizmarket.com",
+						sellerPhone: "3434t34634",
+					},
+					{
+						id: 4,
+						adTitle: "Chicken nuggets",
+						sellerName: "John Doe",
+						sellerCompany: "Food LTD",
+						createdDate: "",
+						updatetDate: "",
+						expiryDate: "",
+						minimumQuantity: "",
+						price: 50,
+						description: "Sugar - very good sugar!",
+						location: "",
+						imageURL: undefined,
+						categoryId: 1,
+						sellerEmail: "test@bizmarket.com",
+						sellerPhone: "3434t34634",
+					},
+					{
+						id: 41,
+						adTitle: "iMac 2022",
+						sellerName: "Tim Cook",
+						sellerCompany: "Food LTD",
+						createdDate: "",
+						updatetDate: "",
+						expiryDate: "",
+						minimumQuantity: "",
+						price: 500,
+						description: "Sugar - very good sugar!",
+						location: "",
+						imageURL: undefined,
+						categoryId: 1,
+						sellerEmail: "test@bizmarket.com",
+						sellerPhone: "3434t34634",
+					},
+				];
 
-				// setCurrentSearchResult(mockResponse);
-				setCurrentSearchResult(Data);
+				setCurrentSearchResult(mockResponse);
+				// setCurrentSearchResult(Data);
 			} catch (error) {
 				console.error(error);
 			}
 		};
 		fetchData();
 	}, []);
-
-	// const ad = {
-	// 	id: 1,
-	// 	adTitle: "Sugar",
-	// 	sellerName: "John Doe",
-	// 	sellerCompany: "Food LTD",
-	// 	createdDate: "",
-	// 	updatetDate: "",
-	// 	expiryDate: "",
-	// 	minimumQuantity: "",
-	// 	price: 5,
-	// 	description: "Sugar - very good sugar!",
-	// 	location: "",
-	// 	imageURL: undefined,
-	// 	categoryId: 1,
-	// 	sellerEmail: "test@bizmarket.com",
-	// };
 
 	const handleFiltersOpen = () => {
 		isFilterOpen ? setIsFilterOpen(false) : setIsFilterOpen(true);
@@ -221,11 +211,11 @@ const CategoryPage = () => {
 							})} */}
 							{currentSearchResult.map((ad) => {
 								return (
-									<div key={ad.id}>
+									<>
 										{ad.price >= min && ad.price <= max ? (
-											<AdCard product={ad} />
+											<AdCard product={ad} key={ad.id} />
 										) : null}
-									</div>
+									</>
 								);
 							})}
 							{/* {data.map((item, index) => (

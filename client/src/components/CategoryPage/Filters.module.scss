@@ -9,7 +9,7 @@
 	box-shadow: 0px 0px 18px -8px rgba(0, 0, 0, 0.676);
 	background-color: white;
 	margin-right: 40px;
-	padding: 50px 20px;
+	padding: 40px 20px;
 
 	@include responsive(950px) {
 		// display: none;
@@ -22,6 +22,35 @@
 	h2 {
 		font-size: 20px;
 		color: $text-color;
+		margin-bottom: 30px;
+	}
+}
+
+.content {
+	display: flex;
+	flex-direction: row;
+}
+
+.filter-type-heading {
+	font-size: 14px;
+	margin-bottom: 10px;
+	padding-left: 5px;
+}
+
+.inputs {
+	display: flex;
+	justify-content: space-between;
+	span {
+		color: $primary-color;
+		padding-top: 5px;
+	}
+	input {
+		width: 80px;
+		height: 30px;
+		padding: 0 10px;
+		font-variant-numeric: lining-nums;
+		border: 1px solid $primary-color;
+		border-radius: 10px;
 	}
 }
 
