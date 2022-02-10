@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useContextBM } from "../../context/Context";
 import styles from "./Filters.module.scss";
 
@@ -11,7 +12,10 @@ const Filters = () => {
 		setFilterByPrice({ min: 0, max: 0 });
 		form.min.value = "";
 		form.max.value = "";
+		setIsFilterOpen(false);
 	};
+
+	const [isBadValue, setIsBadValue] = useState(false);
 
 	return (
 		<div className={isFilterOpen ? styles["filter-open"] : styles.filters}>
@@ -19,32 +23,60 @@ const Filters = () => {
 			<div className={styles.content}>
 				<div className={styles["filter-type-heading"]}>Filter by price</div>
 			</div>
-			<div className={styles.inputs}>
+			<div className={styles.form}>
 				<form onSubmit={resetFilters}>
-					<input
-						type="number"
-						placeholder="min"
-						name="min"
-						onChange={(e) =>
-							setFilterByPrice({
-								...filterByPrice,
-								min: e.target.value ? parseInt(e.target.value) : 0,
-							})
-						}
-					/>
-					<span> — </span>
-					<input
-						type="number"
-						placeholder="max"
-						name="max"
-						onChange={(e) =>
-							setFilterByPrice({
-								...filterByPrice,
-								max: e.target.value ? parseInt(e.target.value) : 0,
-							})
-						}
-					/>
-					<button type="submit">Reset filters</button>
+					<div className={styles.inputs}>
+						<input
+							type="number"
+							placeholder="min"
+							name="min"
+							onChange={(e) => {
+								if (filterByPrice.max !== 0) {
+									if (e.target.value > filterByPrice.max) {
+										setIsBadValue(true);
+									} else {
+										setIsBadValue(false);
+									}
+								}
+								setFilterByPrice({
+									...filterByPrice,
+									min: e.target.value ? parseInt(e.target.value) : 0,
+								});
+							}}
+						/>
+						<span> – </span>
+						<input
+							type="number"
+							placeholder="max"
+							name="max"
+							onChange={(e) => {
+								if (filterByPrice.min !== 0) {
+									if (
+										e.target.value < filterByPrice.min &&
+										e.target.value.length > 0
+									) {
+										setIsBadValue(true);
+									} else {
+										setIsBadValue(false);
+									}
+								}
+								setFilterByPrice({
+									...filterByPrice,
+									max: e.target.value ? parseInt(e.target.value) : 9999999999,
+								});
+							}}
+						/>
+					</div>
+					{isBadValue ? (
+						<div className={styles["bad-value"]}>
+							Please enter correct values
+						</div>
+					) : (
+						""
+					)}
+					<button type="submit" className={styles["btn-filter-reset"]}>
+						Reset filters
+					</button>
 				</form>
 			</div>
 		</div>
