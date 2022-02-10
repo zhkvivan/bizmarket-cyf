@@ -1,45 +1,53 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
-import Breadcrumbs from "../components/Breadcrumbs";
-import styles from "./CategoryPage.module.scss";
+import {
+	useSearchParams,
+	useLocation,
+	useNavigate,
+	useParams,
+} from "react-router-dom";
 import { useContextBM } from "../context/Context";
+import styles from "./CategoryPage.module.scss";
+
 import BizMarketApi from "../api/BizMarketApi";
-import AdCard from "../components/AdCard";
 import Filters from "../components/Filters";
+import AdCard from "../components/AdCard";
 
-const CategoryPage = () => {
-	const { categoryId } = useParams();
-
+const SearchResultPage = () => {
 	const {
 		categories,
-		currentCategory,
-		setCurrentCategory,
 		currentSearchResult,
 		setCurrentSearchResult,
 		isFilterOpen,
 		setIsFilterOpen,
 	} = useContextBM();
 
-	const [sortWay, setSortWay] = useState("most popular");
+	const [searchParams, setSearchParams] = useSearchParams();
+	const queryString = searchParams.get("query");
+	const categoryId = searchParams.get("categoryId");
+
+	console.log(categoryId);
+	let categoryName;
+	if (categoryId !== "0") {
+		categoryName = categories.filter(
+			(category) => category.id === +categoryId
+		)[0].name;
+	}
+
+	console.log(categoryName);
+
+	const location = useLocation();
+	const navigate = useNavigate();
 
 	useEffect(() => {
-		if (categories.length > 0) {
-			const category = categories.filter(
-				(category) => category.id === +categoryId
-			)[0];
-
-			setCurrentCategory(category);
-		}
 		window.scrollTo(0, 0);
 		const fetchData = async () => {
 			try {
-				// const response = await BizMarketApi.get("/category", {
-				// 	params: {
-				// 		categoryId: currentCategory.id,
-				// 	},
+				// const response = await BizMarketApi.get("/search", {
+				// 	queryString: queryString,
+				// 	categoryId: categoryId,
 				// });
-				// console.log(response);
 
+				// console.log(response.data.results);
 				const mockResponse = [
 					{
 						id: 1,
@@ -60,41 +68,7 @@ const CategoryPage = () => {
 					},
 					{
 						id: 4,
-						adTitle: "Chicken nuggets coca cola burgers pepsi fries",
-						sellerName: "John Doe",
-						sellerCompany: "Food LTD",
-						createdDate: "",
-						updatetDate: "",
-						expiryDate: "",
-						minimumQuantity: "",
-						price: 5,
-						description: "Sugar - very good sugar!",
-						location: "",
-						imageURL: undefined,
-						categoryId: 1,
-						sellerEmail: "test@bizmarket.com",
-						sellerPhone: "3434t34634",
-					},
-					{
-						id: 3,
-						adTitle: "Chicken nuggets coca cola burgers pepsi fries",
-						sellerName: "John Doe",
-						sellerCompany: "Food LTD",
-						createdDate: "",
-						updatetDate: "",
-						expiryDate: "",
-						minimumQuantity: "",
-						price: 5,
-						description: "Sugar - very good sugar!",
-						location: "",
-						imageURL: undefined,
-						categoryId: 1,
-						sellerEmail: "test@bizmarket.com",
-						sellerPhone: "3434t34634",
-					},
-					{
-						id: 433,
-						adTitle: "Chicken nuggets coca cola burgers pepsi fries",
+						adTitle: "Chicken nuggets",
 						sellerName: "John Doe",
 						sellerCompany: "Food LTD",
 						createdDate: "",
@@ -126,6 +100,23 @@ const CategoryPage = () => {
 						sellerEmail: "test@bizmarket.com",
 						sellerPhone: "3434t34634",
 					},
+					{
+						id: 411,
+						adTitle: "Chicken nuggets",
+						sellerName: "John Doe",
+						sellerCompany: "Food LTD",
+						createdDate: "",
+						updatetDate: "",
+						expiryDate: "",
+						minimumQuantity: "",
+						price: 5,
+						description: "Sugar - very good sugar!",
+						location: "",
+						imageURL: undefined,
+						categoryId: 1,
+						sellerEmail: "test@bizmarket.com",
+						sellerPhone: "3434t34634",
+					},
 				];
 
 				setCurrentSearchResult(mockResponse);
@@ -139,17 +130,25 @@ const CategoryPage = () => {
 	const handleFiltersOpen = () => {
 		isFilterOpen ? setIsFilterOpen(false) : setIsFilterOpen(true);
 	};
+	const [sortWay, setSortWay] = useState("most popular");
 
 	return (
 		<div className={styles.container}>
-			{/* <Breadcrumbs /> */}
 			<div className={styles.inner}>
 				<Filters />
-				{currentSearchResult && currentCategory ? (
+				{currentSearchResult ? (
 					<div className={styles.content}>
 						<div className={styles["top-bar"]}>
 							<h1 className={styles.h1}>
-								Most recent ads in category {currentCategory.name}
+								{!queryString
+									? "Recent ads"
+									: `${
+											currentSearchResult.length
+									  } results for "${queryString}" in ${
+											categoryId === "0"
+												? "all categories"
+												: `category ${categoryName}`
+									  }`}
 							</h1>
 							<div className={styles.options}>
 								<span
@@ -171,11 +170,11 @@ const CategoryPage = () => {
 						</div>
 					</div>
 				) : (
-					"Nothing"
+					"Nothing is here"
 				)}
 			</div>
 		</div>
 	);
 };
 
-export default CategoryPage;
+export default SearchResultPage;

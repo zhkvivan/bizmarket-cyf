@@ -1,8 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./Banner.module.scss";
 import Button from "./Button";
 
 const Banner = () => {
+	const navigate = useNavigate();
+	const goToSearchPage = () => {
+		navigate("search");
+	};
 	return (
 		<section className={styles.wrapper}>
 			<div className={`${styles.inner} ${styles.container}`}>
@@ -13,7 +18,11 @@ const Banner = () => {
 				</p>
 				<p>No extra charges. Just buy and sell.</p>
 				<div className={styles["btn-wrap"]}>
-					<Button bgColor={"banner-btn"} label={"Search"} />
+					<Button
+						bgColor={"banner-btn"}
+						label={"Search"}
+						action={goToSearchPage}
+					/>
 				</div>
 			</div>
 		</section>

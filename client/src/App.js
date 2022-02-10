@@ -11,6 +11,9 @@ import CategoryPage from "./pages/CategoryPage";
 import { useEffect } from "react";
 import BizMarketApi from "./api/BizMarketApi";
 import { useContextBM } from "./context/Context";
+import BurgerMenu from "./components/BurgerMenu";
+import SearchResultPage from "./pages/SearchResultPage";
+import CongratulationPage from "./pages/CongratulationPage";
 
 function App() {
 	// Getting categories from server
@@ -32,9 +35,7 @@ function App() {
 						return 0;
 					}
 				});
-				console.log(response.data.results);
 				setCategories(response.data.results);
-				// setCategories(response);
 			} catch (error) {
 				console.error(error);
 			}
@@ -44,6 +45,7 @@ function App() {
 
 	return (
 		<>
+			<BurgerMenu />
 			<Routes>
 				<Route path="/" element={<Layout />}>
 					<Route exact path="/" element={<Home />} />
@@ -56,10 +58,12 @@ function App() {
 						path="category/:categoryId/:categoryName"
 						element={<CategoryPage />}
 					/>
+					<Route path="search" element={<SearchResultPage />} />
 					<Route
 						path="category/:categoryId/:categoryName/:adId"
 						element={<AdPage />}
 					/>
+					<Route path="congratulations" element={<CongratulationPage />} />
 					<Route path="*" element={<NotFoundPage />} />
 				</Route>
 			</Routes>

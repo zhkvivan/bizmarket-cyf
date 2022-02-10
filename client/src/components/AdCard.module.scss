@@ -1,20 +1,55 @@
 @import "../components/scssCommon.scss";
+@import "../components/mixins.scss";
 
 $card-width: 288px;
 
+.outer {
+	@include responsive(815px) {
+		width: 45%;
+	}
+	@include responsive(500px) {
+		width: 100%;
+	}
+}
+
+.link {
+	text-decoration: none;
+	display: block;
+	// @include responsive(815px) {
+	// 	width: 45%;
+	// }
+	// @include responsive(500px) {
+	// 	width: 100%;
+	// }
+}
+
 .wrap {
 	width: $card-width;
-	height: 371px;
 	background-color: white;
 	border-radius: 20px;
-	box-shadow: 0px 0px 18px rgba(0, 0, 0, 0.164);
-	margin: 10px 11.5px;
+	box-shadow: 0px 0px 18px rgba(0, 0, 0, 0.06);
+	margin: 15px 11.5px;
+	@include responsive(950px) {
+		width: 220px;
+	}
+	@include responsive(815px) {
+		width: 100%;
+	}
 }
 
 .img-wrap {
 	width: $card-width;
 	height: 205px;
 	overflow: hidden;
+	border-radius: 20px 20px 0px 0px;
+
+	@include responsive(950px) {
+		width: 220px;
+	}
+	@include responsive(815px) {
+		width: 100%;
+		height: 150px;
+	}
 }
 
 .photo {
@@ -27,6 +62,12 @@ $card-width: 288px;
 	&:hover {
 		transform: scale(1.1);
 	}
+	@include responsive(815px) {
+		border-radius: 20px 0px 0px 20px;
+	}
+	@include responsive(815px) {
+		border-radius: 20px 20px 0px 0px;
+	}
 }
 
 .content {
@@ -36,6 +77,20 @@ $card-width: 288px;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
+	@include responsive(950px) {
+		flex-direction: column-reverse;
+		margin-top: -70px;
+		text-align: center;
+	}
+	@include responsive(815px) {
+		width: 100%;
+		flex-direction: row;
+		align-items: flex-start;
+		text-align: left;
+		margin-top: 0;
+		padding: 20px;
+	}
+
 	h3 {
 		margin: 0;
 		margin-bottom: 5px;
@@ -50,6 +105,8 @@ $card-width: 288px;
 		font-weight: 500;
 	}
 	.btn {
+		cursor: pointer;
+		border: none;
 		margin-top: 15px;
 		color: white;
 		background-color: $primary-color;
@@ -61,6 +118,9 @@ $card-width: 288px;
 		align-items: center;
 		border-radius: 10px;
 		transition: all 0.5s ease;
+		@include responsive(815px) {
+			display: none;
+		}
 
 		&:hover {
 			background-color: $primary-color-hover;
@@ -71,7 +131,23 @@ $card-width: 288px;
 	}
 }
 
+.info {
+	@include responsive(950px) {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	@include responsive(815px) {
+		align-items: flex-start;
+		padding-right: 10px;
+	}
+	@include responsive(500px) {
+	}
+}
+
 .price-wrapper {
+	z-index: 10;
+	flex-shrink: 0;
 	border-radius: 50%;
 	background-color: $primary-color;
 	width: 90px;
@@ -82,9 +158,29 @@ $card-width: 288px;
 	align-items: center;
 	color: white;
 
+	@include responsive(950px) {
+		width: 70px;
+		height: 70px;
+		margin-bottom: 20px;
+	}
+	@include responsive(815px) {
+		transform: translateY(0px);
+		position: unset;
+		font-size: 14px;
+		width: 60px;
+		height: 60px;
+	}
+
 	.price {
 		font-size: 32px;
 		font-weight: 500;
 		font-variant-numeric: lining-nums;
+		@include responsive(950px) {
+			font-size: 24px;
+			font-weight: 600;
+		}
+		@include responsive(815px) {
+			font-size: 20px;
+		}
 	}
 }
