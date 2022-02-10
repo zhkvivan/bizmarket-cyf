@@ -113,10 +113,10 @@ router.get("/ad", (_, res) => {
 
 router.get("/viewads", (_, res) => {
 	db.query(
-		"SELECT adTitle, sellerName, sellerCompany,sellerPhone,sellerEmail,expiryDate,price,quantity,minQuantity,description,location,imageURL FROM adListing INNER JOIN  category ON  adListing.categoryId=category.categoryId"
+		"SELECT adTitle, sellerName, sellerCompany,sellerPhone,sellerEmail,expiryDate,price,quantity,minQuantity,description,location,imageURL FROM adListing INNER JOIN  category ON  adListing.categoryId=category.Id"
 	)
 		.then((result) => {
-			console.debug("successfully got all ads", result);
+			//onsole.debug(result);
 			if (result.rows.length > 0) {
 				res.status(200).send({ results: result.rows });
 			}
