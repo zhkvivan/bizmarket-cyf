@@ -1,7 +1,3 @@
-DROP TABLE sellerAccount CASCADE;
-DROP TABLE category CASCADE;
-DROP TABLE adListing CASCADE;
-
 CREATE TABLE sellerAccount (
     id serial PRIMARY KEY,
     username VARCHAR(100) NOT NULL, /* This will be the github username which will be unique */
