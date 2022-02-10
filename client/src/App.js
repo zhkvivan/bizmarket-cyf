@@ -35,7 +35,6 @@ function App() {
 						return 0;
 					}
 				});
-				console.log(response.data.results);
 				setCategories(response.data.results);
 			} catch (error) {
 				console.error(error);
