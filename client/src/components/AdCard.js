@@ -51,7 +51,7 @@ const AdCard = ({ product }) => {
 						</div>
 						<div className={styles["price-wrapper"]}>
 							<div>from</div>
-							<div className={styles.price}>£ 5</div>
+							<div className={styles.price}>£ {product.price}</div>
 						</div>
 					</div>
 				</div>

@@ -19,6 +19,7 @@ const SearchResultPage = () => {
 		setCurrentSearchResult,
 		isFilterOpen,
 		setIsFilterOpen,
+		filterByPrice,
 	} = useContextBM();
 
 	const [searchParams, setSearchParams] = useSearchParams();
@@ -27,7 +28,7 @@ const SearchResultPage = () => {
 
 	console.log(categoryId);
 	let categoryName;
-	if (categoryId !== "0") {
+	if (categoryId && categoryId !== "0") {
 		categoryName = categories.filter(
 			(category) => category.id === +categoryId
 		)[0].name;
@@ -37,6 +38,30 @@ const SearchResultPage = () => {
 
 	const location = useLocation();
 	const navigate = useNavigate();
+
+	let min, max;
+	if (currentSearchResult) {
+		max =
+			filterByPrice.max === 0
+				? currentSearchResult
+						.map((item) => {
+							return item.price;
+						})
+						.reduce((a, b) => {
+							return Math.max(a, b);
+						})
+				: filterByPrice.max;
+		min =
+			filterByPrice.min === 0
+				? currentSearchResult
+						.map((item) => {
+							return item.price;
+						})
+						.reduce((a, b) => {
+							return Math.min(a, b);
+						})
+				: filterByPrice.min;
+	}
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -164,8 +189,17 @@ const SearchResultPage = () => {
 							</div>
 						</div>
 						<div className={styles.ads}>
-							{currentSearchResult.map((ad) => {
+							{/* {currentSearchResult.map((ad) => {
 								return <AdCard product={ad} key={ad.id} />;
+							})} */}
+							{currentSearchResult.map((ad) => {
+								return (
+									<>
+										{ad.price >= min && ad.price <= max ? (
+											<AdCard product={ad} key={ad.id} />
+										) : null}
+									</>
+								);
 							})}
 						</div>
 					</div>
