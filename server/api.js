@@ -44,7 +44,7 @@ input expected:
         'imageURL': 'https://placekitten.com/g/200/300'
     }
 */
-router.post("/ad", (req, res) => {
+router.post("/addad", (req, res) => {
 	const input = req.body;
 
 	const parameterizedInsertStatement = `
@@ -77,15 +77,15 @@ router.post("/ad", (req, res) => {
 		input.description,
 		input.location,
 		input.imageURL,
-		input.category,
+		input.categoryId,
 	];
 
 	db.query(parameterizedInsertStatement, parameterizedQueryValues)
 		.then((result) => {
-			console.debug("Successfully created ad", result);
+			console.debug("Successfully created ad", result.rows);
 			res
 				.status(201)
-				.json({ message: "Ad created successfully", categoryId: 1, adId: 35 });
+				.json({ message: "Ad created successfully"}); //, categoryId: 1, adId: 35 });
 		})
 		.catch((error) => {
 			console.error("Failed to create new Ad ", error);
