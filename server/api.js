@@ -83,9 +83,7 @@ router.post("/addad", (req, res) => {
 	db.query(parameterizedInsertStatement, parameterizedQueryValues)
 		.then((result) => {
 			console.debug("Successfully created ad", result.rows);
-			res
-				.status(201)
-				.json({ message: "Ad created successfully"}); //, categoryId: 1, adId: 35 });
+			res.status(201).json({ message: "Ad created successfully" }); //, categoryId: 1, adId: 35 });
 		})
 		.catch((error) => {
 			console.error("Failed to create new Ad ", error);
@@ -116,7 +114,7 @@ router.get("/ad", (_, res) => {
 
 router.get("/viewads", (_, res) => {
 	db.query(
-		"SELECT adTitle, sellerName, sellerCompany,sellerPhone,sellerEmail,expiryDate,price,quantity,minQuantity,description,location,imageURL FROM adListing INNER JOIN  category ON  adListing.categoryId=category.Id"
+		"SELECT ad.adTitle, ad.sellerName, ad.sellerCompany,ad.sellerPhone,ad.sellerEmail,ad.expiryDate,ad.price,ad.quantity,ad.minQuantity,ad.description,ad.location,ad.imageURL,cat.id,cat.name FROM adListing  ad INNER JOIN  category  cat ON  ad.categoryId=cat.Id"
 	)
 		.then((result) => {
 			//onsole.debug(result);
