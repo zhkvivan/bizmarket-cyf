@@ -143,7 +143,7 @@ const CategoryPage = () => {
 						updatetDate: "",
 						expiryDate: "",
 						minimumQuantity: "",
-						price: 500,
+						price: 540,
 						description: "Sugar - very good sugar!",
 						location: "",
 						imageURL: undefined,
