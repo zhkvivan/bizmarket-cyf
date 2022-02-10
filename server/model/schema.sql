@@ -25,7 +25,7 @@ CREATE TABLE adListing (
     minQuantity VARCHAR(255),
     description VARCHAR(1000),
     location VARCHAR(255),
-    imageURL VARCHAR(255),
+    imageURL BLOB,
     categoryId INT,
     foreign key (categoryId) references category(id)
 );
