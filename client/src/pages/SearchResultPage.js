@@ -28,7 +28,7 @@ const SearchResultPage = () => {
 
 	console.log(categoryId);
 	let categoryName;
-	if (categoryId !== "0") {
+	if (categoryId && categoryId !== "0") {
 		categoryName = categories.filter(
 			(category) => category.id === +categoryId
 		)[0].name;
