@@ -23,17 +23,21 @@ const AddConfirmPage = () => {
 	console.log(formDataDemo);
 	console.log(formData);
 
-	if (formData.image) {
-		let image = formData.image[0];
-		const reader = new FileReader();
-		reader.readAsDataURL(image);
-		reader.onload = () => {
-			formData.image = reader.result;
-		};
-		console.log(formData);
-	}
+	useEffect(() => {
+		if (formData.image) {
+			let image = formData.image[0];
+			const reader = new FileReader();
+			reader.readAsDataURL(image);
+			reader.onload = () => {
+				formData.image = reader.result;
+				console.log(formData.image);
+			};
+			console.log(formData);
+		}
+	}, []);
 
-	const postHandler = async () => {
+	const postHandler = async (e) => {
+		e.preventDefault();
 		try {
 			setFormValues({
 				category: undefined,
