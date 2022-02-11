@@ -47,7 +47,9 @@ const AdCard = ({ ad }) => {
 					<div className={styles["img-wrap"]}>
 						<img
 							src={
-								product.image === undefined ? imagePlaceholder : product.image
+								product.imageURL === undefined
+									? imagePlaceholder
+									: product.imageURL
 							}
 							alt={product.adTitle}
 							className={styles.photo}

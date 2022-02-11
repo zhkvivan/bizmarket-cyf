@@ -80,8 +80,6 @@ router.post("/addad", (req, res) => {
 		input.category,
 	];
 
-	console.log(input.image);
-
 	db.query(parameterizedInsertStatement, parameterizedQueryValues)
 		.then((result) => {
 			console.debug("Successfully created ad", result.rows);

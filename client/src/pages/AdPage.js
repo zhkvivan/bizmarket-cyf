@@ -7,8 +7,10 @@ import productImg from "../images/product.jpg";
 import Accordion from "../components/Accordion";
 import imgPlaceholder from "../images/no-image.jpeg";
 import BizMarketApi from "../api/BizMarketApi";
+import { useContextBM } from "../context/Context";
 
 const AdPage = ({ product, noAccordion, isDemo }) => {
+	const { formData } = useContextBM();
 	const [currentProduct, setCurrentProduct] = useState({});
 	const location = useLocation();
 	const { categoryId, adId } = useParams();
@@ -23,12 +25,26 @@ const AdPage = ({ product, noAccordion, isDemo }) => {
 	const [image, setImage] = useState(null);
 
 	useEffect(() => {
-		console.log(product);
 		if (product) {
-			setCurrentProduct(product);
+			console.log(product);
+			const ad = {
+				adTitle: formData.adTitle,
+				category: formData.category,
+				description: formData.description,
+				imageURL: formData.image,
+				minimumQuantity: formData.minimumQuantity,
+				price: formData.price,
+				sellerCompany: formData.sellerCompany,
+				sellerEmail: formData.sellerEmail,
+				sellerName: formData.sellerName,
+				sellerPhone: formData.sellerPhone,
+			};
+			setCurrentProduct(ad);
+			setImage(ad.imageURL);
 			console.log("first");
 		} else if (location.state != null) {
 			setCurrentProduct(location.state.product);
+			console.log(location.state.product);
 			console.log("second");
 		} else {
 			console.log("third");
@@ -86,17 +102,20 @@ const AdPage = ({ product, noAccordion, isDemo }) => {
 		}
 
 		window.scrollTo(0, 0);
-	}, []);
+	}, [formData]);
 
-	useEffect(() => {
-		if (currentProduct.image != undefined) {
-			const reader = new FileReader();
-			reader.onloadend = () => {
-				setImage(reader.result);
-			};
-			reader.readAsDataURL(currentProduct.image[0]);
-		}
-	}, [currentProduct.image]);
+	// useEffect(() => {
+	// 	if (currentProduct.image != undefined) {
+	// 		const reader = new FileReader();
+	// 		reader.onloadend = () => {
+	// 			setImage(reader.result);
+	// 		};
+	// 		reader.readAsDataURL(currentProduct.image[0]);
+	// 	} else {
+	// 		console.log(currentProduct);
+	// 		setImage(currentProduct.imageURL);
+	// 	}
+	// }, [currentProduct]);
 
 	const faq = [
 		{
@@ -142,7 +161,9 @@ const AdPage = ({ product, noAccordion, isDemo }) => {
 						<div className={styles["image-wrapper"]}>
 							<img
 								src={
-									currentProduct.image === undefined ? imgPlaceholder : image
+									currentProduct.imageURL === undefined
+										? imgPlaceholder
+										: currentProduct.imageURL
 								}
 								alt={`${currentProduct.adTitle}`}
 							/>

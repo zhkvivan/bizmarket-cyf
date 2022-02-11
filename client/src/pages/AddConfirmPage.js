@@ -16,21 +16,15 @@ const AddConfirmPage = () => {
 		}
 	});
 
-	const formDataDemo = {
-		...formData,
-	};
-
-	console.log(formDataDemo);
-	console.log(formData);
-
 	useEffect(() => {
 		if (formData.image) {
 			let image = formData.image[0];
 			const reader = new FileReader();
 			reader.readAsDataURL(image);
 			reader.onload = () => {
-				formData.image = reader.result;
-				console.log(formData.image);
+				setFormValues({
+					image: reader.result,
+				});
 			};
 			console.log(formData);
 		}
@@ -39,17 +33,6 @@ const AddConfirmPage = () => {
 	const postHandler = async (e) => {
 		e.preventDefault();
 		try {
-			setFormValues({
-				category: undefined,
-				adTitle: "",
-				description: "",
-				price: "",
-				sellerName: "",
-				sellerCompany: "",
-				sellerPhone: "",
-				sellerEmail: "",
-				minimumQuantity: "",
-			});
 			console.log(formData);
 			const response = await BizMarketApi.post("/addad", formData);
 			console.log(response);
@@ -59,6 +42,17 @@ const AddConfirmPage = () => {
 						response: response.data,
 						categoryId: formData.category,
 					},
+				});
+				setFormValues({
+					category: undefined,
+					adTitle: "",
+					description: "",
+					price: "",
+					sellerName: "",
+					sellerCompany: "",
+					sellerPhone: "",
+					sellerEmail: "",
+					minimumQuantity: "",
 				});
 			}
 		} catch (error) {
@@ -87,7 +81,7 @@ const AddConfirmPage = () => {
 				</div>
 			</div>
 			<div>
-				<AdPage noAccordion={true} product={formDataDemo} isDemo={true} />
+				<AdPage noAccordion={true} product={"formData"} isDemo={true} />
 			</div>
 		</>
 	);
