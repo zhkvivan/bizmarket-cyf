@@ -172,15 +172,15 @@ $card-width: 288px;
 	}
 
 	.price {
-		font-size: 28px;
+		font-size: 24px;
 		font-weight: 700;
 		font-variant-numeric: lining-nums;
 		@include responsive(950px) {
-			font-size: 24px;
+			font-size: 20px;
 			font-weight: 600;
 		}
 		@include responsive(815px) {
-			font-size: 20px;
+			font-size: 16px;
 		}
 	}
 }

@@ -34,6 +34,14 @@ const NavMenu = ({ place, resetDraft }) => {
 					}}
 				>
 					<NavLink
+						to="/search"
+						className={`${
+							place === "header" ? styles.link : styles["link-burger"]
+						}`}
+					>
+						Search
+					</NavLink>
+					<NavLink
 						to="/about"
 						className={`${
 							place === "header" ? styles.link : styles["link-burger"]

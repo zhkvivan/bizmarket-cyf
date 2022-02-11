@@ -20,6 +20,9 @@ const AddConfirmPage = () => {
 		...formData,
 	};
 
+	console.log(formDataDemo);
+	console.log(formData);
+
 	if (formData.image) {
 		let image = formData.image[0];
 		const reader = new FileReader();

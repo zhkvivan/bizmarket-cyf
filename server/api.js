@@ -97,7 +97,8 @@ router.post("/addad", (req, res) => {
 });
 
 router.get("/ad", (req, res) => {
-	const input = req.body;
+	const input = req.query;
+	console.log(input);
 	const parameterizedQueryValues = [input.categoryId, input.adId];
 
 	const parameterizedInsertStatement =

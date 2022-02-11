@@ -26,19 +26,22 @@ const AdPage = ({ product, noAccordion, isDemo }) => {
 		console.log(product);
 		if (product) {
 			setCurrentProduct(product);
+			console.log("first");
 		} else if (location.state != null) {
 			setCurrentProduct(location.state.product);
+			console.log("second");
 		} else {
+			console.log("third");
 			const fetchData = async () => {
 				try {
-					// const response = await BizMarketApi.get("/ad", {
-					// 	params: {
-					// 		categoryId: categoryId,
-					// 		adId: adId,
-					// 	},
-					// });
-					// console.log("inside fetchData");
-					// console.log(response);
+					const response = await BizMarketApi.get("/ad", {
+						params: {
+							categoryId: categoryId,
+							adId: adId,
+						},
+					});
+					console.log("inside fetchData");
+					console.log(response.data.results[0]);
 					const adExpamle = {
 						id: 1,
 						adTitle: "Iphone",
@@ -57,7 +60,24 @@ const AdPage = ({ product, noAccordion, isDemo }) => {
 						sellerEmail: "test@bizmarket.com",
 						sellerPhone: "34340688",
 					};
-					setCurrentProduct(adExpamle);
+					const ad = {
+						id: response.data.results[0].id,
+						adTitle: response.data.results[0].adtitle,
+						sellerName: response.data.results[0].sellername,
+						sellerCompany: response.data.results[0].sellercompany,
+						createdDate: response.data.results[0].createddate,
+						updatetDate: response.data.results[0].updateddate,
+						expiryDate: response.data.results[0].expirydate,
+						minimumQuantity: response.data.results[0].minquantity,
+						price: response.data.results[0].price,
+						description: response.data.results[0].description,
+						location: response.data.results[0].location,
+						imageURL: response.data.results[0].imageurl,
+						categoryId: response.data.results[0].categoryid,
+						sellerEmail: response.data.results[0].selleremail,
+						sellerPhone: response.data.results[0].sellerphone,
+					};
+					setCurrentProduct(ad);
 				} catch (error) {
 					console.error(error);
 				}
@@ -103,89 +123,93 @@ const AdPage = ({ product, noAccordion, isDemo }) => {
 
 	return (
 		<>
-			<div className={`${styles.container}`}>
-				<div className={styles["top-info"]}>
-					<div className={styles.heading}>
-						<h1 className={styles.h1}>{currentProduct.adTitle}</h1>
-						<div className={styles.price}>
-							from <span>£ {currentProduct.price}</span>
+			{currentProduct && (
+				<div className={`${styles.container}`}>
+					<div className={styles["top-info"]}>
+						<div className={styles.heading}>
+							<h1 className={styles.h1}>{currentProduct.adTitle}</h1>
+							<div className={styles.price}>
+								from <span>£ {currentProduct.price}</span>
+							</div>
 						</div>
-					</div>
-					<img
-						src={iconHeart}
-						alt="Heart icon"
-						className={styles["icon-heart"]}
-					/>
-				</div>
-				<div className={styles["middle-inner"]}>
-					<div className={styles["image-wrapper"]}>
 						<img
-							src={currentProduct.image === undefined ? imgPlaceholder : image}
-							alt={`${currentProduct.adTitle}`}
+							src={iconHeart}
+							alt="Heart icon"
+							className={styles["icon-heart"]}
 						/>
 					</div>
-					<div className={`${styles["seller-info"]}`}>
-						<div className={styles["seller-name-wrapper"]}>
-							<div className={styles["seller-img"]}>
-								<div className={styles["seller-pic"]}></div>
-							</div>
-							<div className={styles["seller-name-inner"]}>
-								<span className={styles["seller-name"]}>
-									{currentProduct.sellerName}
-								</span>
-								<span className={styles["seller-company"]}>
-									{currentProduct.sellerCompany
-										? currentProduct.sellerCompany
-										: ""}
-								</span>
-							</div>
+					<div className={styles["middle-inner"]}>
+						<div className={styles["image-wrapper"]}>
+							<img
+								src={
+									currentProduct.image === undefined ? imgPlaceholder : image
+								}
+								alt={`${currentProduct.adTitle}`}
+							/>
 						</div>
-						<div className={styles["contact-info"]}>
-							<h3 className={styles["contact-info-title"]}>Contact seller</h3>
-							<div className={styles.communications}>
-								<span className={styles["seller-phone"]}>
-									{currentProduct.sellerPhone}
-								</span>
-								<span className={styles["seller-email"]}>
-									<a
-										href={`mailto:${currentProduct.sellerEmail}?subject=Question about ${currentProduct.adTitle} from BizMarket`}
-									>
-										{currentProduct.sellerEmail}
-									</a>
-								</span>
+						<div className={`${styles["seller-info"]}`}>
+							<div className={styles["seller-name-wrapper"]}>
+								<div className={styles["seller-img"]}>
+									<div className={styles["seller-pic"]}></div>
+								</div>
+								<div className={styles["seller-name-inner"]}>
+									<span className={styles["seller-name"]}>
+										{currentProduct.sellerName}
+									</span>
+									<span className={styles["seller-company"]}>
+										{currentProduct.sellerCompany
+											? currentProduct.sellerCompany
+											: ""}
+									</span>
+								</div>
 							</div>
+							<div className={styles["contact-info"]}>
+								<h3 className={styles["contact-info-title"]}>Contact seller</h3>
+								<div className={styles.communications}>
+									<span className={styles["seller-phone"]}>
+										{currentProduct.sellerPhone}
+									</span>
+									<span className={styles["seller-email"]}>
+										<a
+											href={`mailto:${currentProduct.sellerEmail}?subject=Question about ${currentProduct.adTitle} from BizMarket`}
+										>
+											{currentProduct.sellerEmail}
+										</a>
+									</span>
+								</div>
 
-							<div className={styles["message-wrapper"]}>
-								<textarea
-									className={styles.message}
-									value={emailText}
-									onChange={textAreaHandler}
-								></textarea>
-								<div className={styles["btn-wrap"]}>
-									<a
-										href={`mailto:${currentProduct.sellerEmail}?subject=Question about ${currentProduct.adTitle} from BizMarket&body=${emailText}`}
-									>
-										Send an email
-									</a>
+								<div className={styles["message-wrapper"]}>
+									<textarea
+										className={styles.message}
+										value={emailText}
+										onChange={textAreaHandler}
+									></textarea>
+									<div className={styles["btn-wrap"]}>
+										<a
+											href={`mailto:${currentProduct.sellerEmail}?subject=Question about ${currentProduct.adTitle} from BizMarket&body=${emailText}`}
+										>
+											Send an email
+										</a>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div className={styles["under-photo"]}>
-					<div className={styles["description"]}>
-						<p>{currentProduct.description}</p>
-					</div>
-					<div className={`${styles.details}`}>
-						<div className={styles["details-header"]}>Details</div>
-						<div className={styles["details-string"]}>
-							<span>Minimum order quantity</span>
-							<span>{currentProduct.minimumQuantity}</span>
+					<div className={styles["under-photo"]}>
+						<div className={styles["description"]}>
+							<p>{currentProduct.description}</p>
+						</div>
+						<div className={`${styles.details}`}>
+							<div className={styles["details-header"]}>Details</div>
+							<div className={styles["details-string"]}>
+								<span>Minimum order quantity</span>
+								<span>{currentProduct.minimumQuantity}</span>
+							</div>
 						</div>
 					</div>
+					{noAccordion ? "" : <Accordion faq={faq} />}
 				</div>
-				{noAccordion ? "" : <Accordion faq={faq} />}
-			</div>
+			)}
 		</>
 	);
 };

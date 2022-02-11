@@ -36,7 +36,6 @@ const AdCard = ({ ad }) => {
 	return (
 		<div className={styles.outer}>
 			<Link
-				// to={`${location.pathname}/${product.id}`}
 				to={`/category/${product.categoryId}/${categoryLink}/${product.id}`}
 				className={styles.link}
 				state={{
