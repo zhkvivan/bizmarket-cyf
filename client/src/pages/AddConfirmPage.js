@@ -9,15 +9,31 @@ const AddConfirmPage = () => {
 	const navigate = useNavigate();
 	const { formData, setFormData, setFormValues } = useContextBM();
 
+	console.log(formData);
 	useEffect(() => {
 		if (formData.adTitle.length === 0) {
 			navigate("/no-draft");
 		}
 	});
 
+	const formDataDemo = {
+		...formData,
+	};
+
+	if (formData.image) {
+		let image = formData.image[0];
+		const reader = new FileReader();
+		reader.readAsDataURL(image);
+		reader.onload = () => {
+			formData.image = reader.result;
+		};
+		console.log(formData);
+	}
+
 	const postHandler = async () => {
 		try {
 			console.log(formData);
+
 			const response = await BizMarketApi.post("/addad", formData);
 			console.log(response);
 			if (response.status === 201) {
@@ -54,7 +70,7 @@ const AddConfirmPage = () => {
 				</div>
 			</div>
 			<div>
-				<AdPage noAccordion={true} product={formData} isDemo={true} />
+				<AdPage noAccordion={true} product={formDataDemo} isDemo={true} />
 			</div>
 		</>
 	);

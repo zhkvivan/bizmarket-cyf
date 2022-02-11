@@ -37,7 +37,7 @@ INSERT INTO adListing(
     'person@forsurerealbusiness.com',
     current_timestamp,
     current_timestamp,
-    '£3.99',
+    '3.99',
     '4000',
     '6',
     'Ginger cats for sale (I know 6 cats is a lot for a minimum order but I want to get rid of them).',

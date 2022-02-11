@@ -172,8 +172,8 @@ $card-width: 288px;
 	}
 
 	.price {
-		font-size: 32px;
-		font-weight: 500;
+		font-size: 28px;
+		font-weight: 700;
 		font-variant-numeric: lining-nums;
 		@include responsive(950px) {
 			font-size: 24px;

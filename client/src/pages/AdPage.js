@@ -76,8 +76,6 @@ const AdPage = ({ product, noAccordion, isDemo }) => {
 			};
 			reader.readAsDataURL(currentProduct.image[0]);
 		}
-		console.log(image);
-		console.log(location);
 	}, [currentProduct.image]);
 
 	const faq = [

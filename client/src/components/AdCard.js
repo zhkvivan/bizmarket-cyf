@@ -5,9 +5,28 @@ import { Link, useLocation } from "react-router-dom";
 import AdPage from "../pages/AdPage";
 import { useContextBM } from "../context/Context";
 
-const AdCard = ({ product }) => {
+const AdCard = ({ ad }) => {
 	const { categories } = useContextBM();
 
+	const product = {
+		id: ad.id,
+		adTitle: ad.adtitle,
+		sellerName: ad.sellername,
+		sellerCompany: ad.sellercompany,
+		createdDate: ad.createddate,
+		updatetDate: ad.updateddate,
+		expiryDate: ad.expirydate,
+		minimumQuantity: ad.minquantity,
+		price: ad.price,
+		description: ad.description,
+		location: ad.location,
+		imageURL: ad.imageurl,
+		categoryId: ad.categoryid,
+		sellerEmail: ad.selleremail,
+		sellerPhone: ad.sellerphone,
+	};
+
+	console.log(product);
 	const categoryLink = categories.filter(
 		(category) => category.id === product.categoryId
 	)[0].link;
