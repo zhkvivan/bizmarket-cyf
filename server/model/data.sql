@@ -45,3 +45,35 @@ INSERT INTO adListing(
     'https://placekitten.com/g/200/300',
     9
 );
+
+INSERT INTO adListing(
+    adTitle, 
+    sellerName, 
+    sellerCompany, 
+    sellerPhone, 
+    sellerEmail, 
+    createdDate, 
+    expiryDate, 
+    price, 
+    quantity, 
+    minQuantity, 
+    description, 
+    location, 
+    imageUrl, 
+    categoryId
+) VALUES(
+    'iPhones', 
+    'Tim Cook', 
+    'Apple', 
+    '+ 44 0000 000 000',
+    'person@forsurerealbusiness.com',
+    current_timestamp,
+    current_timestamp,
+    '399',
+    '4000',
+    '60',
+    'Ginger cats for sale (I know 6 cats is a lot for a minimum order but I want to get rid of them).',
+    'Glasgow',
+    'https://placekitten.com/g/200/300',
+    3
+);

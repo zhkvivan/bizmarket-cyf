@@ -37,7 +37,7 @@ const AdPage = ({ product, noAccordion, isDemo }) => {
 					// 		adId: adId,
 					// 	},
 					// });
-					console.log("inside fetchData");
+					// console.log("inside fetchData");
 					// console.log(response);
 					const adExpamle = {
 						id: 1,

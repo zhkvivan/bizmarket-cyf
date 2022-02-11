@@ -26,12 +26,9 @@ const AdCard = ({ ad }) => {
 		sellerPhone: ad.sellerphone,
 	};
 
-	console.log(product);
 	const categoryLink = categories.filter(
 		(category) => category.id === product.categoryId
 	)[0].link;
-
-	console.log(categoryLink);
 
 	const location = useLocation();
 	const showDetailsRef = useRef();

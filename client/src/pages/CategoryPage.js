@@ -21,6 +21,14 @@ const CategoryPage = () => {
 		filterByPrice,
 	} = useContextBM();
 
+	if (categories.length > 0) {
+		const category = categories.filter(
+			(category) => category.id === +categoryId
+		)[0];
+
+		setCurrentCategory(category);
+	}
+
 	const [sortWay, setSortWay] = useState("most popular");
 
 	let min, max;
@@ -48,22 +56,18 @@ const CategoryPage = () => {
 	}
 
 	useEffect(() => {
-		if (categories.length > 0) {
-			const category = categories.filter(
-				(category) => category.id === +categoryId
-			)[0];
-
-			setCurrentCategory(category);
-		}
 		window.scrollTo(0, 0);
+	}, []);
+
+	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				// const response = await BizMarketApi.get("/category", {
-				// 	params: {
-				// 		categoryId: currentCategory.id,
-				// 	},
-				// });
-				// console.log(response);
+				const response = await BizMarketApi.get("/category", {
+					params: {
+						queryString: "queryString",
+						categoryId: categoryId,
+					},
+				});
 
 				const mockResponse = [
 					{
@@ -152,15 +156,20 @@ const CategoryPage = () => {
 						sellerPhone: "3434t34634",
 					},
 				];
+				// setCurrentSearchResult(mockResponse);
 
-				setCurrentSearchResult(mockResponse);
-				// setCurrentSearchResult(Data);
+				console.log(response.data.results);
+				if (response.data.results.length === 0) {
+					setCurrentSearchResult(null);
+				} else {
+					setCurrentSearchResult(response.data.results);
+				}
 			} catch (error) {
 				console.error(error);
 			}
 		};
 		fetchData();
-	}, []);
+	}, [currentCategory]);
 
 	const handleFiltersOpen = () => {
 		isFilterOpen ? setIsFilterOpen(false) : setIsFilterOpen(true);
@@ -198,7 +207,7 @@ const CategoryPage = () => {
 								return (
 									<>
 										{ad.price >= min && ad.price <= max ? (
-											<AdCard product={ad} key={ad.id} />
+											<AdCard ad={ad} key={ad.id} />
 										) : null}
 									</>
 								);

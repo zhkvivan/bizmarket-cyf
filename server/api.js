@@ -98,9 +98,10 @@ router.post("/addad", (req, res) => {
 
 router.get("/ad", (req, res) => {
 	const input = req.body;
-	const parameterizedQueryValues = [input];
+	const parameterizedQueryValues = [input.categoryId, input.adId];
 
-	const parameterizedInsertStatement = `SELECT * FROM adListing WHERE id = $1 and where categoryId = $2`;
+	const parameterizedInsertStatement =
+		"SELECT * FROM adListing WHERE categoryId = $1 and id = $2";
 	db.query(parameterizedInsertStatement, parameterizedQueryValues)
 		.then((result) => {
 			//console.debug("successfully got the ads", result.rows);
@@ -119,7 +120,8 @@ router.get("/ad", (req, res) => {
 		});
 });
 
-router.get("/viewads", (_, res) => {
+router.get("/viewads", (req, res) => {
+	console.log(req);
 	db.query(
 		// "SELECT ad.adTitle, ad.sellerName, ad.sellerCompany,ad.sellerPhone,ad.sellerEmail,ad.expiryDate,ad.price,ad.quantity,ad.minQuantity,ad.description,ad.location,ad.imageURL,cat.id,cat.name FROM adListing  ad INNER JOIN  category  cat ON  ad.categoryId=cat.Id"
 		"SELECT * from adListing"
@@ -127,6 +129,54 @@ router.get("/viewads", (_, res) => {
 		.then((result) => {
 			//onsole.debug(result);
 			if (result.rows.length > 0) {
+				res.status(200).send({ results: result.rows });
+			}
+		})
+		.catch((error) => {
+			console.error("Failed to get all ads", error);
+			res
+				.status(500)
+				.json({ message: "Oh, no! Something went wrong... Sorry about that!" });
+		});
+});
+
+// router.get("/one_cat", (req, res) => {
+// 	const input = req.body;
+
+// 	console.log(input);
+// 	const parameterizedQueryValues = [input.categoryId];
+
+// 	const parameterizedInsertStatement =
+// 		"SELECT * FROM adListing WHERE categoryId = $1";
+
+// 	db.query(parameterizedInsertStatement, parameterizedQueryValues)
+// 		.then((result) => {
+// 			//onsole.debug(result);
+// 			if (result.rows.length > 0) {
+// 				res.status(200).send({ results: result.rows });
+// 			}
+// 		})
+// 		.catch((error) => {
+// 			console.error("Failed to get all ads", error);
+// 			res
+// 				.status(500)
+// 				.json({ message: "Oh, no! Something went wrong... Sorry about that!" });
+// 		});
+// });
+
+router.get("/category", (req, res) => {
+	const input = req;
+
+	console.log("input query - ", input.query);
+	const parameterizedQueryValues = [input.query.categoryId];
+
+	const parameterizedInsertStatement =
+		"SELECT * FROM adListing WHERE categoryId = $1";
+
+	db.query(parameterizedInsertStatement, parameterizedQueryValues)
+		.then((result) => {
+			//onsole.debug(result);
+			if (result.rows) {
 				res.status(200).send({ results: result.rows });
 			}
 		})
