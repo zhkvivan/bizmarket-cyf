@@ -1,10 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 import styles from "./Hero.module.scss";
 
 const Hero = () => {
+	const navigate = useNavigate();
 	const openRegisterPopup = () => {
-		console.log("Popup should be opend");
+		navigate("add-new-ad");
 	};
 	return (
 		<section className={styles.hero}>
@@ -13,7 +15,7 @@ const Hero = () => {
 				<p className={styles["description"]}>
 					Post your ads. Find new buyers. Buy from 10 pieces.
 				</p>
-				<Button label={"Create Your Store"} action={openRegisterPopup} />
+				<Button label={"Post new Ad"} action={openRegisterPopup} />
 			</div>
 		</section>
 	);
