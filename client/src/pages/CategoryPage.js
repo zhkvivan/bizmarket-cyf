@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import Breadcrumbs from "../components/Breadcrumbs";
 import styles from "./CategoryPage.module.scss";
 import { useContextBM } from "../context/Context";
 import BizMarketApi from "../api/BizMarketApi";
 import AdCard from "../components/AdCard";
 import Filters from "../components/Filters";
+import { Slider } from "../components/Slider";
 
 const CategoryPage = () => {
 	const { categoryId } = useParams();
@@ -68,97 +69,6 @@ const CategoryPage = () => {
 						categoryId: categoryId,
 					},
 				});
-
-				const mockResponse = [
-					{
-						id: 1,
-						adTitle: "Sugar",
-						sellerName: "John Doe",
-						sellerCompany: "Food LTD",
-						createdDate: "",
-						updatetDate: "",
-						expiryDate: "",
-						minimumQuantity: "",
-						price: 5,
-						description: "Sugar - very good sugar!",
-						location: "",
-						imageURL: undefined,
-						categoryId: 1,
-						sellerEmail: "test@bizmarket.com",
-						sellerPhone: "3434t34634",
-					},
-					{
-						id: 4,
-						adTitle: "Chicken nuggets coca cola burgers pepsi fries",
-						sellerName: "John Doe",
-						sellerCompany: "Food LTD",
-						createdDate: "",
-						updatetDate: "",
-						expiryDate: "",
-						minimumQuantity: "",
-						price: 5,
-						description: "Sugar - very good sugar!",
-						location: "",
-						imageURL: undefined,
-						categoryId: 1,
-						sellerEmail: "test@bizmarket.com",
-						sellerPhone: "3434t34634",
-					},
-					{
-						id: 3,
-						adTitle: "Chicken nuggets coca cola burgers pepsi fries",
-						sellerName: "John Doe",
-						sellerCompany: "Food LTD",
-						createdDate: "",
-						updatetDate: "",
-						expiryDate: "",
-						minimumQuantity: "",
-						price: 5,
-						description: "Sugar - very good sugar!",
-						location: "",
-						imageURL: undefined,
-						categoryId: 1,
-						sellerEmail: "test@bizmarket.com",
-						sellerPhone: "3434t34634",
-					},
-					{
-						id: 433,
-						adTitle: "Chicken nuggets coca cola burgers pepsi fries",
-						sellerName: "John Doe",
-						sellerCompany: "Food LTD",
-						createdDate: "",
-						updatetDate: "",
-						expiryDate: "",
-						minimumQuantity: "",
-						price: 50,
-						description: "Sugar - very good sugar!",
-						location: "",
-						imageURL: undefined,
-						categoryId: 1,
-						sellerEmail: "test@bizmarket.com",
-						sellerPhone: "3434t34634",
-					},
-					{
-						id: 41,
-						adTitle: "iMac 2022",
-						sellerName: "Tim Cook",
-						sellerCompany: "Food LTD",
-						createdDate: "",
-						updatetDate: "",
-						expiryDate: "",
-						minimumQuantity: "",
-						price: 540,
-						description: "Sugar - very good sugar!",
-						location: "",
-						imageURL: undefined,
-						categoryId: 1,
-						sellerEmail: "test@bizmarket.com",
-						sellerPhone: "3434t34634",
-					},
-				];
-				// setCurrentSearchResult(mockResponse);
-
-				console.log(response.data.results);
 				if (response.data.results.length === 0) {
 					setCurrentSearchResult(null);
 				} else {
@@ -179,50 +89,55 @@ const CategoryPage = () => {
 		<div className={styles.container}>
 			{/* <Breadcrumbs /> */}
 			<div className={styles.inner}>
-				<Filters />
 				{currentSearchResult && currentCategory ? (
-					<div className={styles.content}>
-						<div className={styles["top-bar"]}>
-							<h1 className={styles.h1}>
-								Most recent ads in category {currentCategory.name}
-							</h1>
-							<div className={styles.options}>
-								<span
-									onClick={handleFiltersOpen}
-									className={styles["filters-toggle"]}
-								>
-									Filters
-								</span>
-								<div className={styles["sort-wrap"]}>
-									<span>Sort by: </span>
-									<span> {sortWay}</span>
+					<>
+						<Filters />
+						<div className={styles.content}>
+							<div className={styles["top-bar"]}>
+								<h1 className={styles.h1}>
+									Most recent ads in category {currentCategory.name}
+								</h1>
+								<div className={styles.options}>
+									<span
+										onClick={handleFiltersOpen}
+										className={styles["filters-toggle"]}
+									>
+										Filters
+									</span>
+									<div className={styles["sort-wrap"]}>
+										<span>Sort by: </span>
+										<span> {sortWay}</span>
+									</div>
 								</div>
 							</div>
+							<div className={styles.ads}>
+								{currentSearchResult.map((ad) => {
+									return (
+										<>
+											{ad.price >= min && ad.price <= max ? (
+												<AdCard ad={ad} key={ad.id} />
+											) : null}
+										</>
+									);
+								})}
+							</div>
 						</div>
-						<div className={styles.ads}>
-							{/* {currentSearchResult.map((ad) => {
-								return <AdCard product={ad} key={ad.id} />;
-							})} */}
-							{currentSearchResult.map((ad) => {
-								return (
-									<>
-										{ad.price >= min && ad.price <= max ? (
-											<AdCard ad={ad} key={ad.id} />
-										) : null}
-									</>
-								);
-							})}
-							{/* {data.map((item, index) => (
-								<div key={index}>
-									{item.price >= min && item.price <= max ? (
-										<Cards props={item} />
-									) : null}
-								</div>
-							))} */}
-						</div>
-					</div>
+					</>
 				) : (
-					"Nothing"
+					<div className={styles["no-results-wrap"]}>
+						<div className={styles["no-results-inner"]}>
+							<h2>
+								{`There are no ads in category ${
+									currentCategory && currentCategory.name
+								}.`}
+							</h2>
+							<h3>Try to choose another one</h3>
+							{/* <Link to="/" className={styles.btn}>
+								To All Categories
+							</Link> */}
+						</div>
+						<Slider />
+					</div>
 				)}
 			</div>
 		</div>

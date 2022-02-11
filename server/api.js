@@ -165,17 +165,15 @@ router.get("/viewads", (req, res) => {
 // });
 
 router.get("/category", (req, res) => {
-	const input = req;
+	const input = req.query;
 
-	console.log("input query - ", input.query);
-	const parameterizedQueryValues = [input.query.categoryId];
+	const parameterizedQueryValues = [input.categoryId];
 
 	const parameterizedInsertStatement =
 		"SELECT * FROM adListing WHERE categoryId = $1";
 
 	db.query(parameterizedInsertStatement, parameterizedQueryValues)
 		.then((result) => {
-			//onsole.debug(result);
 			if (result.rows) {
 				res.status(200).send({ results: result.rows });
 			}
