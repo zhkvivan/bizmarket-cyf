@@ -80,6 +80,8 @@ router.post("/addad", (req, res) => {
 		input.category,
 	];
 
+	console.log(input.image);
+
 	db.query(parameterizedInsertStatement, parameterizedQueryValues)
 		.then((result) => {
 			console.debug("Successfully created ad", result.rows);
@@ -169,8 +171,6 @@ router.get("/search", (req, res) => {
 
 	let parameterizedQueryValues = [];
 	let parameterizedInsertStatement;
-
-	console.log(typeof input.categoryId);
 
 	if (+input.categoryId === 0) {
 		parameterizedQueryValues = [searchQuery];

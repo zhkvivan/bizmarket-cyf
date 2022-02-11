@@ -46,6 +46,7 @@ const AddConfirmPage = () => {
 				sellerEmail: "",
 				minimumQuantity: "",
 			});
+			console.log(formData);
 			const response = await BizMarketApi.post("/addad", formData);
 			console.log(response);
 			if (response.status === 201) {

@@ -105,8 +105,8 @@ const CategoryPage = () => {
 										Filters
 									</span>
 									<div className={styles["sort-wrap"]}>
-										<span>Sort by: </span>
-										<span> {sortWay}</span>
+										{/* <span>Sort by: </span>
+										<span> {sortWay}</span> */}
 									</div>
 								</div>
 							</div>

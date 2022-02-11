@@ -132,11 +132,11 @@ const AdPage = ({ product, noAccordion, isDemo }) => {
 								from <span>£ {currentProduct.price}</span>
 							</div>
 						</div>
-						<img
+						{/* <img
 							src={iconHeart}
 							alt="Heart icon"
 							className={styles["icon-heart"]}
-						/>
+						/> */}
 					</div>
 					<div className={styles["middle-inner"]}>
 						<div className={styles["image-wrapper"]}>
