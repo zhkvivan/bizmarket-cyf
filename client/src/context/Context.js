@@ -45,7 +45,7 @@ export const ContextProvider = ({ children }) => {
 	const [currentCategory, setCurrentCategory] = useState(null);
 
 	// Saving current search result
-	const [currentSearchResult, setCurrentSearchResult] = useState(null);
+	const [currentSearchResult, setCurrentSearchResult] = useState([]);
 
 	// Setting up filter opening mechanism
 	const [isFilterOpen, setIsFilterOpen] = useState(false);

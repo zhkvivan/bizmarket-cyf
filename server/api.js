@@ -140,30 +140,6 @@ router.get("/viewads", (req, res) => {
 		});
 });
 
-// router.get("/one_cat", (req, res) => {
-// 	const input = req.body;
-
-// 	console.log(input);
-// 	const parameterizedQueryValues = [input.categoryId];
-
-// 	const parameterizedInsertStatement =
-// 		"SELECT * FROM adListing WHERE categoryId = $1";
-
-// 	db.query(parameterizedInsertStatement, parameterizedQueryValues)
-// 		.then((result) => {
-// 			//onsole.debug(result);
-// 			if (result.rows.length > 0) {
-// 				res.status(200).send({ results: result.rows });
-// 			}
-// 		})
-// 		.catch((error) => {
-// 			console.error("Failed to get all ads", error);
-// 			res
-// 				.status(500)
-// 				.json({ message: "Oh, no! Something went wrong... Sorry about that!" });
-// 		});
-// });
-
 router.get("/category", (req, res) => {
 	const input = req.query;
 
@@ -171,6 +147,39 @@ router.get("/category", (req, res) => {
 
 	const parameterizedInsertStatement =
 		"SELECT * FROM adListing WHERE categoryId = $1";
+
+	db.query(parameterizedInsertStatement, parameterizedQueryValues)
+		.then((result) => {
+			if (result.rows) {
+				res.status(200).send({ results: result.rows });
+			}
+		})
+		.catch((error) => {
+			console.error("Failed to get all ads", error);
+			res
+				.status(500)
+				.json({ message: "Oh, no! Something went wrong... Sorry about that!" });
+		});
+});
+
+router.get("/search", (req, res) => {
+	const input = req.query;
+	const searchQuery = `%${input.query}%`;
+
+	let parameterizedQueryValues = [];
+	let parameterizedInsertStatement;
+
+	console.log(typeof input.categoryId);
+
+	if (+input.categoryId === 0) {
+		parameterizedQueryValues = [searchQuery];
+		parameterizedInsertStatement =
+			"SELECT * FROM adListing WHERE LOWER(adTitle) LIKE LOWER($1)";
+	} else {
+		parameterizedQueryValues = [input.categoryId, searchQuery];
+		parameterizedInsertStatement =
+			"SELECT * FROM adListing WHERE categoryId = $1 AND LOWER(adTitle) LIKE LOWER($2)";
+	}
 
 	db.query(parameterizedInsertStatement, parameterizedQueryValues)
 		.then((result) => {

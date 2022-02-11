@@ -25,8 +25,6 @@ const SearchResultPage = () => {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const queryString = searchParams.get("query");
 	const categoryId = searchParams.get("categoryId");
-
-	console.log(categoryId);
 	let categoryName;
 	if (categoryId && categoryId !== "0") {
 		categoryName = categories.filter(
@@ -34,14 +32,12 @@ const SearchResultPage = () => {
 		)[0].name;
 	}
 
-	console.log(categoryName);
-
 	const location = useLocation();
 	const navigate = useNavigate();
 
 	// Filter set up
 	let min, max;
-	if (currentSearchResult) {
+	if (currentSearchResult.length > 0) {
 		max =
 			filterByPrice.max === 0
 				? currentSearchResult
@@ -66,19 +62,36 @@ const SearchResultPage = () => {
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
-		const fetchData = async () => {
+		const fetchAllAds = async () => {
 			try {
-				const response = await BizMarketApi.get("/viewads", {
-					queryString: queryString,
-					categoryId: categoryId,
-				});
+				const response = await BizMarketApi.get("/viewads");
 				setCurrentSearchResult(response.data.results);
 			} catch (error) {
 				console.error(error);
 			}
 		};
-		fetchData();
-	}, []);
+		const fetchSearch = async () => {
+			try {
+				const response = await BizMarketApi.get("/search", {
+					params: {
+						query: queryString,
+						categoryId: categoryId,
+					},
+				});
+				console.log(response.data.results);
+				setCurrentSearchResult(response.data.results);
+			} catch (error) {
+				console.error(error);
+			}
+		};
+		if (queryString != null || categoryId != null) {
+			console.log("конкретный поиск");
+			fetchSearch();
+		} else {
+			console.log("общий поиск");
+			fetchAllAds();
+		}
+	}, [queryString, categoryId]);
 
 	const handleFiltersOpen = () => {
 		isFilterOpen ? setIsFilterOpen(false) : setIsFilterOpen(true);
@@ -89,7 +102,7 @@ const SearchResultPage = () => {
 		<div className={styles.container}>
 			<div className={styles.inner}>
 				<Filters />
-				{currentSearchResult ? (
+				{currentSearchResult.length > 0 ? (
 					<div className={styles.content}>
 						<div className={styles["top-bar"]}>
 							<h1 className={styles.h1}>

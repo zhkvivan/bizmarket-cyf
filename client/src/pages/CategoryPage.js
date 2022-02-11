@@ -65,7 +65,6 @@ const CategoryPage = () => {
 			try {
 				const response = await BizMarketApi.get("/category", {
 					params: {
-						queryString: "queryString",
 						categoryId: categoryId,
 					},
 				});
