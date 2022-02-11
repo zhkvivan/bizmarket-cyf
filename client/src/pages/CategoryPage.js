@@ -33,7 +33,8 @@ const CategoryPage = () => {
 	const [sortWay, setSortWay] = useState("most popular");
 
 	let min, max;
-	if (currentSearchResult) {
+	console.log(currentSearchResult);
+	if (currentSearchResult.length > 0) {
 		max =
 			filterByPrice.max === 0
 				? currentSearchResult
@@ -69,7 +70,7 @@ const CategoryPage = () => {
 					},
 				});
 				if (response.data.results.length === 0) {
-					setCurrentSearchResult(null);
+					setCurrentSearchResult([]);
 				} else {
 					setCurrentSearchResult(response.data.results);
 				}
@@ -88,7 +89,7 @@ const CategoryPage = () => {
 		<div className={styles.container}>
 			{/* <Breadcrumbs /> */}
 			<div className={styles.inner}>
-				{currentSearchResult && currentCategory ? (
+				{currentSearchResult.length > 0 && currentCategory ? (
 					<>
 						<Filters />
 						<div className={styles.content}>

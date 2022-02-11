@@ -20,6 +20,7 @@ const SearchResultPage = () => {
 		isFilterOpen,
 		setIsFilterOpen,
 		filterByPrice,
+		setFormValues,
 	} = useContextBM();
 
 	const [searchParams, setSearchParams] = useSearchParams();
@@ -62,6 +63,17 @@ const SearchResultPage = () => {
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
+		setFormValues({
+			category: undefined,
+			adTitle: "",
+			description: "",
+			price: "",
+			sellerName: "",
+			sellerCompany: "",
+			sellerPhone: "",
+			sellerEmail: "",
+			minimumQuantity: "",
+		});
 		const fetchAllAds = async () => {
 			try {
 				const response = await BizMarketApi.get("/viewads");

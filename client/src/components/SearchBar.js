@@ -9,7 +9,7 @@ import stylesHome from "./SearchBarHomePage.module.scss";
 const SearchBar = () => {
 	const location = useLocation();
 	const navigate = useNavigate();
-	const { categories } = useContextBM();
+	const { categories, setFormValues } = useContextBM();
 
 	let styles = {
 		...stylesHeader,

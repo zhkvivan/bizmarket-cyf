@@ -32,8 +32,17 @@ const AddConfirmPage = () => {
 
 	const postHandler = async () => {
 		try {
-			console.log(formData);
-
+			setFormValues({
+				category: undefined,
+				adTitle: "",
+				description: "",
+				price: "",
+				sellerName: "",
+				sellerCompany: "",
+				sellerPhone: "",
+				sellerEmail: "",
+				minimumQuantity: "",
+			});
 			const response = await BizMarketApi.post("/addad", formData);
 			console.log(response);
 			if (response.status === 201) {
