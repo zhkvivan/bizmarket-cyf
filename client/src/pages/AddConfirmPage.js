@@ -18,11 +18,14 @@ const AddConfirmPage = () => {
 	const postHandler = async () => {
 		try {
 			console.log(formData);
-			const response = await BizMarketApi.post("/ad", formData);
+			const response = await BizMarketApi.post("/addad", formData);
 			console.log(response);
 			if (response.status === 201) {
 				navigate("/congratulations", {
-					state: response.data,
+					state: {
+						response: response.data,
+						categoryId: formData.category,
+					},
 				});
 			}
 		} catch (error) {

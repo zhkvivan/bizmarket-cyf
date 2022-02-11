@@ -15,6 +15,7 @@ const CongratulationPage = () => {
 		!location.state && navigate("/");
 	}, []);
 
+	console.log(location.state);
 	const newAdInfo = {
 		categoryId: location.state && location.state.categoryId,
 		categoryLink:
@@ -22,7 +23,7 @@ const CongratulationPage = () => {
 			categories.filter(
 				(category) => category.id === +location.state.categoryId
 			)[0].link,
-		adId: location.state && location.state.adId,
+		adId: location.state && location.state.response.ad.id,
 	};
 
 	const backButtonHandler = () => {

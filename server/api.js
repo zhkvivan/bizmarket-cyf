@@ -63,7 +63,7 @@ router.post("/addad", (req, res) => {
 			location, 
 			imageURL, 
 			categoryId) 
-		VALUES($1, $2, $3, $4, $5, current_timestamp, current_timestamp, $6, $7, $8, $9, $10, $11, $12);`;
+		VALUES($1, $2, $3, $4, $5, current_timestamp, current_timestamp, $6, $7, $8, $9, $10, $11, $12) RETURNING id, categoryId;`;
 
 	const parameterizedQueryValues = [
 		input.adTitle,
@@ -77,13 +77,16 @@ router.post("/addad", (req, res) => {
 		input.description,
 		input.location,
 		input.imageURL,
-		input.categoryId,
+		input.category,
 	];
 
 	db.query(parameterizedInsertStatement, parameterizedQueryValues)
 		.then((result) => {
 			console.debug("Successfully created ad", result.rows);
-			res.status(201).json({ message: "Ad created successfully" }); //, categoryId: 1, adId: 35 });
+			res.status(201).json({
+				message: "Ad created successfully",
+				ad: result.rows[0],
+			});
 		})
 		.catch((error) => {
 			console.error("Failed to create new Ad ", error);
