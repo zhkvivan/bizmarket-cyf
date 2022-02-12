@@ -140,10 +140,10 @@ const SearchResultPage = () => {
 								>
 									Filters
 								</span>
-								<div className={styles["sort-wrap"]}>
+								{/* <div className={styles["sort-wrap"]}>
 									<span>Sort by: </span>
 									<span> {sortWay}</span>
-								</div>
+								</div> */}
 							</div>
 						</div>
 						<div className={styles.inner}>

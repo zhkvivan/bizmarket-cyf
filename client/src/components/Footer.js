@@ -26,7 +26,7 @@ const Footer = () => {
 		header: "For Business",
 		lines: [
 			{ text: "Register", url: "/register" },
-			{ text: "Post an ad", url: "/post-an-ad" },
+			{ text: "Post an ad", url: "/add-new-ad" },
 			{ text: "F.A.Q.", url: "/faq" },
 		],
 	};
