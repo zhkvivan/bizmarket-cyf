@@ -9,13 +9,15 @@ const NoDraftPage = () => {
 		navigate("/add-new-ad");
 	};
 	return (
-		<div className={styles.wrapper}>
-			<h1 className={styles.h1}>Oops!</h1>
-			<p>
-				It seems that you are looking for your ad's draft? We don't have it. Try
-				to create a new one.
-			</p>
-			<Button label={"Post an Ad"} action={goToPostPage} />
+		<div className={styles.container}>
+			<div className={styles.wrapper}>
+				<h1 className={styles.h1}>Oops!</h1>
+				<p>
+					It seems that you are looking for your ad's draft? We don't have it.
+					Try to create a new one.
+				</p>
+				<Button label={"Post an Ad"} action={goToPostPage} />
+			</div>
 		</div>
 	);
 };

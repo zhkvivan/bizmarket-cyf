@@ -15,14 +15,40 @@ const AddConfirmPage = () => {
 		}
 	});
 
-	const postHandler = async () => {
+	useEffect(() => {
+		if (formData.image) {
+			let image = formData.image[0];
+			const reader = new FileReader();
+			reader.readAsDataURL(image);
+			reader.onload = () => {
+				setFormValues({
+					image: reader.result,
+				});
+			};
+		}
+	}, []);
+
+	const postHandler = async (e) => {
+		e.preventDefault();
 		try {
-			console.log(formData);
-			const response = await BizMarketApi.post("/ad", formData);
-			console.log(response);
+			const response = await BizMarketApi.post("/addad", formData);
 			if (response.status === 201) {
 				navigate("/congratulations", {
-					state: response.data,
+					state: {
+						response: response.data,
+						categoryId: formData.category,
+					},
+				});
+				setFormValues({
+					category: undefined,
+					adTitle: "",
+					description: "",
+					price: "",
+					sellerName: "",
+					sellerCompany: "",
+					sellerPhone: "",
+					sellerEmail: "",
+					minimumQuantity: "",
 				});
 			}
 		} catch (error) {
@@ -51,7 +77,7 @@ const AddConfirmPage = () => {
 				</div>
 			</div>
 			<div>
-				<AdPage noAccordion={true} product={formData} isDemo={true} />
+				<AdPage noAccordion={true} product={"formData"} isDemo={true} />
 			</div>
 		</>
 	);

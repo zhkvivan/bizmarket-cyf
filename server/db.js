@@ -13,6 +13,7 @@ const pool = new Pool({
 export const connectDb = async () => {
 	let client;
 	try {
+		
 		const sql = fs.readFileSync("./server/model/schema.sql").toString();
 		const mock = fs.readFileSync("./server/model/data.sql").toString();
 		client = await pool.connect();

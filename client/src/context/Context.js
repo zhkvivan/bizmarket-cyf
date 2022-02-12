@@ -45,11 +45,14 @@ export const ContextProvider = ({ children }) => {
 	const [currentCategory, setCurrentCategory] = useState(null);
 
 	// Saving current search result
-	const [currentSearchResult, setCurrentSearchResult] = useState(null);
+	const [currentSearchResult, setCurrentSearchResult] = useState([]);
 
 	// Setting up filter opening mechanism
 	const [isFilterOpen, setIsFilterOpen] = useState(false);
 	const [filterByPrice, setFilterByPrice] = useState({ min: 0, max: 0 });
+
+	// Setting placeholder preloader
+	const [isPreloader, setIsPreloader] = useState(true);
 
 	return (
 		<Context.Provider
@@ -68,6 +71,8 @@ export const ContextProvider = ({ children }) => {
 				setIsFilterOpen,
 				filterByPrice,
 				setFilterByPrice,
+				isPreloader,
+				setIsPreloader,
 			}}
 		>
 			{children}

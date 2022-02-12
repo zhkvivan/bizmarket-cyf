@@ -5,14 +5,31 @@ import { Link, useLocation } from "react-router-dom";
 import AdPage from "../pages/AdPage";
 import { useContextBM } from "../context/Context";
 
-const AdCard = ({ product }) => {
+const AdCard = ({ ad }) => {
 	const { categories } = useContextBM();
+
+	const product = {
+		id: ad.id,
+		adTitle: ad.adtitle,
+		sellerName: ad.sellername,
+		sellerCompany: ad.sellercompany,
+		createdDate: ad.createddate,
+		updatetDate: ad.updateddate,
+		expiryDate: ad.expirydate,
+		minimumQuantity: ad.minquantity,
+		price: ad.price,
+		description: ad.description,
+		location: ad.location,
+		imageURL: ad.imageurl,
+		categoryId: ad.categoryid,
+		sellerEmail: ad.selleremail,
+		sellerPhone: ad.sellerphone,
+	};
+
 
 	const categoryLink = categories.filter(
 		(category) => category.id === product.categoryId
 	)[0].link;
-
-	console.log(categoryLink);
 
 	const location = useLocation();
 	const showDetailsRef = useRef();
@@ -20,7 +37,6 @@ const AdCard = ({ product }) => {
 	return (
 		<div className={styles.outer}>
 			<Link
-				// to={`${location.pathname}/${product.id}`}
 				to={`/category/${product.categoryId}/${categoryLink}/${product.id}`}
 				className={styles.link}
 				state={{
@@ -32,7 +48,9 @@ const AdCard = ({ product }) => {
 					<div className={styles["img-wrap"]}>
 						<img
 							src={
-								product.image === undefined ? imagePlaceholder : product.image
+								product.imageURL === undefined || product.imageURL === null
+									? imagePlaceholder
+									: product.imageURL
 							}
 							alt={product.adTitle}
 							className={styles.photo}

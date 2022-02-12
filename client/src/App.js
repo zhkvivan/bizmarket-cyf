@@ -14,6 +14,13 @@ import { useContextBM } from "./context/Context";
 import BurgerMenu from "./components/BurgerMenu";
 import SearchResultPage from "./pages/SearchResultPage";
 import CongratulationPage from "./pages/CongratulationPage";
+import Register from "./pages/Register";
+import TermsOfUse from "./pages/TermsOfUse";
+import PostingPolicy from "./pages/PostingPolicy";
+import CookiePolicy from "./pages/CookiePolicy";
+import FAQ from "./pages/FAQ";
+import Help from "./pages/Help";
+import ContactUs from "./pages/ContactUs";
 
 function App() {
 	// Getting categories from server
@@ -49,7 +56,6 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Layout />}>
 					<Route exact path="/" element={<Home />} />
-					<Route path="about" element={<About />} />
 					<Route path="confirm-add-new-ad" element={<AddConfirmPage />} />
 					<Route path="add-new-ad" element={<AddNewAdPage />} />
 					<Route path="page-not-found" element={<NotFoundPage />} />
@@ -64,6 +70,15 @@ function App() {
 						element={<AdPage />}
 					/>
 					<Route path="congratulations" element={<CongratulationPage />} />
+					<Route path="about" element={<About />} />
+					<Route path="register" element={<Register />} />
+					<Route path="terms-of-use" element={<TermsOfUse />} />
+					<Route path="posting-policy" element={<PostingPolicy />} />
+					<Route path="cookie-policy" element={<CookiePolicy />} />
+					<Route path="faq" element={<FAQ />} />
+					<Route path="help" element={<Help />} />
+					<Route path="contact-us" element={<ContactUs />} />
+
 					<Route path="*" element={<NotFoundPage />} />
 				</Route>
 			</Routes>

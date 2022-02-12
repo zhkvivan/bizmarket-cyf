@@ -9,9 +9,11 @@ const NotFoundPage = () => {
 		navigate(-1);
 	};
 	return (
-		<div className={styles.wrapper}>
-			<h1 className={styles.h1}>404 Page Not Found</h1>
-			<Button label={"Back"} action={goTwoPagesBack} />
+		<div className={styles.container}>
+			<div className={styles.wrapper}>
+				<h1 className={styles.h1}>404 Page Not Found</h1>
+				<Button label={"Back"} action={goTwoPagesBack} />
+			</div>
 		</div>
 	);
 };

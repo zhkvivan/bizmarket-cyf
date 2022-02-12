@@ -63,7 +63,7 @@ router.post("/addad", (req, res) => {
 			location, 
 			imageURL, 
 			categoryId) 
-		VALUES($1, $2, $3, $4, $5, current_timestamp, current_timestamp, $6, $7, $8, $9, $10, $11, $12);`;
+		VALUES($1, $2, $3, $4, $5, current_timestamp, current_timestamp, $6, $7, $8, $9, $10, $11, $12) RETURNING id, imageURL;`;
 
 	const parameterizedQueryValues = [
 		input.adTitle,
@@ -76,14 +76,17 @@ router.post("/addad", (req, res) => {
 		input.minimumQuantity,
 		input.description,
 		input.location,
-		input.imageURL,
-		input.categoryId,
+		input.image,
+		input.category,
 	];
 
 	db.query(parameterizedInsertStatement, parameterizedQueryValues)
 		.then((result) => {
 			console.debug("Successfully created ad", result.rows);
-			res.status(201).json({ message: "Ad created successfully" }); //, categoryId: 1, adId: 35 });
+			res.status(201).json({
+				message: "Ad created successfully",
+				ad: result.rows[0],
+			});
 		})
 		.catch((error) => {
 			console.error("Failed to create new Ad ", error);
@@ -93,10 +96,14 @@ router.post("/addad", (req, res) => {
 		});
 });
 
-router.get("/ad", (_, res) => {
-	db.query("SELECT * FROM adListing")
+router.get("/ad", (req, res) => {
+	const input = req.query;
+	const parameterizedQueryValues = [input.categoryId, input.adId];
+
+	const parameterizedInsertStatement =
+		"SELECT * FROM adListing WHERE categoryId = $1 and id = $2";
+	db.query(parameterizedInsertStatement, parameterizedQueryValues)
 		.then((result) => {
-			//console.debug("successfully got the ads", result);
 			if (result.rows.length > 0) {
 				res.status(200).send({ results: result.rows });
 			} else {
@@ -112,14 +119,66 @@ router.get("/ad", (_, res) => {
 		});
 });
 
-router.get("/viewads", (_, res) => {
-	db.query(
-		"SELECT ad.adTitle, ad.sellerName, ad.sellerCompany,ad.sellerPhone,ad.sellerEmail,ad.expiryDate,ad.price,ad.quantity,ad.minQuantity,ad.description,ad.location,ad.imageURL,cat.id,cat.name FROM adListing  ad INNER JOIN  category  cat ON  ad.categoryId=cat.Id"
-	)
+router.get("/viewads", (req, res) => {
+	db.query("SELECT * from adListing")
 		.then((result) => {
-			//onsole.debug(result);
 			if (result.rows.length > 0) {
 				res.status(200).send({ results: result.rows });
+			}
+		})
+		.catch((error) => {
+			console.error("Failed to get all ads", error);
+			res
+				.status(500)
+				.json({ message: "Oh, no! Something went wrong... Sorry about that!" });
+		});
+});
+
+router.get("/category", (req, res) => {
+	const input = req.query;
+
+	const parameterizedQueryValues = [input.categoryId];
+
+	const parameterizedInsertStatement =
+		"SELECT * FROM adListing WHERE categoryId = $1";
+
+	db.query(parameterizedInsertStatement, parameterizedQueryValues)
+		.then((result) => {
+			if (result.rows) {
+				res.status(200).send({ results: result.rows });
+			}
+		})
+		.catch((error) => {
+			console.error("Failed to get all ads", error);
+			res
+				.status(500)
+				.json({ message: "Oh, no! Something went wrong... Sorry about that!" });
+		});
+});
+
+router.get("/search", (req, res) => {
+	const input = req.query;
+	const searchQuery = `%${input.query}%`;
+
+	let parameterizedQueryValues = [];
+	let parameterizedInsertStatement;
+
+	if (+input.categoryId === 0) {
+		parameterizedQueryValues = [searchQuery];
+		parameterizedInsertStatement =
+			"SELECT * FROM adListing WHERE LOWER(adTitle) LIKE LOWER($1)";
+	} else {
+		parameterizedQueryValues = [input.categoryId, searchQuery];
+		parameterizedInsertStatement =
+			"SELECT * FROM adListing WHERE categoryId = $1 AND LOWER(adTitle) LIKE LOWER($2)";
+	}
+
+	db.query(parameterizedInsertStatement, parameterizedQueryValues)
+		.then((result) => {
+			if (result.rows.length > 0) {
+				res.status(200).send({ results: result.rows });
+			} else {
+				res.send({ results: { data: 0 } });
 			}
 		})
 		.catch((error) => {

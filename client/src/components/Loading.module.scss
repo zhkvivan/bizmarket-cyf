@@ -1,7 +1,5 @@
-@import "../components/scssCommon.scss";
-@import "../components/mixins.scss";
-
-$card-width: 288px;
+@import "./scssCommon.scss";
+@import "./mixins.scss";
 
 .outer {
 	@include responsive(815px) {
@@ -17,11 +15,25 @@ $card-width: 288px;
 	display: block;
 }
 
+@keyframes anime {
+	0% {
+		opacity: 0.1;
+	}
+
+	50% {
+		opacity: 0.4;
+	}
+	100% {
+		opacity: 0.1;
+	}
+}
+
 .wrap {
-	width: $card-width;
-	background-color: white;
+	animation: anime infinite 1s linear;
+	width: 288px;
+	background-color: rgb(219, 219, 219);
 	border-radius: 20px;
-	box-shadow: 0px 0px 18px -8px rgb(0 0 0 / 68%);
+	box-shadow: 0px 0px 18px rgba(0, 0, 0, 0.06);
 	margin: 15px 11.5px;
 	@include responsive(950px) {
 		width: 220px;
@@ -32,13 +44,11 @@ $card-width: 288px;
 }
 
 .img-wrap {
-	width: $card-width;
+	width: 288px;
 	height: 205px;
 	overflow: hidden;
 	border-radius: 20px 20px 0px 0px;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
+	background-color: rgb(194, 194, 194);
 
 	@include responsive(950px) {
 		width: 220px;
@@ -51,10 +61,10 @@ $card-width: 288px;
 
 .photo {
 	cursor: pointer;
-	max-width: 100%;
+	width: 100%;
 	height: 100%;
-	object-fit: contain;
-	// border-radius: 20px 20px 0px 0px;
+	object-fit: cover;
+	border-radius: 20px 20px 0px 0px;
 	transition: all 0.5s ease;
 	&:hover {
 		transform: scale(1.1);
@@ -68,7 +78,7 @@ $card-width: 288px;
 }
 
 .content {
-	color: $text-color;
+	color: transparent;
 	padding: 35px 20px;
 	display: flex;
 	flex-direction: row;
@@ -95,18 +105,20 @@ $card-width: 288px;
 		font-weight: 600;
 		cursor: pointer;
 		display: inline-block;
+		background-color: rgb(202, 202, 202);
 	}
 	.from {
-		color: #878787;
 		font-size: 16px;
 		font-weight: 500;
+		background-color: rgb(175, 175, 175);
 	}
 	.btn {
 		cursor: pointer;
 		border: none;
 		margin-top: 15px;
-		color: white;
-		background-color: $primary-color;
+		color: transparent;
+		background-color: rgb(156, 156, 156);
+
 		text-decoration: none;
 		width: 135px;
 		height: 35px;
@@ -117,13 +129,6 @@ $card-width: 288px;
 		transition: all 0.5s ease;
 		@include responsive(815px) {
 			display: none;
-		}
-
-		&:hover {
-			background-color: $primary-color-hover;
-		}
-		&:active {
-			background-color: $primary-color-active;
 		}
 	}
 }
@@ -146,14 +151,15 @@ $card-width: 288px;
 	z-index: 10;
 	flex-shrink: 0;
 	border-radius: 50%;
-	background-color: $primary-color;
+	background-color: rgb(155, 155, 155);
+
 	width: 90px;
 	height: 90px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	color: white;
+	color: transparent;
 
 	@include responsive(950px) {
 		width: 70px;

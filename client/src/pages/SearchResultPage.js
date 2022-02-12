@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import { useContextBM } from "../context/Context";
 import styles from "./CategoryPage.module.scss";
-
+import Loading from "../components/Loading";
 import BizMarketApi from "../api/BizMarketApi";
 import Filters from "../components/Filters";
 import AdCard from "../components/AdCard";
@@ -20,13 +20,15 @@ const SearchResultPage = () => {
 		isFilterOpen,
 		setIsFilterOpen,
 		filterByPrice,
+		setFormValues,
+		isPreloader,
+		setIsPreloader,
+		setFilterByPrice,
 	} = useContextBM();
 
 	const [searchParams, setSearchParams] = useSearchParams();
 	const queryString = searchParams.get("query");
 	const categoryId = searchParams.get("categoryId");
-
-	console.log(categoryId);
 	let categoryName;
 	if (categoryId && categoryId !== "0") {
 		categoryName = categories.filter(
@@ -34,13 +36,12 @@ const SearchResultPage = () => {
 		)[0].name;
 	}
 
-	console.log(categoryName);
-
 	const location = useLocation();
 	const navigate = useNavigate();
 
+	// Filter set up
 	let min, max;
-	if (currentSearchResult) {
+	if (currentSearchResult.length > 0) {
 		max =
 			filterByPrice.max === 0
 				? currentSearchResult
@@ -65,92 +66,52 @@ const SearchResultPage = () => {
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
-		const fetchData = async () => {
+		setFilterByPrice({ min: 0, max: 0 });
+		setFormValues({
+			category: undefined,
+			adTitle: "",
+			description: "",
+			price: "",
+			sellerName: "",
+			sellerCompany: "",
+			sellerPhone: "",
+			sellerEmail: "",
+			minimumQuantity: "",
+		});
+		const fetchAllAds = async () => {
 			try {
-				// const response = await BizMarketApi.get("/search", {
-				// 	queryString: queryString,
-				// 	categoryId: categoryId,
-				// });
-
-				// console.log(response.data.results);
-				const mockResponse = [
-					{
-						id: 1,
-						adTitle: "Sugar",
-						sellerName: "John Doe",
-						sellerCompany: "Food LTD",
-						createdDate: "",
-						updatetDate: "",
-						expiryDate: "",
-						minimumQuantity: "",
-						price: 5,
-						description: "Sugar - very good sugar!",
-						location: "",
-						imageURL: undefined,
-						categoryId: 1,
-						sellerEmail: "test@bizmarket.com",
-						sellerPhone: "3434t34634",
-					},
-					{
-						id: 4,
-						adTitle: "Chicken nuggets",
-						sellerName: "John Doe",
-						sellerCompany: "Food LTD",
-						createdDate: "",
-						updatetDate: "",
-						expiryDate: "",
-						minimumQuantity: "",
-						price: 5,
-						description: "Sugar - very good sugar!",
-						location: "",
-						imageURL: undefined,
-						categoryId: 1,
-						sellerEmail: "test@bizmarket.com",
-						sellerPhone: "3434t34634",
-					},
-					{
-						id: 41,
-						adTitle: "iMac 2022",
-						sellerName: "Tim Cook",
-						sellerCompany: "Food LTD",
-						createdDate: "",
-						updatetDate: "",
-						expiryDate: "",
-						minimumQuantity: "",
-						price: 5,
-						description: "Sugar - very good sugar!",
-						location: "",
-						imageURL: undefined,
-						categoryId: 1,
-						sellerEmail: "test@bizmarket.com",
-						sellerPhone: "3434t34634",
-					},
-					{
-						id: 411,
-						adTitle: "Chicken nuggets",
-						sellerName: "John Doe",
-						sellerCompany: "Food LTD",
-						createdDate: "",
-						updatetDate: "",
-						expiryDate: "",
-						minimumQuantity: "",
-						price: 5,
-						description: "Sugar - very good sugar!",
-						location: "",
-						imageURL: undefined,
-						categoryId: 1,
-						sellerEmail: "test@bizmarket.com",
-						sellerPhone: "3434t34634",
-					},
-				];
-
-				setCurrentSearchResult(mockResponse);
+				setIsPreloader(true);
+				setCurrentSearchResult([]);
+				const response = await BizMarketApi.get("/viewads");
+				setCurrentSearchResult(response.data.results);
+				setIsPreloader(false);
 			} catch (error) {
 				console.error(error);
 			}
 		};
-		fetchData();
-	}, []);
+		const fetchSearch = async () => {
+			try {
+				setIsPreloader(true);
+				setCurrentSearchResult([]);
+				const response = await BizMarketApi.get("/search", {
+					params: {
+						query: queryString,
+						categoryId: categoryId,
+					},
+				});
+
+				setCurrentSearchResult(response.data.results);
+				setIsPreloader(false);
+			} catch (error) {
+				console.error(error);
+			}
+		};
+		if (queryString != null || categoryId != null) {
+			fetchSearch();
+		} else {
+			fetchAllAds();
+		}
+	}, [queryString, categoryId]);
 
 	const handleFiltersOpen = () => {
 		isFilterOpen ? setIsFilterOpen(false) : setIsFilterOpen(true);
@@ -159,17 +120,16 @@ const SearchResultPage = () => {
 
 	return (
 		<div className={styles.container}>
-			<div className={styles.inner}>
-				<Filters />
-				{currentSearchResult ? (
-					<div className={styles.content}>
+			<div>
+				{currentSearchResult.length > 0 ? (
+					<>
 						<div className={styles["top-bar"]}>
 							<h1 className={styles.h1}>
 								{!queryString
-									? "Recent ads"
+									? "Recent ads from all categories:"
 									: `${
 											currentSearchResult.length
-									  } results for "${queryString}" in ${
+									  } results for "${queryString}" from ${
 											categoryId === "0"
 												? "all categories"
 												: `category ${categoryName}`
@@ -182,29 +142,48 @@ const SearchResultPage = () => {
 								>
 									Filters
 								</span>
-								<div className={styles["sort-wrap"]}>
+								{/* <div className={styles["sort-wrap"]}>
 									<span>Sort by: </span>
 									<span> {sortWay}</span>
+								</div> */}
+							</div>
+						</div>
+						<div className={styles.inner}>
+							<Filters />
+							<div className={styles.content}>
+								<div className={styles.ads}>
+									{currentSearchResult.map((ad) => {
+										return (
+											<>
+												{ad.price >= min && ad.price <= max ? (
+													<AdCard ad={ad} key={ad.id} />
+												) : null}
+											</>
+										);
+									})}
 								</div>
 							</div>
 						</div>
-						<div className={styles.ads}>
-							{/* {currentSearchResult.map((ad) => {
-								return <AdCard product={ad} key={ad.id} />;
-							})} */}
-							{currentSearchResult.map((ad) => {
-								return (
-									<>
-										{ad.price >= min && ad.price <= max ? (
-											<AdCard product={ad} key={ad.id} />
-										) : null}
-									</>
-								);
-							})}
-						</div>
+					</>
+				) : isPreloader ? (
+					<div className={styles.ads}>
+						<Loading />
+						<Loading />
+						<Loading />
 					</div>
 				) : (
-					"Nothing is here"
+					<div className={styles["no-results-wrap"]}>
+						<div className={styles["no-results-inner"]}>
+							<h2 className={styles.h2}>
+								{`Sorry, we couldn't find anything for the query "${queryString}" in ${
+									categoryId === +0
+										? "all categories"
+										: "the category " + categoryName
+								}.`}
+							</h2>
+							<h3>Try to change your query or category</h3>
+						</div>
+					</div>
 				)}
 			</div>
 		</div>

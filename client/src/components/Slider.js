@@ -1,13 +1,27 @@
 import React from "react";
 import Carousel from "react-elastic-carousel";
 import SliderItem from "./SliderItem";
-import styles from "./Slider.module.scss";
+import stylesAllPages from "./Slider.module.scss";
+import stylesCategPage from "./SliderCategPage.module.scss";
 import { useContextBM } from "../context/Context";
 
 import "./Slider.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export const Slider = () => {
+	const location = useLocation();
+
+	let styles;
+	if (location.pathname === "/") {
+		styles = {
+			...stylesAllPages,
+		};
+	} else {
+		styles = {
+			...stylesCategPage,
+		};
+	}
+
 	const { categories } = useContextBM();
 
 	const breakPoints = [

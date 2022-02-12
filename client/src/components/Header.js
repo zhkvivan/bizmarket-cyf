@@ -17,7 +17,7 @@ const Header = () => {
 		resetDraft();
 	};
 
-	const { isOpen, setIsOpen, setFormValues } = useContextBM();
+	const { isOpen, setIsOpen, setFormValues, setFilterByPrice } = useContextBM();
 	const menuHandler = () => {
 		setIsOpen(true);
 	};
@@ -36,6 +36,7 @@ const Header = () => {
 				minimumQuantity: "",
 			});
 		}
+		setFilterByPrice({ min: 0, max: 0 });
 	};
 
 	return (
