@@ -19,6 +19,10 @@ const Filters = () => {
 
 	return (
 		<div className={isFilterOpen ? styles["filter-open"] : styles.filters}>
+			<span
+				className={styles["close-icon"]}
+				onClick={() => setIsFilterOpen(false)}
+			></span>
 			<h2>Filters</h2>
 			<div className={styles.content}>
 				<div className={styles["filter-type-heading"]}>Filter by price</div>

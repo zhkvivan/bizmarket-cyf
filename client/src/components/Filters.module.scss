@@ -44,6 +44,26 @@
 	}
 }
 
+.close-icon {
+	display: none;
+	@include responsive(950px) {
+		display: block;
+		&::before {
+			content: "";
+			position: absolute;
+			left: 20px;
+			top: 30px;
+			background-image: url("../images/icon-close.png");
+			background-position: center;
+			background-size: cover;
+			width: 20px;
+			height: 20px;
+			cursor: pointer;
+			z-index: 1001;
+		}
+	}
+}
+
 .content {
 	display: flex;
 	flex-direction: row;

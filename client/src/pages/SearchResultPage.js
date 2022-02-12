@@ -23,6 +23,7 @@ const SearchResultPage = () => {
 		setFormValues,
 		isPreloader,
 		setIsPreloader,
+		setFilterByPrice,
 	} = useContextBM();
 
 	const [searchParams, setSearchParams] = useSearchParams();
@@ -65,6 +66,7 @@ const SearchResultPage = () => {
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
+		setFilterByPrice({ min: 0, max: 0 });
 		setFormValues({
 			category: undefined,
 			adTitle: "",

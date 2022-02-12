@@ -83,6 +83,7 @@ const CategoryPage = () => {
 	}, [currentCategory]);
 
 	const handleFiltersOpen = () => {
+		console.log("here");
 		isFilterOpen ? setIsFilterOpen(false) : setIsFilterOpen(true);
 	};
 
@@ -135,9 +136,6 @@ const CategoryPage = () => {
 								}.`}
 							</h2>
 							<h3>Try to choose another one</h3>
-							{/* <Link to="/" className={styles.btn}>
-								To All Categories
-							</Link> */}
 						</div>
 						<Slider />
 					</div>

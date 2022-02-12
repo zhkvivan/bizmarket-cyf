@@ -8,7 +8,8 @@ import { useNavigate } from "react-router-dom";
 const BurgerMenu = () => {
 	const navigate = useNavigate();
 
-	const { isOpen, setIsOpen, setIsFilterOpen, isFilterOpen } = useContextBM();
+	const { isOpen, setIsOpen, setIsFilterOpen, isFilterOpen, setFilterByPrice } =
+		useContextBM();
 
 	const handleClose = () => {
 		setIsOpen(false);
@@ -34,6 +35,7 @@ const BurgerMenu = () => {
 				minimumQuantity: "",
 			});
 		}
+		setFilterByPrice({ min: 0, max: 0 });
 	};
 
 	return (
