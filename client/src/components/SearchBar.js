@@ -34,7 +34,6 @@ const SearchBar = () => {
 	});
 
 	const onSubmit = (data) => {
-		console.log(data);
 
 		navigate(`search?query=${data.query}&categoryId=${data.category}`, {
 			state: {

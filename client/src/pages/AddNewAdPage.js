@@ -6,7 +6,6 @@ import iconUpload from "../images/icon-upload.png";
 import { useContextBM } from "../context/Context";
 
 const AddNewAdPage = () => {
-	// console.log(useLocation());
 	// Getting values from context
 	const { formData, setFormValues, categories } = useContextBM();
 
@@ -244,7 +243,6 @@ const AddNewAdPage = () => {
 									ref={fileInputRef}
 									onChange={(e) => {
 										setValue("image", e.target.files);
-										console.log(e.target.files);
 										const file = e.target.files[0];
 										if (file) {
 											setImage(file);

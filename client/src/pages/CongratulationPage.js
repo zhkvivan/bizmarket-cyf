@@ -9,13 +9,11 @@ const CongratulationPage = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 	const { categories } = useContextBM();
-	console.log(location);
 
 	useEffect(() => {
 		!location.state && navigate("/");
 	}, []);
 
-	console.log(location.state);
 	const newAdInfo = {
 		categoryId: location.state && location.state.categoryId,
 		categoryLink:

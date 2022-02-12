@@ -98,14 +98,12 @@ router.post("/addad", (req, res) => {
 
 router.get("/ad", (req, res) => {
 	const input = req.query;
-	console.log(input);
 	const parameterizedQueryValues = [input.categoryId, input.adId];
 
 	const parameterizedInsertStatement =
 		"SELECT * FROM adListing WHERE categoryId = $1 and id = $2";
 	db.query(parameterizedInsertStatement, parameterizedQueryValues)
 		.then((result) => {
-			//console.debug("successfully got the ads", result.rows);
 			if (result.rows.length > 0) {
 				res.status(200).send({ results: result.rows });
 			} else {
@@ -122,13 +120,8 @@ router.get("/ad", (req, res) => {
 });
 
 router.get("/viewads", (req, res) => {
-	console.log(req);
-	db.query(
-		// "SELECT ad.adTitle, ad.sellerName, ad.sellerCompany,ad.sellerPhone,ad.sellerEmail,ad.expiryDate,ad.price,ad.quantity,ad.minQuantity,ad.description,ad.location,ad.imageURL,cat.id,cat.name FROM adListing  ad INNER JOIN  category  cat ON  ad.categoryId=cat.Id"
-		"SELECT * from adListing"
-	)
+	db.query("SELECT * from adListing")
 		.then((result) => {
-			//onsole.debug(result);
 			if (result.rows.length > 0) {
 				res.status(200).send({ results: result.rows });
 			}

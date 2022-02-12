@@ -26,7 +26,6 @@ const AdCard = ({ ad }) => {
 		sellerPhone: ad.sellerphone,
 	};
 
-	console.log(product);
 
 	const categoryLink = categories.filter(
 		(category) => category.id === product.categoryId

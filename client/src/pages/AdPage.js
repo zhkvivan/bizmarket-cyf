@@ -26,7 +26,6 @@ const AdPage = ({ product, noAccordion, isDemo }) => {
 
 	useEffect(() => {
 		if (product) {
-			console.log(product);
 			const ad = {
 				adTitle: formData.adTitle,
 				category: formData.category,
@@ -41,13 +40,9 @@ const AdPage = ({ product, noAccordion, isDemo }) => {
 			};
 			setCurrentProduct(ad);
 			setImage(ad.imageURL);
-			console.log("first");
 		} else if (location.state != null) {
 			setCurrentProduct(location.state.product);
-			console.log(location.state.product);
-			console.log("second");
 		} else {
-			console.log("third");
 			const fetchData = async () => {
 				try {
 					const response = await BizMarketApi.get("/ad", {
@@ -56,26 +51,6 @@ const AdPage = ({ product, noAccordion, isDemo }) => {
 							adId: adId,
 						},
 					});
-					console.log("inside fetchData");
-					console.log(response.data.results[0]);
-					const adExpamle = {
-						id: 1,
-						adTitle: "Iphone",
-						sellerName: "Steve Jobs",
-						sellerCompany: "Apple",
-						createdDate: "",
-						updatetDate: "",
-						expiryDate: "",
-						minimumQuantity: "100",
-						price: 395,
-						description:
-							"Смартфоны производства корпорации Apple. iPhone 13 является базовой моделью 15-го поколения. Содержит процессор Apple A15 в котором 15 млрд транзисторов. представлен 14 сентября 2021 года вместе со своим «младшим братом» iPhone 13 mini и «профессиональными» моделями iPhone 13 Pro и iPhone 13 Pro Max. Продажи начались 24 сентября. Дата предварительного заказа - 17 сентября 2021 года.",
-						location: "",
-						imageURL: undefined,
-						categoryId: 1,
-						sellerEmail: "test@bizmarket.com",
-						sellerPhone: "34340688",
-					};
 					const ad = {
 						id: response.data.results[0].id,
 						adTitle: response.data.results[0].adtitle,
@@ -103,42 +78,6 @@ const AdPage = ({ product, noAccordion, isDemo }) => {
 
 		window.scrollTo(0, 0);
 	}, [formData]);
-
-	// useEffect(() => {
-	// 	if (currentProduct.image != undefined) {
-	// 		const reader = new FileReader();
-	// 		reader.onloadend = () => {
-	// 			setImage(reader.result);
-	// 		};
-	// 		reader.readAsDataURL(currentProduct.image[0]);
-	// 	} else {
-	// 		console.log(currentProduct);
-	// 		setImage(currentProduct.imageURL);
-	// 	}
-	// }, [currentProduct]);
-
-	const faq = [
-		{
-			question: "Question 1",
-			answer:
-				"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-		},
-		{
-			question: "Question 2",
-			answer:
-				"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-		},
-		{
-			question: "Question 3",
-			answer:
-				"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-		},
-		{
-			question: "Question 4",
-			answer:
-				"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-		},
-	];
 
 	return (
 		<>

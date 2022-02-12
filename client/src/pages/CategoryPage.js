@@ -35,7 +35,6 @@ const CategoryPage = () => {
 	const [sortWay, setSortWay] = useState("most popular");
 
 	let min, max;
-	console.log(currentSearchResult);
 	if (currentSearchResult.length > 0) {
 		max =
 			filterByPrice.max === 0
@@ -71,10 +70,6 @@ const CategoryPage = () => {
 						categoryId: categoryId,
 					},
 				});
-				console.log(response.data.results);
-				if (response.data.results.data === 0) {
-					console.log("datanull");
-				}
 				if (response.data.results.length === 0) {
 					setCurrentSearchResult([]);
 				} else {

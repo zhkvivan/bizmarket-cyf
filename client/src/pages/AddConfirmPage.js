@@ -9,7 +9,6 @@ const AddConfirmPage = () => {
 	const navigate = useNavigate();
 	const { formData, setFormData, setFormValues } = useContextBM();
 
-	console.log(formData);
 	useEffect(() => {
 		if (formData.adTitle.length === 0) {
 			navigate("/no-draft");
@@ -26,16 +25,13 @@ const AddConfirmPage = () => {
 					image: reader.result,
 				});
 			};
-			console.log(formData);
 		}
 	}, []);
 
 	const postHandler = async (e) => {
 		e.preventDefault();
 		try {
-			console.log(formData);
 			const response = await BizMarketApi.post("/addad", formData);
-			console.log(response);
 			if (response.status === 201) {
 				navigate("/congratulations", {
 					state: {
