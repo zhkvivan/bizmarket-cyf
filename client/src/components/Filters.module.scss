@@ -9,7 +9,7 @@
 	box-shadow: 0px 0px 18px -8px rgba(0, 0, 0, 0.676);
 	background-color: white;
 	margin-right: 40px;
-	padding: 50px 20px;
+	padding: 40px 20px;
 
 	@include responsive(950px) {
 		// display: none;
@@ -22,24 +22,67 @@
 	h2 {
 		font-size: 20px;
 		color: $text-color;
+		margin-bottom: 30px;
 	}
 }
 
 .filter-open {
+	flex-shrink: 0;
+	width: 250px;
+	min-height: 300px;
+	border-radius: 20px;
+	box-shadow: 0px 0px 18px -8px rgba(0, 0, 0, 0.656);
+	background-color: white;
+	margin-right: 40px;
+	padding: 50px 20px;
 	@include responsive(950px) {
-		flex-shrink: 0;
-		width: 250px;
-		min-height: 300px;
-		border-radius: 20px;
-		box-shadow: 0px 0px 18px -8px rgba(0, 0, 0, 0.656);
-		background-color: white;
-		margin-right: 40px;
-		padding: 50px 20px;
-
 		position: absolute;
 		top: 130px;
 		left: 0px;
-		z-index: 2;
+		z-index: 20;
 		transition: all 0.3s ease;
 	}
+}
+
+.content {
+	display: flex;
+	flex-direction: row;
+}
+
+.filter-type-heading {
+	font-size: 14px;
+	margin-bottom: 10px;
+	padding-left: 5px;
+}
+
+.inputs {
+	span {
+		color: $primary-color;
+		padding-top: 5px;
+	}
+}
+
+.form {
+	input {
+		width: 80px;
+		height: 30px;
+		padding: 0 10px;
+		font-variant-numeric: lining-nums;
+		border: 1px solid $primary-color;
+		border-radius: 10px;
+	}
+}
+
+.bad-value {
+	font-size: 14px;
+	color: red;
+}
+
+.btn-filter-reset {
+	margin-top: 30px;
+	border: none;
+	background-color: $primary-color;
+	color: white;
+	padding: 8px 20px;
+	border-radius: 10px;
 }

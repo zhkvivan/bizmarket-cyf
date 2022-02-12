@@ -18,9 +18,34 @@ const CategoryPage = () => {
 		setCurrentSearchResult,
 		isFilterOpen,
 		setIsFilterOpen,
+		filterByPrice,
 	} = useContextBM();
 
 	const [sortWay, setSortWay] = useState("most popular");
+
+	let min, max;
+	if (currentSearchResult) {
+		max =
+			filterByPrice.max === 0
+				? currentSearchResult
+						.map((item) => {
+							return item.price;
+						})
+						.reduce((a, b) => {
+							return Math.max(a, b);
+						})
+				: filterByPrice.max;
+		min =
+			filterByPrice.min === 0
+				? currentSearchResult
+						.map((item) => {
+							return item.price;
+						})
+						.reduce((a, b) => {
+							return Math.min(a, b);
+						})
+				: filterByPrice.min;
+	}
 
 	useEffect(() => {
 		if (categories.length > 0) {
@@ -101,7 +126,7 @@ const CategoryPage = () => {
 						updatetDate: "",
 						expiryDate: "",
 						minimumQuantity: "",
-						price: 5,
+						price: 50,
 						description: "Sugar - very good sugar!",
 						location: "",
 						imageURL: undefined,
@@ -118,7 +143,7 @@ const CategoryPage = () => {
 						updatetDate: "",
 						expiryDate: "",
 						minimumQuantity: "",
-						price: 5,
+						price: 540,
 						description: "Sugar - very good sugar!",
 						location: "",
 						imageURL: undefined,
@@ -129,6 +154,7 @@ const CategoryPage = () => {
 				];
 
 				setCurrentSearchResult(mockResponse);
+				// setCurrentSearchResult(Data);
 			} catch (error) {
 				console.error(error);
 			}
@@ -165,9 +191,25 @@ const CategoryPage = () => {
 							</div>
 						</div>
 						<div className={styles.ads}>
-							{currentSearchResult.map((ad) => {
+							{/* {currentSearchResult.map((ad) => {
 								return <AdCard product={ad} key={ad.id} />;
+							})} */}
+							{currentSearchResult.map((ad) => {
+								return (
+									<>
+										{ad.price >= min && ad.price <= max ? (
+											<AdCard product={ad} key={ad.id} />
+										) : null}
+									</>
+								);
 							})}
+							{/* {data.map((item, index) => (
+								<div key={index}>
+									{item.price >= min && item.price <= max ? (
+										<Cards props={item} />
+									) : null}
+								</div>
+							))} */}
 						</div>
 					</div>
 				) : (

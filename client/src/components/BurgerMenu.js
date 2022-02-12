@@ -8,12 +8,13 @@ import { useNavigate } from "react-router-dom";
 const BurgerMenu = () => {
 	const navigate = useNavigate();
 
-	const { isOpen, setIsOpen } = useContextBM();
+	const { isOpen, setIsOpen, setIsFilterOpen, isFilterOpen } = useContextBM();
 	if (isOpen) {
 		console.log("click inside burger menu");
 	}
 	const handleClose = () => {
 		setIsOpen(false);
+		setIsFilterOpen(false);
 	};
 
 	const toAddNewAdPage = () => {
@@ -23,7 +24,7 @@ const BurgerMenu = () => {
 
 	return (
 		<div
-			className={`${isOpen ? styles["wrapper-bg"] : ""}`}
+			className={`${isOpen || isFilterOpen ? styles["wrapper-bg"] : ""}`}
 			onClick={handleClose}
 		>
 			<div

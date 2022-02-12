@@ -44,7 +44,7 @@ input expected:
         'imageURL': 'https://placekitten.com/g/200/300'
     }
 */
-router.post("/ad", (req, res) => {
+router.post("/addad", (req, res) => {
 	const input = req.body;
 
 	const parameterizedInsertStatement = `
@@ -77,15 +77,13 @@ router.post("/ad", (req, res) => {
 		input.description,
 		input.location,
 		input.imageURL,
-		input.category,
+		input.categoryId,
 	];
 
 	db.query(parameterizedInsertStatement, parameterizedQueryValues)
 		.then((result) => {
-			console.debug("Successfully created ad", result);
-			res
-				.status(201)
-				.json({ message: "Ad created successfully", categoryId: 1, adId: 35 });
+			console.debug("Successfully created ad", result.rows);
+			res.status(201).json({ message: "Ad created successfully" }); //, categoryId: 1, adId: 35 });
 		})
 		.catch((error) => {
 			console.error("Failed to create new Ad ", error);
@@ -110,6 +108,24 @@ router.get("/ad", (_, res) => {
 			res
 				.status(500) // Internal server error
 
+				.json({ message: "Oh, no! Something went wrong... Sorry about that!" });
+		});
+});
+
+router.get("/viewads", (_, res) => {
+	db.query(
+		"SELECT ad.adTitle, ad.sellerName, ad.sellerCompany,ad.sellerPhone,ad.sellerEmail,ad.expiryDate,ad.price,ad.quantity,ad.minQuantity,ad.description,ad.location,ad.imageURL,cat.id,cat.name FROM adListing  ad INNER JOIN  category  cat ON  ad.categoryId=cat.Id"
+	)
+		.then((result) => {
+			//onsole.debug(result);
+			if (result.rows.length > 0) {
+				res.status(200).send({ results: result.rows });
+			}
+		})
+		.catch((error) => {
+			console.error("Failed to get all ads", error);
+			res
+				.status(500)
 				.json({ message: "Oh, no! Something went wrong... Sorry about that!" });
 		});
 });

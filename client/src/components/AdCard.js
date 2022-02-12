@@ -10,7 +10,9 @@ const AdCard = ({ product }) => {
 
 	const categoryLink = categories.filter(
 		(category) => category.id === product.categoryId
-	);
+	)[0].link;
+
+	console.log(categoryLink);
 
 	const location = useLocation();
 	const showDetailsRef = useRef();
@@ -49,7 +51,7 @@ const AdCard = ({ product }) => {
 						</div>
 						<div className={styles["price-wrapper"]}>
 							<div>from</div>
-							<div className={styles.price}>£ 5</div>
+							<div className={styles.price}>£ {product.price}</div>
 						</div>
 					</div>
 				</div>
