@@ -161,7 +161,8 @@ const AdPage = ({ product, noAccordion, isDemo }) => {
 						<div className={styles["image-wrapper"]}>
 							<img
 								src={
-									currentProduct.imageURL === undefined
+									currentProduct.imageURL === undefined ||
+									currentProduct.imageURL === null
 										? imgPlaceholder
 										: currentProduct.imageURL
 								}
@@ -228,7 +229,7 @@ const AdPage = ({ product, noAccordion, isDemo }) => {
 							</div>
 						</div>
 					</div>
-					{noAccordion ? "" : <Accordion faq={faq} />}
+					{noAccordion ? "" : <Accordion />}
 				</div>
 			)}
 		</>

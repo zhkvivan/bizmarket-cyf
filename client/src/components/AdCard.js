@@ -26,6 +26,8 @@ const AdCard = ({ ad }) => {
 		sellerPhone: ad.sellerphone,
 	};
 
+	console.log(product);
+
 	const categoryLink = categories.filter(
 		(category) => category.id === product.categoryId
 	)[0].link;
@@ -47,7 +49,7 @@ const AdCard = ({ ad }) => {
 					<div className={styles["img-wrap"]}>
 						<img
 							src={
-								product.imageURL === undefined
+								product.imageURL === undefined || product.imageURL === null
 									? imagePlaceholder
 									: product.imageURL
 							}
