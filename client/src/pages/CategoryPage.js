@@ -83,7 +83,6 @@ const CategoryPage = () => {
 	}, [currentCategory]);
 
 	const handleFiltersOpen = () => {
-		console.log("here");
 		isFilterOpen ? setIsFilterOpen(false) : setIsFilterOpen(true);
 	};
 
