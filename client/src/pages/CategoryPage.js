@@ -94,38 +94,40 @@ const CategoryPage = () => {
 	return (
 		<div className={styles.container}>
 			{/* <Breadcrumbs /> */}
-			<div className={styles.inner}>
+			<div>
 				{currentSearchResult.length > 0 && currentCategory ? (
 					<>
-						<Filters />
-						<div className={styles.content}>
-							<div className={styles["top-bar"]}>
-								<h1 className={styles.h1}>
-									Most recent ads in category {currentCategory.name}
-								</h1>
-								<div className={styles.options}>
-									<span
-										onClick={handleFiltersOpen}
-										className={styles["filters-toggle"]}
-									>
-										Filters
-									</span>
-									<div className={styles["sort-wrap"]}>
-										{/* <span>Sort by: </span>
-										<span> {sortWay}</span> */}
-									</div>
+						<div className={styles["top-bar"]}>
+							<h1 className={styles.h1}>
+								Most recent ads in category {currentCategory.name}
+							</h1>
+							<div className={styles.options}>
+								<span
+									onClick={handleFiltersOpen}
+									className={styles["filters-toggle"]}
+								>
+									Filters
+								</span>
+								<div className={styles["sort-wrap"]}>
+									{/* <span>Sort by: </span>
+											<span> {sortWay}</span> */}
 								</div>
 							</div>
-							<div className={styles.ads}>
-								{currentSearchResult.map((ad) => {
-									return (
-										<>
-											{ad.price >= min && ad.price <= max ? (
-												<AdCard ad={ad} key={ad.id} />
-											) : null}
-										</>
-									);
-								})}
+						</div>
+						<div className={styles.inner}>
+							<Filters />
+							<div className={styles.content}>
+								<div className={styles.ads}>
+									{currentSearchResult.map((ad) => {
+										return (
+											<>
+												{ad.price >= min && ad.price <= max ? (
+													<AdCard ad={ad} key={ad.id} />
+												) : null}
+											</>
+										);
+									})}
+								</div>
 							</div>
 						</div>
 					</>

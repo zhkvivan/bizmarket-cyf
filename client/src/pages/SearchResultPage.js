@@ -118,10 +118,9 @@ const SearchResultPage = () => {
 
 	return (
 		<div className={styles.container}>
-			<div className={styles.inner}>
-				<Filters />
+			<div>
 				{currentSearchResult.length > 0 ? (
-					<div className={styles.content}>
+					<>
 						<div className={styles["top-bar"]}>
 							<h1 className={styles.h1}>
 								{!queryString
@@ -147,21 +146,23 @@ const SearchResultPage = () => {
 								</div>
 							</div>
 						</div>
-						<div className={styles.ads}>
-							{/* {currentSearchResult.map((ad) => {
-								return <AdCard product={ad} key={ad.id} />;
-							})} */}
-							{currentSearchResult.map((ad) => {
-								return (
-									<>
-										{ad.price >= min && ad.price <= max ? (
-											<AdCard ad={ad} key={ad.id} />
-										) : null}
-									</>
-								);
-							})}
+						<div className={styles.inner}>
+							<Filters />
+							<div className={styles.content}>
+								<div className={styles.ads}>
+									{currentSearchResult.map((ad) => {
+										return (
+											<>
+												{ad.price >= min && ad.price <= max ? (
+													<AdCard ad={ad} key={ad.id} />
+												) : null}
+											</>
+										);
+									})}
+								</div>
+							</div>
 						</div>
-					</div>
+					</>
 				) : isPreloader ? (
 					<div className={styles.ads}>
 						<Loading />

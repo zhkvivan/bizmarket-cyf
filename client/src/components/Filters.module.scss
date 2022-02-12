@@ -16,7 +16,7 @@
 
 		position: absolute;
 		left: -120%;
-		top: 130px;
+		top: 50px;
 		transition: all 0.3s ease;
 	}
 	h2 {
@@ -37,7 +37,7 @@
 	padding: 50px 20px;
 	@include responsive(950px) {
 		position: absolute;
-		top: 130px;
+		top: 50px;
 		left: 0px;
 		z-index: 600;
 		transition: all 0.3s ease;

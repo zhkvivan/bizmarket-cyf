@@ -5,7 +5,6 @@
 	display: flex;
 	flex-direction: row;
 	align-items: flex-start;
-	margin-top: 60px;
 	margin-bottom: 30px;
 	position: relative;
 
@@ -59,6 +58,7 @@
 	max-width: 100%;
 	h1 {
 		margin: 0;
+		margin-top: 60px;
 		color: $text-color;
 		font-variant-numeric: lining-nums;
 		@include responsive(1000px) {
@@ -71,7 +71,7 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-end;
-	margin-top: 30px;
+	margin: 30px 0;
 	@include responsive(950px) {
 		justify-content: space-between;
 	}
@@ -99,7 +99,7 @@
 
 .ads {
 	margin: 0 -11.5px;
-	margin-top: 40px;
+	margin-top: -15px;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
