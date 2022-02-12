@@ -41,6 +41,8 @@ const NavMenu = ({ place, resetDraft }) => {
 					>
 						Search
 					</NavLink>
+				</li>
+				<li>
 					<NavLink
 						to="/about"
 						className={`${

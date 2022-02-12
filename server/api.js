@@ -182,8 +182,10 @@ router.get("/search", (req, res) => {
 
 	db.query(parameterizedInsertStatement, parameterizedQueryValues)
 		.then((result) => {
-			if (result.rows) {
+			if (result.rows.length > 0) {
 				res.status(200).send({ results: result.rows });
+			} else {
+				res.send({ results: { data: 0 } });
 			}
 		})
 		.catch((error) => {

@@ -20,6 +20,8 @@ const CategoryPage = () => {
 		isFilterOpen,
 		setIsFilterOpen,
 		filterByPrice,
+		isPreloader,
+		setIsPreloader,
 	} = useContextBM();
 
 	if (categories.length > 0) {
@@ -69,6 +71,10 @@ const CategoryPage = () => {
 						categoryId: categoryId,
 					},
 				});
+				console.log(response.data.results);
+				if (response.data.results.data === 0) {
+					console.log("datanull");
+				}
 				if (response.data.results.length === 0) {
 					setCurrentSearchResult([]);
 				} else {
@@ -126,7 +132,7 @@ const CategoryPage = () => {
 				) : (
 					<div className={styles["no-results-wrap"]}>
 						<div className={styles["no-results-inner"]}>
-							<h2>
+							<h2 className={styles.h2}>
 								{`There are no ads in category ${
 									currentCategory && currentCategory.name
 								}.`}

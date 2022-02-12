@@ -9,9 +9,7 @@ const BurgerMenu = () => {
 	const navigate = useNavigate();
 
 	const { isOpen, setIsOpen, setIsFilterOpen, isFilterOpen } = useContextBM();
-	if (isOpen) {
-		console.log("click inside burger menu");
-	}
+
 	const handleClose = () => {
 		setIsOpen(false);
 		setIsFilterOpen(false);
@@ -20,6 +18,22 @@ const BurgerMenu = () => {
 	const toAddNewAdPage = () => {
 		setIsOpen(false);
 		navigate("/add-new-ad");
+	};
+
+	const resetDraft = () => {
+		if (location.pathname === "/confirm-add-new-ad") {
+			setFormValues({
+				category: undefined,
+				adTitle: "",
+				description: "",
+				price: "",
+				sellerName: "",
+				sellerCompany: "",
+				sellerPhone: "",
+				sellerEmail: "",
+				minimumQuantity: "",
+			});
+		}
 	};
 
 	return (
@@ -34,7 +48,7 @@ const BurgerMenu = () => {
 				}}
 			>
 				<span className={styles["close-icon"]} onClick={handleClose}></span>
-				<NavMenu />
+				<NavMenu resetDraft={resetDraft} />
 				<Button label={"Post new Ad"} action={toAddNewAdPage} />
 			</div>
 		</div>

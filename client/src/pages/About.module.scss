@@ -1,0 +1,13 @@
+@import "../components/scssCommon.scss";
+@import "../components/mixins.scss";
+
+.wrapper {
+	padding: 50px 0;
+}
+
+.content {
+	margin-top: 50px;
+	font-size: 16px;
+	line-height: 26px;
+	max-width: 800px;
+}

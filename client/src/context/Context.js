@@ -51,6 +51,9 @@ export const ContextProvider = ({ children }) => {
 	const [isFilterOpen, setIsFilterOpen] = useState(false);
 	const [filterByPrice, setFilterByPrice] = useState({ min: 0, max: 0 });
 
+	// Setting placeholder preloader
+	const [isPreloader, setIsPreloader] = useState(true);
+
 	return (
 		<Context.Provider
 			value={{
@@ -68,6 +71,8 @@ export const ContextProvider = ({ children }) => {
 				setIsFilterOpen,
 				filterByPrice,
 				setFilterByPrice,
+				isPreloader,
+				setIsPreloader,
 			}}
 		>
 			{children}

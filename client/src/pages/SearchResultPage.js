@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import { useContextBM } from "../context/Context";
 import styles from "./CategoryPage.module.scss";
-
+import Loading from "../components/Loading";
 import BizMarketApi from "../api/BizMarketApi";
 import Filters from "../components/Filters";
 import AdCard from "../components/AdCard";
@@ -21,6 +21,8 @@ const SearchResultPage = () => {
 		setIsFilterOpen,
 		filterByPrice,
 		setFormValues,
+		isPreloader,
+		setIsPreloader,
 	} = useContextBM();
 
 	const [searchParams, setSearchParams] = useSearchParams();
@@ -76,31 +78,35 @@ const SearchResultPage = () => {
 		});
 		const fetchAllAds = async () => {
 			try {
+				setIsPreloader(true);
+				setCurrentSearchResult([]);
 				const response = await BizMarketApi.get("/viewads");
 				setCurrentSearchResult(response.data.results);
+				setIsPreloader(false);
 			} catch (error) {
 				console.error(error);
 			}
 		};
 		const fetchSearch = async () => {
 			try {
+				setIsPreloader(true);
+				setCurrentSearchResult([]);
 				const response = await BizMarketApi.get("/search", {
 					params: {
 						query: queryString,
 						categoryId: categoryId,
 					},
 				});
-				console.log(response.data.results);
+
 				setCurrentSearchResult(response.data.results);
+				setIsPreloader(false);
 			} catch (error) {
 				console.error(error);
 			}
 		};
 		if (queryString != null || categoryId != null) {
-			console.log("конкретный поиск");
 			fetchSearch();
 		} else {
-			console.log("общий поиск");
 			fetchAllAds();
 		}
 	}, [queryString, categoryId]);
@@ -156,8 +162,25 @@ const SearchResultPage = () => {
 							})}
 						</div>
 					</div>
+				) : isPreloader ? (
+					<div className={styles.ads}>
+						<Loading />
+						<Loading />
+						<Loading />
+					</div>
 				) : (
-					"Nothing is here"
+					<div className={styles["no-results-wrap"]}>
+						<div className={styles["no-results-inner"]}>
+							<h2 className={styles.h2}>
+								{`Sorry, we couldn't find anything for the query "${queryString}" in ${
+									categoryId === +0
+										? "all categories"
+										: "the category " + categoryName
+								}.`}
+							</h2>
+							<h3>Try to change your query or category</h3>
+						</div>
+					</div>
 				)}
 			</div>
 		</div>
