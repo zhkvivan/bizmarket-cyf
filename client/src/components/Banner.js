@@ -14,7 +14,7 @@ const Banner = () => {
 				<h2>Find what you need</h2>
 				<p>
 					On our marketplace you will be able to find suppliers who are ready to
-					sell small wholesale.
+					sell small wholesale amounts.
 				</p>
 				<p>No extra charges. Just buy and sell.</p>
 				<div className={styles["btn-wrap"]}>

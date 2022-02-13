@@ -7,7 +7,7 @@ const CookiePolicy = () => {
 			<div className={styles.wrapper}>
 				<h1 className={styles.h1}>Cookie Policy</h1>
 				<div className={styles.content}>
-					<p>We don't save any cookie, so you shouldn't worry about it!</p>
+					<p>We don't save any cookies, so you shouldn't worry about it!</p>
 				</div>
 			</div>
 		</div>

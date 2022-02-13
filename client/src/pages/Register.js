@@ -13,7 +13,7 @@ const Register = () => {
 			<div className={styles.wrapper}>
 				<h1 className={styles.h1}>Register</h1>
 				<div className={styles.content}>
-					<p>You don't need to register to post an ad in our website.</p>
+					<p>You don't need to register to post an ad on our website.</p>
 					<Button label={"Post new Ad"} action={btnHandler} />
 				</div>
 			</div>
