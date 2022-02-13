@@ -6,7 +6,7 @@ const TermsOfUse = () => {
 		"violate any laws",
 		"post any threatening, abusive, defamatory, obscene or indecent material",
 		"post or otherwise communicate any false or misleading material or message of any kind",
-		"nfringe any third-party right",
+		"infringe any third-party right",
 		"distribute spam, chain letters, or promote pyramid schemes",
 	];
 	return (

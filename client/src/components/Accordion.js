@@ -16,7 +16,7 @@ const Accordion = () => {
 		{
 			question: "Who is this marketplace for?",
 			answer:
-				"This marketplace was created to connect entrepreneurs and wholesalers. If you are starting your own business and do not know where to get goods for sale, you will find your suppliers here.",
+				"This marketplace was created to connect entrepreneurs and wholesalers. If you are starting your own business and don't know where to get goods for sale, you will find your suppliers here.",
 		},
 		{
 			question: "Who can post an ad?",
@@ -24,7 +24,7 @@ const Accordion = () => {
 				"Any supplier that sells wholesale can place an ad on our marketplace. This does not require registration.",
 		},
 		{
-			question: "How is the buying process going?",
+			question: "How does the buying process work?",
 			answer:
 				"Our site does not provide a shopping cart or payment. All you need is to find the right ad, and contact the seller by phone or email and arrange a deal.",
 		},
