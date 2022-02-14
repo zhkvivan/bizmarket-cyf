@@ -78,9 +78,20 @@ const Filters = () => {
 					) : (
 						""
 					)}
-					<button type="submit" className={styles["btn-filter-reset"]}>
-						Reset filters
-					</button>
+					<div className={styles["btn-wrap"]}>
+						<button
+							className={styles["btn-filter-apply"]}
+							onClick={(e) => {
+								e.preventDefault();
+								setIsFilterOpen(false);
+							}}
+						>
+							Apply
+						</button>
+						<button type="submit" className={styles["btn-filter-reset"]}>
+							Reset
+						</button>
+					</div>
 				</form>
 			</div>
 		</div>
