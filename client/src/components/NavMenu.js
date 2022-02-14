@@ -42,7 +42,12 @@ const NavMenu = ({ place, resetDraft }) => {
 						Search
 					</NavLink>
 				</li>
-				<li>
+				<li
+					onClick={() => {
+						setIsOpen(false);
+						resetDraft();
+					}}
+				>
 					<NavLink
 						to="/about"
 						className={`${
