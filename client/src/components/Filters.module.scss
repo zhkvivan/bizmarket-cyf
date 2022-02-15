@@ -76,6 +76,8 @@
 }
 
 .inputs {
+	// display: flex;
+	// justify-content: space-between;
 	span {
 		color: $primary-color;
 		padding-top: 5px;
@@ -98,11 +100,37 @@
 	color: red;
 }
 
+.btn-wrap {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.btn-filter-apply {
+	display: none;
+	@include responsive(950px) {
+		display: block;
+		margin-top: 30px;
+		border: none;
+		background-color: $primary-color;
+		color: white;
+		padding: 8px 30px;
+		border-radius: 10px;
+		cursor: pointer;
+	}
+}
+
 .btn-filter-reset {
 	margin-top: 30px;
 	border: none;
 	background-color: $primary-color;
 	color: white;
-	padding: 8px 20px;
+	padding: 8px 30px;
 	border-radius: 10px;
+	cursor: pointer;
+	@include responsive(950px) {
+		border: 1px solid $primary-color;
+		background-color: white;
+		color: $primary-color;
+	}
 }

@@ -93,6 +93,7 @@ const SearchResultPage = () => {
 			try {
 				setIsPreloader(true);
 				setCurrentSearchResult([]);
+
 				const response = await BizMarketApi.get("/search", {
 					params: {
 						query: queryString,
@@ -176,7 +177,7 @@ const SearchResultPage = () => {
 						<div className={styles["no-results-inner"]}>
 							<h2 className={styles.h2}>
 								{`Sorry, we couldn't find anything for the query "${queryString}" in ${
-									categoryId === +0
+									categoryId === "0"
 										? "all categories"
 										: "the category " + categoryName
 								}.`}
