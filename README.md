@@ -1,6 +1,28 @@
-# Starter Kit
+# [BizMarket](https://bizmarketcyf.herokuapp.com)
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+BizMarket is a marketplace that aims to connect buyers and wholesale sellers.
+
+## Features
+
+- Posting ads
+- Searching by keyword
+- Selecting a specific category to search for
+- Viewing all ads from a specific category
+
+## Development
+
+This application was developed as part of the graduation project at CodeYourFuture. By the end of four week it was sucessfully delivered with all the features that were planned. Team of three devs managed to developed MVP within four weeks.
+
+## Developers
+
+Ivan Zhukov - Design, Frontend - [LinkedIn](https://www.linkedin.com/in/ivanzhukov) | [GitHub](https://github.com/zhkvivan)
+
+Mirabela Butiseaca - Frontend - [LinkedIn](https://www.linkedin.com/in/mirabelabutiseaca) | [GitHub](https://github.com/Mira-Bela)
+
+Peter Armstrong - Backend - [LinkedIn](https://www.linkedin.com/in/peter-armstrong-1b96b286) | [GitHub](https://github.com/PeterArmstrong79)
+
+### About the application
 
 - [x] Full stack ES8+ with [Babel]
 - [x] [Node] LTS support (verified working on 12.x and 14.x LTS releases)
@@ -14,6 +36,7 @@
 - [x] [Cloud Foundry] deployment
 - [x] [Docker] build
 - [x] [Postgres] database with [node-postgres]
+
 
 ## Setup
 
@@ -66,6 +89,8 @@ principles are followed:
 ### Troubleshooting
 
 See the guidance in the [wiki].
+
+
 
 [1]: https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template#creating-a-repository-from-a-template
 [2]: https://docs.github.com/en/github/administering-a-repository/managing-branches-in-your-repository
